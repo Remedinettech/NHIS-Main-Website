@@ -1,0 +1,37 @@
+<!--
+  Windows service definition for the TN-NHIS API (Next.js on 127.0.0.1:3001).
+
+  Service wrapper: WinSW v2.12.0 (https://github.com/winsw/winsw/releases/tag/v2.12.0), file "WinSW-x64.exe".
+  Node.js does not implement the Windows service protocol, so node.exe is always started BY the wrapper:
+  copy WinSW-x64.exe to  J:\TN_NHIS_WEBSITE\Service\tnnhis-api.exe  (the name must match this file: tnnhis-api.xml).
+
+  Adjust <executable> if Node.js is installed elsewhere ( where.exe node ).
+  Secrets are NOT in this file: the API reads Backend\nhis-api\.env itself.
+-->
+<service>
+  <id>TNNHISApi</id>
+  <name>TN-NHIS API</name>
+  <description>TN-NHIS Next.js API listening on 127.0.0.1:3001 behind IIS (application TNNHISApi).</description>
+
+  <executable>C:\Program Files\nodejs\node.exe</executable>
+  <arguments>"J:\TN_NHIS_WEBSITE\Backend\node_modules\next\dist\bin\next" start -H 127.0.0.1 -p 3001</arguments>
+  <workingdirectory>J:\TN_NHIS_WEBSITE\Backend\nhis-api</workingdirectory>
+
+  <env name="NODE_ENV" value="production" />
+
+  <startmode>Automatic</startmode>
+  <delayedAutoStart>true</delayedAutoStart>
+  <stoptimeout>20 sec</stoptimeout>
+
+  <!-- Restart after a crash, but not in a tight loop. -->
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+  <onfailure action="restart" delay="60 sec" />
+  <resetfailure>1 hour</resetfailure>
+
+  <logpath>J:\TN_NHIS_WEBSITE\Logs</logpath>
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>10</keepFiles>
+  </log>
+</service>

@@ -1,0 +1,235 @@
+.nhis-header {
+  background: #fff;
+  color: #12304a;
+  border-bottom: 1px solid #d9e5ef;
+}
+
+/* Desktop: identity | controls | portrait */
+.nhis-header .nhis-header__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "identity controls portrait";
+  align-items: center;
+  gap: 24px;
+  min-height: 112px;
+  padding-block: 12px;
+}
+
+.nhis-header__identity {
+  grid-area: identity;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nhis-header .nhis-header__emblem {
+  display: block;
+  flex: 0 0 auto;
+  width: 76px;
+  height: 82px;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.nhis-header__wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+}
+
+.nhis-header__name {
+  color: #12304a;
+  font-family: "Manrope", "Inter", system-ui, sans-serif;
+  font-size: clamp(28px, 2.4vw, 36px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.nhis-header__hyphen {
+  color: #63849d;
+  margin-inline: 2px;
+}
+
+.nhis-header__name-blue {
+  color: #0072bb;
+}
+
+.nhis-header__subtitle {
+  max-width: 390px;
+  color: #334155;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+.nhis-header__subtitle:lang(ta) {
+  font-family: "Noto Sans Tamil", sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: normal;
+}
+
+/* Preserve the complete original photograph. */
+.nhis-header__portrait-frame {
+  grid-area: portrait;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 18px;
+  border-left: 1px solid #d9e5ef;
+}
+
+.nhis-header .nhis-header__portrait {
+  display: block;
+  position: static;
+  width: 72px;
+  height: 88px;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.nhis-header__controls {
+  grid-area: controls;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  min-width: 0;
+}
+
+.nhis-header .nhis-header__menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #d9e5ef;
+  border-radius: 8px;
+  background: #fff;
+  color: #12304a;
+  cursor: pointer;
+}
+
+.nhis-header .nhis-header__menu-toggle:hover {
+  background: #e8f3fb;
+  border-color: #0072bb;
+}
+
+.nhis-header__identity:focus-visible,
+.nhis-header .nhis-header__menu-toggle:focus-visible {
+  outline: 3px solid #0072bb;
+  outline-offset: 5px;
+}
+
+/* Tablet/mobile: identity + portrait, then controls. */
+@media (max-width: 1024px) {
+  .nhis-header .nhis-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "identity portrait"
+      "controls controls";
+    gap: 12px 20px;
+    min-height: auto;
+  }
+
+  .nhis-header__controls {
+    flex-wrap: wrap;
+    padding-top: 12px;
+    border-top: 1px solid #d9e5ef;
+  }
+
+  .nhis-header .nhis-header__menu-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .nhis-header .nhis-header__inner {
+    gap: 12px;
+    padding-inline: 16px;
+  }
+
+  .nhis-header__identity {
+    gap: 10px;
+  }
+
+  .nhis-header .nhis-header__emblem {
+    width: 54px;
+    height: 62px;
+  }
+
+  .nhis-header__name {
+    font-size: 27px;
+  }
+
+  .nhis-header__subtitle {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .nhis-header__subtitle:lang(ta) {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .nhis-header__portrait-frame {
+    padding-left: 10px;
+  }
+
+  .nhis-header .nhis-header__portrait {
+    width: 54px;
+    height: 70px;
+  }
+
+  .nhis-header__controls {
+    gap: 8px;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 380px) {
+  .nhis-header .nhis-header__inner {
+    padding-inline: 12px;
+    column-gap: 8px;
+  }
+
+  .nhis-header__identity {
+    gap: 8px;
+  }
+
+  .nhis-header .nhis-header__emblem {
+    width: 44px;
+    height: 54px;
+  }
+
+  .nhis-header__name {
+    font-size: 24px;
+  }
+
+  .nhis-header .nhis-header__portrait {
+    width: 46px;
+    height: 62px;
+  }
+}

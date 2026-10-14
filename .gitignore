@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.next/
+coverage/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+*.log
+.DS_Store
+nhis-api/uploads/
+nhis-api/storage/
+
+# local secrets
+.local-*
+nhis-api/storage/
+.e2e-storage/
+nhis-api/.e2e-storage/
+
+# database backups (contain password hashes and site data)
+database-backup/
+
+# production build settings are public and must be committed
+!nhis-client/.env.production
+!nhis-admin/.env.production
+deploy-package/

@@ -1,0 +1,1313 @@
+[
+  {
+    "slug": "employee-policy",
+    "legacyPaths": [
+      "/Account/Employeesscheme"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Account/Employeesscheme",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Employees New Health Insurance Scheme, 2021",
+      "sections": [
+        {
+          "id": "about",
+          "key": "about",
+          "heading": "About Scheme",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The scheme provides health care assistance to the employees of Government Departments, State Public Sector Undertakings, Statutory Boards, Local Bodies, State Government Universities etc., and their eligible family members upto the limit of "
+                },
+                {
+                  "type": "strong",
+                  "text": "Rs. 5.00 lakh"
+                },
+                {
+                  "type": "text",
+                  "text": " in a block of 4 years commencing from 01-07-2021 to 30-06-2025. The financial assistance shall be enhanced upto "
+                },
+                {
+                  "type": "strong",
+                  "text": "Rs. 10.00 lakh"
+                },
+                {
+                  "type": "text",
+                  "text": " for specified treatments and surgeries as in the Annexure-I of G.O.Ms.No.160, Finance(Salaries) Department, Dated:30.06.2021."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "United India Insurance Company implements the scheme."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "heading": "Coverage",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "strong",
+                  "text": "Rs. 5,00,000"
+                },
+                {
+                  "type": "text",
+                  "text": " in a block of 4 years, enhanced upto "
+                },
+                {
+                  "type": "strong",
+                  "text": "Rs. 10,00,000"
+                },
+                {
+                  "type": "text",
+                  "text": " for specified treatments and surgeries as in the Annexure-I of G.O.Ms.No.160."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligibility",
+          "key": "eligibility",
+          "heading": "Eligibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All the Employees of Government Departments, Public Sector Units, Co-operatives and Other Institutions / Organisations etc., and their eligible family members."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of Government Departments drawing pay in regular time scale of pay including Teaching and Non-Teaching Staff of Aided Educational Institutions."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of willing Organizations / Institutions registered under the Tamil Nadu Registration of Societies Act, 1975 covered under the New Health Insurance Scheme 2016."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of the Tamil Nadu Hindu Religious & Charitable Endowments Boards drawing pay in regular time scale of pay."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The following family members of the employee shall be covered under the New Health Insurance Scheme, 2021:"
+                    }
+                  ],
+                  "children": {
+                    "type": "list",
+                    "ordered": true,
+                    "items": [
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "Legal Spouse of the Employee."
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "Children of the Employee - till they get employed or married or attain the age of 25 years whichever is earlier and dependent on the Employee."
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "Parents of the Employee, in the case of unmarried employee until the Employee get married, in case of a divorced employee not having children, until such employee gets remarried."
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "Physically Challenged and Intellectually Disabled Children of th e employee without any age restriction, subject to the minimum of the handicap to the extent of 40% as certified by the District Disability Welfare / Rehabilitation Officer and wholly dependent on the employee."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "key": "scope",
+          "heading": "Scope of the Scheme",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The scope of the Scheme shall be to provide coverage for Eligible Medical Expenses incurred by the Beneficiary of this scheme during Hospitalisation for the treatments and surgeries listed in G.O.Ms.No.160, Finance(Salaries) Department, Dated:30.06.2021. The coverage under the scheme shall also include pre-existing illness."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligible-expenses",
+          "key": "eligible-expenses",
+          "heading": "Eligible Medical Expenses",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Eligible Medical Expenses with reference to the Network Hospital shall include all expenses charged by the Hospital upon hospitalization till the date of discharge except Non-Admissible Expenses."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Eligible Medical Expenses with reference to Non-Network Hospital for Emergency Care and following Accident shall include all expenses charged by the hospital except non admissible expenses."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "non-payable",
+          "key": "non-payable",
+          "heading": "Non payable medical expenses list",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "policy-non-payable-employee",
+              "text": "View all"
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "புதிய மருத்துவக் காப்பீட்டுத் திட்டம் - 2021",
+      "sections": [
+        {
+          "id": "about",
+          "key": "about",
+          "heading": "திட்ட குறிப்பு",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "புதிய மருத்துவ காப்பீட்டுத் திட்டத்தின் கீழ் அரசு ஊழியர்கள் மற்றும் உள்ளாட்சி அமைப்புகள், அரசு பொதுத்துறை நிறுவனங்கள், வாரியங்கள் தமிழ்நாடு அரசு பல்கலைக்கழகங்கள் ஆகியவற்றில் பணிபுரியும் பணியாளர்கள் மற்றும் தகுதியுடைய அவர்தம் குடும்ப உறுப்பினர்கள் ரூ. 5.00 இலட்சம் வரை நான்கு ஆண்டு தொகுப்பிற்கு 01.07.2021. முதல் 30.06.2025 வரை சிகிச்சை பெற்று பயன்பெற வழிவகை செய்யப்பட்டுள்ளது. மேலும் அட்டவணை 1A குறிப்பிட்டுள்ள சிகிச்சைகளுக்கு ரூ. பத்து இலட்சம் வரை மருத்துவ சிகிச்சை பெற்று பயன்பெற அரசாணை எண்.160 நிதி(சம்பளங்கள்) நாள் 30.06.2021 மூலம் வழிவகை செய்யப்பட்டுள்ளது. மேலும் இத்திட்டம் யுனைடெட் இந்தியா இன்சுரன்ஸ் கம்பெனி லிமிடெட் மூலம் நடைமுறை படுத்தப்பட்டுள்ளது."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligibility",
+          "key": "eligibility",
+          "heading": "தகுதி",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "புதிய மருத்துவ காப்பீட்டுத் திட்டத்தின் கீழ் அரசு ஊழியர்கள் மற்றும் உள்ளாட்சி அமைப்புகள் அரசு பொதுத்துறை நிறுவனங்கள், வாரியங்கள் தமிழ்நாடு அரசு பல்கலைக்கழகங்கள் ஆகியவற்றில் பணிபுரியும் பணியாளர்கள் மற்றும் தகுதியுடைய அவர்தம் குடும்ப உறுப்பினர்கள்"
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "அரசு துறைகளில் காலமுறை ஊதியத்தில் பணியாற்றும் ஊழியர்கள், அரசு உதவிபெறும் கல்வி நிறுவனங்களில் பணிபுரியும் ஆசிரியர்கள், ஆசிரியர் அல்லாத பிற பணியாளர்கள்"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "தமிழ்நாடு இந்து சமய அறநிலை துறையின் கீழ் செயல்படும் வாரியங்களில் காலமுறை ஊதியத்தில் பணிபுரியும் அரசு பணியாளர்கள்."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "கீழ்காணும் அரசு பணியாளர்களின் குடும்ப உறுப்பினர்கள் புதிய மருத்துவ காப்பீட்டு திட்டம் 2021 ன் கீழ் பயன்பெற தகுதியுள்ளவர்கள்"
+                    }
+                  ],
+                  "children": {
+                    "type": "list",
+                    "ordered": true,
+                    "items": [
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "அரசு பணியாளரின் கணவன் அல்லது மனைவி"
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "அரசு பணியாளரின் குழந்தைகள் - உச்ச வயது வரம்பின்றி, அவர்களுக்கு திருமணமாகும் வரை அல்லது பணியில் சேரும் வரை, உச்ச வயது வரம்பின்றி"
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "திருமணமாகாத அரசு பணியாளளரின் பெற்றோர்கள், அரசு பணியாளருக்கு திருமணம் நடக்கும் வரை. குழந்தைகள் அற்ற விவாகரத்து பெற்ற அரசு பணியாளரின் பெற்றோர்கள், அரசு பணியாளருக்கு திருமணம் நடக்கும் வரை"
+                          }
+                        ]
+                      },
+                      {
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "அரசு பணியாளரின் குழந்தைகள் உடல் ரீதியான மற்றும் மனரீதியான மாற்று திறனாளிகள் அவர்களின் உச்ச வயது வரம்பின்றி உடல் ரீதியான மாற்று திறனாளிகள் அளவு 40% என மாவட்ட மாற்று திறனாளி அலுவலர் / மாற்றுத்திறனாளி அலுவலர் சான்றிடப்பட்ட வேண்டும். மேலும் அவர் அரசு பணியாளர்களை முழுமையாக சார்ந்து இருக்கிறார் என்றும் சான்று அளிக்க வேண்டும்."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "key": "scope",
+          "heading": "திட்ட நோக்கம்",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "இத்திட்டத்தின் மூலம் அரசாணை எண்.160 நிதி(சம்பளங்கள்) நாள் 30.06.2021 யில் அங்கரிக்கப்பட்ட சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளுக்கு தகுதியான மருத்துவ செலவினை அரசு பணியாளர்கள் மற்றும் அவர்தம் குடும்ப உறுப்பினர்கள்(பயணாளிகள்) மருத்துவ சிகிச்சையின் போதும் பெறலாம்."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligible-expenses",
+          "key": "eligible-expenses",
+          "heading": "தகுதியான மருத்துவ செலவினம்",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "அங்கரிக்கப்பட்ட மருத்துவமனைகளில் தகுதியான மருத்துவ செலவினம் என்பது மருத்துவமனையில் அனுமதிக்கப்பட்டு சிகிச்சை முடிந்து வெளியேறும் வரை மருத்துவமனையால் வசுலிக்கப்படும் மருத்துவ கட்டணம் (தகுதியற்ற மருத்துவ செலவினம் தவிர)"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "அங்கரிக்கப்படாத மருத்துவமனைகளில் தகுதியான மருத்துவ செலவினம் என்பது அவசர தன்மை வாய்ந்த மற்றும் விபத்தினால் மருத்துவமனையில் அனுமதிப்பட்டு சிகிச்சையை முடிந்து வெளியேறும் வரை மருத்துவமனையால் வசுலிக்கப்படும் மருத்துவ கட்டணம் (தகுதியற்ற மருத்துவ செலவினம் தவிர)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "non-payable",
+          "key": "non-payable",
+          "heading": "செலுத்த முடியாத மருத்துவ செலவுகள் பட்டியல்",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "policy-non-payable-employee",
+              "text": "அனைத்தையும் காட்டு"
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [
+      "policy-non-payable-employee"
+    ],
+    "reviewNotes": [
+      {
+        "id": "employee-policy-period",
+        "severity": "warning",
+        "text": "The published scheme period is 01-07-2021 to 30-06-2025 (English) and 01.07.2021 to 30.06.2025 (Tamil). The capture date (2026-10-07) is after the end of that period, so the text may be outdated. No renewal period is inferred."
+      },
+      {
+        "id": "employee-policy-age-conflict",
+        "severity": "warning",
+        "text": "Material conflict, not reconciled: the English eligibility text covers children \"till they get employed or married or attain the age of 25 years whichever is earlier\", while the Tamil text says children are covered without an upper age limit (உச்ச வயது வரம்பின்றி). Both are preserved exactly as published."
+      },
+      {
+        "id": "employee-policy-structure",
+        "severity": "warning",
+        "text": "The English and Tamil section lists differ: English has a separate \"Coverage\" section that Tamil lacks; the English eligibility list has 4 numbered points (including organisations registered under the Tamil Nadu Registration of Societies Act, 1975) and the Tamil list has 3; English cites \"Annexure-I\" of G.O.Ms.No.160 while Tamil cites \"அட்டவணை 1A\". The two languages are kept as independent section lists."
+      },
+      {
+        "id": "employee-policy-go160-date",
+        "severity": "info",
+        "text": "The page cites G.O.Ms.No.160 as dated 30.06.2021; the Govt Orders menu labels it \"29 June 2021\" and its file name contains 15-07-2021."
+      },
+      {
+        "id": "employee-policy-tab",
+        "severity": "info",
+        "text": "The English text of the last family-member item contains a tab character inside the word \"the\" (\"th<TAB>e employee\"). Whitespace normalisation yields \"th e employee\"; it is preserved as normalised, not corrected."
+      }
+    ]
+  },
+  {
+    "slug": "pensioner-policy",
+    "legacyPaths": [
+      "/Account/Pensionersscheme"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Account/Pensionersscheme",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Pensioners New Health Insurance Scheme, 2022",
+      "sections": [
+        {
+          "id": "about",
+          "key": "about",
+          "heading": "About Scheme",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The scheme will provide health insurance coverage upto a maximum of Rs. 5.00 lakh per Pensioner (including spouse)/ Family Pensioner for a block of four years from 01-07-2022 to 30-06-2026. The financial assistance shall be enhanced to Rs. 10.00 lakh for specified treatments and surgeries as in the Annexure-IA of the G.O.Ms.No.204, Finance(Health Insurance) Department, Dated:30.06.2022. The scheme is being implemented through the United India Insurance Company."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligibility",
+          "key": "eligibility",
+          "heading": "Eligibility",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "AAll the Pensioners (including spouse) / Family Pensioners whose pension/family pension including provisional pension/family pension is paid out of the Consolidated Fund of Tamil Nadu and who draw their pension / family pension from the Pension Pay Office, Chennai / District Treasury / Sub-Treasury.(Refer G.O.Ms.No.204, Finance(Health Insurance) Department, Dated:30.06.2022)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "key": "scope",
+          "heading": "Scope of the Scheme",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "The scope of the Scheme shall be to provide coverage for Eligible Medical Expenses incurred by the Beneficiary of this Scheme during Hospitalisation for the treatments and surgeries listed in G.O.Ms.No.204, Finance(Health Insurance) Department, Dated:30.06.2022"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "non-payable",
+          "key": "non-payable",
+          "heading": "Non payable medical expenses list",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "policy-non-payable-pensioner",
+              "text": "View all"
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "ஓய்வூதியதாரர்களுக்கான புதிய மருத்துவ காப்பீட்டுத் திட்டம், 2022",
+      "sections": [
+        {
+          "id": "about",
+          "key": "about",
+          "heading": "திட்ட க் குறிப்பு",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "இத்திட்டத்தில் 01-07-2022 முதல் 30-06-2026 வரையிலான நான்கு ஆண்டுகளுக்கு ஓய்வூதியம் (கணவன்/மனைவி உட்பட)/ குடும்ப ஓய்வூதியம் பெறுபவருக்கு ரூபாய். 5.00 இலட்சம் வரை மருத்துவ சிகிச்சை பெறலாம். மேலும் அரசாணை எண். 204, நிதி (மருத்துவ காப்பீடு) துறை நாள் 30.06.2022. இணைப்பு-IA இல் உள்ள குறிப்பிட்ட சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளுக்கு ரூபாய். 10.00 இலட்சம் வரை மருத்துவ சிகிச்சை பெறலாம். இத்திட்டம்"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "யுனைடெட் இந்தியா இன்சூரன்ஸ் நிறுவனம் மூலம் செயல்படுத்தப்பட்டு வருகிறது."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eligibility",
+          "key": "eligibility",
+          "heading": "தகுதி",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "தமிழ்நாட்டின் ஒருங்கிணைந்த நிதியிலிருந்து ஓய்வூதியம் /குடும்ப ஓய்வூதியம் (தற்காலிக ஓய்வூதியம் உட்பட) சென்னை ஓய்வூதிய அலுவலகம் / மாவட்ட கருவூலம்/ சார் கருவூலத்திலிருந்து பெறும் அனைத்து ஓய்வூதியதாரர்கள் (கணவன்/மனைவி உட்பட) (அரசாணை எண். 204, நிதி (மருத்துவ காப்பீடு) துறை நாள் 30.06.2022 யை காண்க)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "key": "scope",
+          "heading": "திட்ட நோக்கம்",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "இத்திட்டத்தின் மூலம் அரசாணை எண்.204 நிதி(மருத்துவ காப்பீடு) நாள் 30.06.2022யில் அங்கீகரிக்கப்பட்ட மருத்துவ சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளை அங்கீகரிக்கப்பட்ட மருத்துவமனைகளில் ஓய்வூதியதாரர் (கணவன்/மனைவி உட்பட)/ குடும்ப ஓய்வூதியம் பெறுபவர்கள் கட்டணமில்லா சிகிச்சையாக பெறலாம்.( வழங்க இயலாத செலவினம் தவிர்த்து)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "non-payable",
+          "key": "non-payable",
+          "heading": "வழங்க இயலாத செலவினப் பட்டியல்",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "policy-non-payable-pensioner",
+              "text": "அனைத்தையும் காட்டு"
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [
+      "policy-non-payable-pensioner"
+    ],
+    "reviewNotes": [
+      {
+        "id": "pensioner-policy-period",
+        "severity": "warning",
+        "text": "The published scheme period is 01-07-2022 to 30-06-2026 (English and Tamil). The capture date (2026-10-07) is after the end of that period, so the text may be outdated. No renewal period is inferred."
+      },
+      {
+        "id": "pensioner-policy-typo",
+        "severity": "info",
+        "text": "The English eligibility text begins \"AAll the Pensioners\" in the source (typo preserved)."
+      },
+      {
+        "id": "pensioner-policy-split-paragraph",
+        "severity": "info",
+        "text": "The Tamil \"About\" text is split across two paragraphs in the source; the first ends mid-sentence with \"இத்திட்டம்\". Preserved as published."
+      }
+    ]
+  },
+  {
+    "slug": "coverage",
+    "legacyPaths": [
+      "/Home/Coverage"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Home/Coverage",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Coverage",
+      "sections": [
+        {
+          "id": "s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Rupees Five Lakh per family for a block of four years."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Enhanced coverage up to Rupees Ten Lakh for specified treatments and surgeries."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "கவரேஜ்",
+      "sections": [
+        {
+          "id": "ta-s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "நான்கு ஆண்டுகளுக்கு ஒரு குடும்பத்திற்கு ஐந்து லட்சம் ரூபாய்"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "குறிப்பிட்ட சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளுக்கு பத்து லட்சம் ரூபாய் வரை மேம்படுத்தப்பட்ட கவரேஜ்."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [],
+    "reviewNotes": [
+      {
+        "id": "coverage-tamil-title",
+        "severity": "info",
+        "text": "The Tamil page heading is \"கவரேஜ்\", while the Tamil navigation label for this page is \"காப்புறு\" (the same label is used as the Tamil heading of the Grievances page)."
+      }
+    ]
+  },
+  {
+    "slug": "eligibility",
+    "legacyPaths": [
+      "/Home/Eligibility"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Home/Eligibility",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Eligibility",
+      "sections": [
+        {
+          "id": "s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Employees of Government departments, State public sector undertakings, statutory boards, Local bodies, State Government universities etc. and their families."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Pensioners (including spouse) / Family Pensioners whose pension/family pension including provisional pension/family pension is paid out of the Consolidated Fund of Tamil Nadu and who draw their pension / family pension from the Pension Pay Office, Chennai / District Treasury / Sub-Treasury."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "தகுதி",
+      "sections": [
+        {
+          "id": "ta-s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "அரசுத் துறைகள், மாநில பொதுத்துறை நிறுவனங்கள், சட்டப்பூர்வ வாரியங்கள், உள்ளாட்சி அமைப்புகள், மாநில அரசு பல்கலைக்கழகங்கள் போன்றவற்றின் ஊழியர்கள் மற்றும் அவர்களது குடும்பங்கள்."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "ஓய்வூதியம் பெறுவோர் (மனைவி உட்பட) / தற்காலிக ஓய்வூதியம்/குடும்ப ஓய்வூதியம் உள்ளிட்ட ஓய்வூதியம்/குடும்ப ஓய்வூதியம் தமிழகத்தின் ஒருங்கிணைந்த நிதியில் இருந்து செலுத்தப்பட்டு, ஓய்வூதியம்/ குடும்ப ஓய்வூதியத்தை சென்னை, மாவட்ட கருவூலம்/ துணை- கருவூலம்."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [],
+    "reviewNotes": [
+      {
+        "id": "eligibility-tamil-pensioner",
+        "severity": "info",
+        "text": "The Tamil pensioner statement ends after the office names (\"... சென்னை, மாவட்ட கருவூலம்/ துணை- கருவூலம்.\") with no verb and no term corresponding to \"Pension Pay Office\" in the English statement. Wording is preserved as published, not corrected."
+      },
+      {
+        "id": "eligibility-paired-order",
+        "severity": "info",
+        "text": "The English and Tamil paragraphs of this page appear in the same order in the source; the page has no section headings."
+      }
+    ]
+  },
+  {
+    "slug": "how-to-enroll",
+    "legacyPaths": [
+      "/Account/HowtoEnrol"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Account/HowtoEnrol",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "How to Enroll",
+      "sections": [
+        {
+          "id": "s1",
+          "heading": "Eligibility for Employees",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All the Employees of Government Departments, Public Sector Units, Co-operatives and Other Institutions / Organisations etc., and their eligible family members."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of Government Departments drawing pay in regular time scale of pay including Teaching and Non-Teaching Staff of Aided Educational Institutions."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of willing Organisations / Institutions registered under the Tamil Nadu Registration of Societies Act, 1975 covered under the New Health Insurance Scheme 2016."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The employees of the Tamil Nadu Hindu Religious & Charitable Endowments Boards drawing pay in regular time scale of pay."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The following family members of the employee shall be covered under the New Health Insurance Scheme, 2021:"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "documentLink",
+              "documentId": "enrolment-guide-employee",
+              "text": "Read more"
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "heading": "Eligibility for Pensioners",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All the Pensioners (including spouse) / Family Pensioners whose pension/family pension including provisional pension/family pension is paid out of the Consolidated Fund of Tamil Nadu and who draw their pension / family pension from the Pension Pay Office, Chennai / District Treasury / Sub-Treasury."
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "State Civil Pensioners / Family Pensioners including Village Assistant Pensioners."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Teacher Pensioners / Family Pensioners."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pensioners / Family Pensioners of All India Services belonging to the Tamil Nadu Cadre."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pensioners / Family Pensioners of the State Government Employees who had drawn lumpsum payment on absorption in Public Sector Undertakings / Autonomous Bodies / Local Bodies / Co-operative Institutions and have become entitled to restoration of commuted portion of pension as well as revision of the restored amount."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Divisible Family Pensioners where family pension is granted to more than one family members."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Ex-Gratia Pensioners / Family Pensioners."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pensioners / Family Pensioners who are in receipt of Special Pension under Extraordinary Pension Rules, Tamil Nadu and Compassionate Allowance."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Provisional Pensioners as provided in rules 60, 66, 69 and 69-B of Tamil Nadu Pension Rules, 1978."
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Pensioners / Family Pensioners of former Travancore-Cochin State who are drawing their pension on 1st November, 1956 in the Treasuries situated in the areas transferred to Tamil Nadu State on that date i.e. Kanniyakumari District and Shencottah Taluk of Tirunelveli District."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "documentLink",
+              "documentId": "enrolment-guide-pensioner",
+              "text": "Read more"
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "heading": "Documents required for enrolment",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Annexure form to be filled and submitted to the pay drawing officer"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Employees: ANNEXURE - VI"
+                }
+              ]
+            },
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-vi",
+              "text": "Download"
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Pensioners: ANNEXURE - III"
+                }
+              ]
+            },
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-iii",
+              "text": "Download"
+            }
+          ]
+        }
+      ]
+    },
+    "ta": null,
+    "documentIds": [
+      "enrolment-guide-employee",
+      "enrolment-guide-pensioner",
+      "form-annexure-vi",
+      "form-annexure-iii"
+    ],
+    "reviewNotes": [
+      {
+        "id": "how-to-enroll-english-only",
+        "severity": "info",
+        "text": "The captured page body is English only; the source has no Tamil text for this page (the Tamil navigation label \"பதிவு செய்வது எப்படி\" exists on other pages). Nothing was translated."
+      },
+      {
+        "id": "how-to-enroll-title",
+        "severity": "info",
+        "text": "The page body has no page heading; the title \"How to Enroll\" is the English navigation tab label used on the Coverage, Eligibility and Forms pages."
+      },
+      {
+        "id": "how-to-enroll-read-more",
+        "severity": "info",
+        "text": "In the source each \"Read more\" link sits on its own line inside the last list item of the employee / pensioner eligibility lists. It is shown as a document link directly after the corresponding list."
+      }
+    ]
+  },
+  {
+    "slug": "forms",
+    "legacyPaths": [
+      "/Home/Froms_Download"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Home/Froms_Download",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Forms Download",
+      "sections": [
+        {
+          "id": "s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Documents required for enrolment"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Enhanced coverage up to Rupees Ten Lakh for specified treatments and surgeries."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "annexure-vi",
+          "key": "annexure-vi",
+          "heading": "Employees: ANNEXURE - VI",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-vi",
+              "text": "Download"
+            }
+          ]
+        },
+        {
+          "id": "annexure-iii",
+          "key": "annexure-iii",
+          "heading": "Pensioners: ANNEXURE - III",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-iii",
+              "text": "Download"
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "படிவங்கள் பதிவிறக்கம்",
+      "sections": [
+        {
+          "id": "ta-s1",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "பதிவுக்குத் தேவையான ஆவணங்கள்"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "குறிப்பிட்ட சிகிச்சைகள் மற்றும் அறுவை சிகிச்சைகளுக்கு பத்து லட்சம் ரூபாய் வரை மேம்படுத்தப்பட்ட கவரேஜ்."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "annexure-vi",
+          "key": "annexure-vi",
+          "heading": "பணியாளர்கள்: இணைப்பு - VI",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-vi",
+              "text": "பதிவிறக்க"
+            }
+          ]
+        },
+        {
+          "id": "annexure-iii",
+          "key": "annexure-iii",
+          "heading": "ஓய்வூதியம் பெறுவோர்: இணைப்பு - III",
+          "blocks": [
+            {
+              "type": "documentLink",
+              "documentId": "form-annexure-iii",
+              "text": "பதிவிறக்க"
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [
+      "form-annexure-vi",
+      "form-annexure-iii"
+    ],
+    "reviewNotes": [
+      {
+        "id": "forms-download3-http500",
+        "severity": "warning",
+        "text": "Functional correction: all four Download links on the source page (two per language) point to the relative URL \"Download3\", which returned HTTP 500 at capture. Here the Annexure VI and Annexure III entries link to the annexure PDFs offered on the How to Enroll page (form-annexure-vi, form-annexure-iii)."
+      },
+      {
+        "id": "forms-repeated-sentence",
+        "severity": "info",
+        "text": "The second introductory sentence (\"Enhanced coverage up to Rupees Ten Lakh for specified treatments and surgeries.\") repeats the Coverage page text. Preserved as published."
+      },
+      {
+        "id": "forms-legacy-path",
+        "severity": "info",
+        "text": "The legacy path keeps the source spelling \"Froms_Download\"."
+      }
+    ]
+  },
+  {
+    "slug": "grievances",
+    "legacyPaths": [
+      "/Home/Grievances"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Home/Grievances",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Grievances",
+      "sections": [
+        {
+          "id": "mdindia-tpa",
+          "key": "mdindia-tpa",
+          "heading": "MDIndia TPA Beneficiary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "If you feel that the amount settled in the claim is less please attach a copy of NHIS ID card and give a grievance mail to "
+                },
+                {
+                  "type": "mail",
+                  "address": "tnnhis_grievance@Mdindia.com"
+                },
+                {
+                  "type": "text",
+                  "text": " and "
+                },
+                {
+                  "type": "mail",
+                  "address": "010600@uiic.co.in"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "medi-assist-tpa",
+          "key": "medi-assist-tpa",
+          "heading": "Medi Assist TPA Beneficiary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For all your grievances and Short settlement cases. please give a mail to "
+                },
+                {
+                  "type": "mail",
+                  "address": "tnnhisgrievance@mediassist.in"
+                },
+                {
+                  "type": "text",
+                  "text": " and "
+                },
+                {
+                  "type": "mail",
+                  "address": "010600@uiic.co.in"
+                },
+                {
+                  "type": "text",
+                  "text": " and attach a copy of NHIS ID card."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ta": {
+      "title": "காப்புறு",
+      "sections": [
+        {
+          "id": "mdindia-tpa",
+          "key": "mdindia-tpa",
+          "heading": "மதிந்தியா டப்பா ஒரு பயனாளி",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "உங்கள் சிகிச்சசக்கு செட்டில் செய்யப்பட்ட ச ொகை குகைவொை இருப்ப ொை நீங்ைள் கருதினால் உங்ைள் குகைகய "
+                },
+                {
+                  "type": "mail",
+                  "address": "tnnhis_grievance@Mdindia.com"
+                },
+                {
+                  "type": "text",
+                  "text": "மற்றும் "
+                },
+                {
+                  "type": "mail",
+                  "address": "010600@uiic.co.in"
+                },
+                {
+                  "type": "text",
+                  "text": " ஆகிய முகவாிகளுக்கு காப்பீட்டு அசையாள அட்சை இசைத்து மின்னஞ்ெல் செய்யவும்"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "medi-assist-tpa",
+          "key": "medi-assist-tpa",
+          "heading": "மருத்துவ உதவி TPA பயனாளி",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "உங்ைள் அசனத்து குகைகள் மற்றும் உங்கள் சிகிச்சசக்கு செட்டில் செய்யப்பட்ட ச ொகை குகைவொை இருப்ப ொை நீங்ைள் கருதினால் "
+                },
+                {
+                  "type": "mail",
+                  "address": "tnnhisgrievance@mediassist.in"
+                },
+                {
+                  "type": "text",
+                  "text": " மற்றும் "
+                },
+                {
+                  "type": "mail",
+                  "address": "010600@uiic.co.in"
+                },
+                {
+                  "type": "text",
+                  "text": " ஆகிய முகவாிகளுக்கு காப்பீட்டு அசையாள அட்சை இசைத்து மின்னஞ்ெல் செய்யவும்."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "documentIds": [],
+    "reviewNotes": [
+      {
+        "id": "grievances-tamil-garbled",
+        "severity": "warning",
+        "text": "The Tamil body text is garbled in the source (for example \"சிகிச்சசக்கு\", \"ச ொகை\", \"குகைவொை\", \"ைள்\", \"அசையாள அட்சை\"). It is preserved exactly; an approved correction must be requested separately."
+      },
+      {
+        "id": "grievances-tamil-heading",
+        "severity": "warning",
+        "text": "The Tamil page heading \"காப்புறு\" is the same label used for Coverage in the Tamil navigation; it does not correspond to the English heading \"Grievances\"."
+      },
+      {
+        "id": "grievances-tamil-block-heading",
+        "severity": "info",
+        "text": "The Tamil heading \"மதிந்தியா டப்பா ஒரு பயனாளி\" does not read as a counterpart of the English \"MDIndia TPA Beneficiary\" word for word; preserved as published. Each block is still paired by position with the English block of the same TPA."
+      },
+      {
+        "id": "grievances-mail-links",
+        "severity": "warning",
+        "text": "The source email links have no mailto: prefix (relative hrefs such as \"tnnhis_grievance@Mdindia.com\"), so they resolve to /Home/<address> and returned HTTP 404 at capture (3 distinct addresses, 8 occurrences across both languages). The displayed addresses are kept exactly, including the capitalisation in \"tnnhis_grievance@Mdindia.com\"; the UI builds the mailto: link (functional correction)."
+      },
+      {
+        "id": "grievances-tamil-nav-link",
+        "severity": "info",
+        "text": "The Tamil navigation link to this page uses \"#\" in the source; the English link points to /Home/Grievances (functional correction in the redesign)."
+      }
+    ]
+  },
+  {
+    "slug": "gallery",
+    "legacyPaths": [
+      "/Home/Gallery"
+    ],
+    "sourceUrl": "https://tn-nhis.com/Home/Gallery",
+    "capturedAt": "2026-10-07",
+    "en": {
+      "title": "Gallery",
+      "sections": []
+    },
+    "ta": {
+      "title": "கேலரி",
+      "sections": []
+    },
+    "documentIds": [],
+    "reviewNotes": [
+      {
+        "id": "gallery-heading-only",
+        "severity": "info",
+        "text": "The captured page contains a heading only in English and Tamil and no gallery items (no images). No items were invented."
+      },
+      {
+        "id": "gallery-video-elements",
+        "severity": "warning",
+        "text": "The captured HTML contains 2 <video> element(s) outside the heading block (sources: /img/Videos/WhatsApp Video 2023-10-31 at 6.53.39 PM.mp4 ; /img/Videos/WhatsApp Video 2023-10-31 at 6.53.39 PM (1).mp4). The video files are not part of the handoff package and the contract has no video item type, so they are not listed; the data owner should confirm whether they are intended content."
+      },
+      {
+        "id": "gallery-tamil-nav",
+        "severity": "info",
+        "text": "The Tamil navigation label for this page is garbled in the source (\"புனகப்படம் மற்றும் காட்சித் த ாகுப்ப\") and differs from the Tamil page heading \"கேலரி\"; the Tamil navigation link uses \"#\" (functional correction in the redesign)."
+      }
+    ]
+  }
+]

@@ -1,0 +1,345 @@
+// TN-NHIS website database (PostgreSQL).
+//
+// Publishing model (see docs/admin-backend-design.md):
+//  - The typed columns of each content table are the LIVE (published) values that the public site reads.
+//  - `status` is DRAFT | PUBLISHED | ARCHIVED. Only PUBLISHED rows are public.
+//  - Edits to a PUBLISHED row are stored in `draft` (JSON) and do not change the live columns until Publish.
+//  - Edits to a DRAFT row (never published or unpublished) update its columns directly; it is not public anyway.
+//  - `version` increases on every write and is the optimistic-concurrency token.
+//
+// DATABASE_URL = dedicated runtime role (data access only). DIRECT_URL = schema owner (migrations only).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PublicationStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum AdminRole {
+  ADMIN
+  EDITOR
+  PUBLISHER
+}
+
+enum AssetKind {
+  DOCUMENT
+  IMAGE
+}
+
+/* ------------------------------------------------------------------ administration */
+
+model AdminUser {
+  id                String         @id @default(cuid())
+  /// Stored lower-cased.
+  email             String         @unique
+  name              String
+  passwordHash      String
+  role              AdminRole      @default(EDITOR)
+  active            Boolean        @default(true)
+  lastLoginAt       DateTime?
+  passwordChangedAt DateTime       @default(now())
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  sessions          AdminSession[]
+
+  @@index([role, active])
+}
+
+/// Server-managed session. The browser holds an opaque random token in an HttpOnly cookie; only its SHA-256 hash is stored.
+model AdminSession {
+  id          String    @id @default(cuid())
+  tokenHash   String    @unique
+  /// Secret used for CSRF double-submit checks on mutating requests.
+  csrfToken   String
+  userId      String
+  user        AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  lastSeenAt  DateTime  @default(now())
+  expiresAt   DateTime
+  revokedAt   DateTime?
+  ipAddress   String?
+  userAgent   String?
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// Login attempts for rate limiting (key examples: "ip:203.0.113.5", "email:user@example.org").
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  key       String
+  succeeded Boolean
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  /// Null for system actions such as imports.
+  actorId    String?
+  actorEmail String?
+  action     String
+  entityType String
+  entityId   String
+  summary    String
+  detail     Json     @default("{}")
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId, createdAt])
+  @@index([actorId, createdAt])
+  @@index([createdAt])
+}
+
+/// Published (and archived) snapshots, one row per publish/archive event.
+model ContentRevision {
+  id          String   @id @default(cuid())
+  entityType  String
+  entityId    String
+  version     Int
+  action      String
+  payload     Json
+  createdById String?
+  createdAt   DateTime @default(now())
+
+  @@unique([entityType, entityId, version, action])
+  @@index([entityType, entityId, createdAt])
+}
+
+/// Records which source rows the import has already handled, so re-running it never duplicates
+/// records, never overwrites admin edits and never resurrects something an administrator deleted.
+model ImportMarker {
+  key        String   @id
+  checksum   String
+  importedAt DateTime @default(now())
+}
+
+/* ------------------------------------------------------------------ files */
+
+model MediaAsset {
+  id           String         @id @default(cuid())
+  kind         AssetKind
+  /// Safe generated name inside the storage root (never user supplied).
+  storageKey   String         @unique
+  originalName String
+  mimeType     String
+  bytes        Int
+  sha256       String
+  createdById  String?
+  createdAt    DateTime       @default(now())
+  documents    Document[]
+  gallery      GalleryItem[]
+
+  @@index([sha256])
+}
+
+/* ------------------------------------------------------------------ content */
+
+model Hospital {
+  /// Stable id. Imported records keep "nhis-snapshot-row-N"; new records get "hosp_<cuid>".
+  id          String            @id
+  sourceRow   Int?              @unique
+  nameEn      String
+  nameTa      String
+  addressEn   String
+  addressTa   String
+  districtEn  String
+  districtTa  String
+  stateEn     String
+  stateTa     String
+  postcode    String
+  category    String
+  type        String
+  specialty   String
+  contact     String
+  mapUrl      String
+  /// Lower-cased, whitespace-normalised text of the searchable live fields.
+  searchText  String            @default("")
+  status      PublicationStatus @default(DRAFT)
+  version     Int               @default(1)
+  draft       Json?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  createdById String?
+  updatedById String?
+  sourceData  Json?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([status, districtEn])
+  @@index([status, nameEn])
+}
+
+model Page {
+  id           String            @id @default(cuid())
+  /// Fixed route slugs: employee-policy, pensioner-policy, coverage, eligibility, how-to-enroll, forms, grievances, gallery.
+  slug         String            @unique
+  legacyPaths  String[]
+  sourceUrl    String?
+  documentIds  String[]
+  /// Notes kept for administrators and documentation; never exposed publicly.
+  reviewNotes  Json              @default("[]")
+  translations PageTranslation[]
+  status       PublicationStatus @default(DRAFT)
+  version      Int               @default(1)
+  /// Pending edit: { en: LocalizedPageContent | null, ta: LocalizedPageContent | null }
+  draft        Json?
+  publishedAt  DateTime?
+  archivedAt   DateTime?
+  updatedById  String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+model PageTranslation {
+  id       String @id @default(cuid())
+  pageId   String
+  page     Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  /// "en" or "ta"
+  locale   String
+  title    String
+  /// LocalizedPageContent["sections"] (see packages/shared-types)
+  sections Json
+
+  @@unique([pageId, locale])
+}
+
+model ContactDirectory {
+  /// "coordinators" | "uiic-nodal-officers" | "hospital-nodal-officers" | "treasury-offices"
+  id         String    @id
+  labelEn    String
+  labelTa    String    @default("")
+  sourceFile String?
+  /// ContactColumn[] (key, header, kind)
+  columns    Json
+  flags      Json      @default("[]")
+  sortOrder  Int       @default(0)
+  contacts   Contact[]
+  updatedAt  DateTime  @updatedAt
+}
+
+model Contact {
+  id          String            @id
+  directoryId String
+  directory   ContactDirectory  @relation(fields: [directoryId], references: [id])
+  sourceRow   Int?
+  sortOrder   Int               @default(0)
+  /// Cell values keyed by column key ("A", "B", ...).
+  cells       Json
+  searchText  String            @default("")
+  status      PublicationStatus @default(DRAFT)
+  version     Int               @default(1)
+  draft       Json?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  createdById String?
+  updatedById String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@unique([directoryId, sourceRow])
+  @@index([directoryId, status, sortOrder])
+}
+
+model Document {
+  /// Stable id, e.g. "go-employee-71". New documents get "doc_<cuid>".
+  id               String            @id
+  category         String
+  audience         String
+  sortOrder        Int               @default(0)
+  labelEn          String
+  labelTa          String            @default("")
+  titleEn          String
+  titleTa          String            @default("")
+  dateLabelEn      String?
+  dateLabelTa      String?
+  /// Original destination on the scheme website; preserved from the import.
+  sourceUrl        String?
+  assetId          String?
+  asset            MediaAsset?       @relation(fields: [assetId], references: [id])
+  availabilityNote String?
+  pages            Int?
+  hasTextIndex     Boolean?
+  fileNameDate     String?
+  notes            Json              @default("[]")
+  language         String?
+  versionGroup     String?
+  status           PublicationStatus @default(DRAFT)
+  version          Int               @default(1)
+  draft            Json?
+  publishedAt      DateTime?
+  archivedAt       DateTime?
+  createdById      String?
+  updatedById      String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([status, category, sortOrder])
+  @@index([assetId])
+}
+
+model Announcement {
+  id          String            @id
+  /// "suspension" | "login-support" | "general"
+  kind        String
+  /// "notice" | "warning"
+  severity    String
+  /// InlineNode[] (see packages/shared-types)
+  messageEn   Json
+  messageTa   Json
+  startsAt    DateTime?
+  endsAt      DateTime?
+  sortOrder   Int               @default(0)
+  status      PublicationStatus @default(DRAFT)
+  version     Int               @default(1)
+  draft       Json?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  createdById String?
+  updatedById String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([status, sortOrder])
+}
+
+model GalleryItem {
+  id          String            @id @default(cuid())
+  titleEn     String
+  titleTa     String            @default("")
+  assetId     String
+  asset       MediaAsset        @relation(fields: [assetId], references: [id])
+  sortOrder   Int               @default(0)
+  status      PublicationStatus @default(DRAFT)
+  version     Int               @default(1)
+  draft       Json?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  createdById String?
+  updatedById String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([status, sortOrder])
+  @@index([assetId])
+}
+
+/// Site-wide settings saved explicitly (no draft): keys "scheme", "helplines", "portals".
+model SiteSetting {
+  key         String   @id
+  value       Json
+  version     Int      @default(1)
+  updatedById String?
+  updatedAt   DateTime @updatedAt
+}

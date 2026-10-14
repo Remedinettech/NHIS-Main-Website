@@ -1,0 +1,110 @@
+{
+  "schemeName": {
+    "en": "Tamil Nadu New Health Insurance Scheme",
+    "ta": "தமிழ்நாடு அரசு புதிய மருத்துவக் காப்பீட்டு திட்டம்"
+  },
+  "coverageStatement": {
+    "en": "Upto 5 Lakh Health Cover per Employee / Pensioner Family",
+    "ta": "அரசு ஊழியர் / ஓய்வூதியதாரர் குடும்பத்திற்கு ரூபாய் 5 லட்சம் வரை மருத்துவக் காப்பீடு"
+  },
+  "helplines": [
+    {
+      "id": "employee",
+      "label": {
+        "en": "Employee",
+        "ta": "பணியாளர்"
+      },
+      "number": "1800-233-5666",
+      "telHref": "tel:18002335666"
+    },
+    {
+      "id": "pensioner",
+      "label": {
+        "en": "Pensioner",
+        "ta": "ஓய்வூதியம் பெறுபவர்"
+      },
+      "number": "1800-233-5544",
+      "telHref": "tel:18002335544"
+    },
+    {
+      "id": "login-support",
+      "label": {
+        "en": "For any login issues in Website/Mobile app please call",
+        "ta": "இணையதளம்/மொபைல் பயன்பாட்டில் ஏதேனும் உள்நுழைவுச் சிக்கல்களுக்கு அழைக்கவும்"
+      },
+      "number": "044 40115088",
+      "telHref": "tel:04440115088"
+    }
+  ],
+  "availability": "24/7",
+  "announcements": [
+    {
+      "id": "hospital-suspension",
+      "kind": "suspension",
+      "severity": "warning",
+      "message": {
+        "en": [
+          {
+            "type": "text",
+            "text": "The hospitals have been temporarily suspended from the TNHIS network. "
+          },
+          {
+            "type": "document",
+            "documentId": "notice-suspension-en",
+            "text": "Click here"
+          },
+          {
+            "type": "text",
+            "text": " to view the list."
+          }
+        ],
+        "ta": [
+          {
+            "type": "text",
+            "text": "TNHIS நெட்வொர்க்கில் இருந்து மருத்துவமனைகள் தற்காலிகமாக இடைநிறுத்தப்பட்டுள்ளன. "
+          },
+          {
+            "type": "document",
+            "documentId": "notice-suspension-ta",
+            "text": "பார்க்க இங்கே கிளிக் செய்யவும்"
+          },
+          {
+            "type": "text",
+            "text": " பட்டியல்."
+          }
+        ]
+      }
+    },
+    {
+      "id": "login-support",
+      "kind": "login-support",
+      "severity": "notice",
+      "message": {
+        "en": [
+          {
+            "type": "text",
+            "text": "For any login issues in Website/Mobile app please call "
+          },
+          {
+            "type": "phone",
+            "number": "04440115088",
+            "text": "044 40115088"
+          }
+        ],
+        "ta": [
+          {
+            "type": "text",
+            "text": "இணையதளம்/மொபைல் பயன்பாட்டில் ஏதேனும் உள்நுழைவுச் சிக்கல்களுக்கு அழைக்கவும் "
+          },
+          {
+            "type": "phone",
+            "number": "04440115088",
+            "text": "044 40115088"
+          }
+        ]
+      }
+    }
+  ],
+  "capturedAt": "2026-10-07",
+  "mode": "snapshot"
+}

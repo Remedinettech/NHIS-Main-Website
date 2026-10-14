@@ -1,0 +1,38 @@
+{
+  "name": "nhis-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 -p 3001",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 3001",
+    "storage:check": "node --import tsx src/cli/storage-check.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test --test-concurrency=1 \"src/**/*.test.ts\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:status": "prisma migrate status",
+    "db:import": "node --import tsx prisma/import/index.ts",
+    "db:verify-import": "node --import tsx prisma/import/verify.ts",
+    "db:seed": "node --import tsx prisma/import/index.ts",
+    "admin:bootstrap": "node --import tsx src/cli/admin-bootstrap.ts",
+    "admin:reset-password": "node --import tsx src/cli/admin-reset-password.ts"
+  },
+  "dependencies": {
+    "@nhis/shared-types": "0.1.0",
+    "@prisma/client": "6.19.3",
+    "argon2": "^0.45.1",
+    "dotenv": "^16.6.1",
+    "next": "16.4.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "prisma": "6.19.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

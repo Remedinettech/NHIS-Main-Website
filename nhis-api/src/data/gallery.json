@@ -1,0 +1,4 @@
+{
+  "items": [],
+  "note": "The captured Gallery page has a heading only (English and Tamil) and no gallery items. The page HTML also contains two <video> elements whose files are not part of the source package; they are not listed. No items were invented."
+}

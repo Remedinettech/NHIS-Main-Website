@@ -1,0 +1,1 @@
+{ "extends": "./tsconfig.json", "compilerOptions": {"incremental": false, "plugins": []}, "include": ["next-env.d.ts","src/common/admin/**/*.ts","src/modules/admin-*/**/*.ts","src/cli/**/*.ts","src/app/api/v1/admin/**/*.ts"] }

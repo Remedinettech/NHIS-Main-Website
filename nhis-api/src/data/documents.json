@@ -1,0 +1,639 @@
+[
+  {
+    "id": "go-employee-71",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 1,
+    "label": {
+      "en": "G.O.Ms.No.71, Dated 21 March 2022",
+      "ta": "G.O.Ms.No.71, தேதி 21 மார்ச் 2022"
+    },
+    "title": {
+      "en": "G.O.Ms.No.71",
+      "ta": "G.O.Ms.No.71"
+    },
+    "dateLabel": {
+      "en": "21 March 2022",
+      "ta": "21 மார்ச் 2022"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-71-dated-15-07-2022.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-71-dated-15-07-2022.pdf",
+    "availability": "available",
+    "notes": [
+      "Label date (21 March 2022) differs from the date in the file name (2022-07-15). The source does not say which is authoritative; the file name is shown for comparison only."
+    ],
+    "pages": 14,
+    "bytes": 442169,
+    "sha256": "f2af1906685fc1374de79f7d33f2f95da0ae01e2efc2e6da981f94da9f4ef7bf",
+    "hasTextIndex": false,
+    "fileNameDate": "2022-07-15"
+  },
+  {
+    "id": "go-employee-160",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 2,
+    "label": {
+      "en": "G.O.Ms.No.160, Dated 29 June 2021",
+      "ta": "G.O.Ms.No.160, தேதி 29 ஜூன் 2021"
+    },
+    "title": {
+      "en": "G.O.Ms.No.160",
+      "ta": "G.O.Ms.No.160"
+    },
+    "dateLabel": {
+      "en": "29 June 2021",
+      "ta": "29 ஜூன் 2021"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-160-dated-15-07-2021.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-160-dated-15-07-2021.pdf",
+    "availability": "available",
+    "notes": [
+      "Label date (29 June 2021) differs from the date in the file name (2021-07-15). The source does not say which is authoritative; the file name is shown for comparison only.",
+      "The employee policy page cites this order as \"Dated:30.06.2021\"."
+    ],
+    "pages": 170,
+    "bytes": 3124752,
+    "sha256": "afd99f76e35e2902fd9d9de0a6ce2fcec3e4ab2598a4e4a4060c8b398a3a3ef6",
+    "hasTextIndex": true,
+    "fileNameDate": "2021-07-15"
+  },
+  {
+    "id": "go-employee-695",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 3,
+    "label": {
+      "en": "G.O.(Rt).No.695, Dated 1 September 2017",
+      "ta": "G.O.(Rt).No.695, தேதி 1 செப்டம்பர் 2017"
+    },
+    "title": {
+      "en": "G.O.(Rt).No.695",
+      "ta": "G.O.(Rt).No.695"
+    },
+    "dateLabel": {
+      "en": "1 September 2017",
+      "ta": "1 செப்டம்பர் 2017"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-695-dated-1-09-2017.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-695-dated-1-09-2017.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 12,
+    "bytes": 181436,
+    "sha256": "0e553bb84b5eaf85f12fbbdeef839bf7db5096018b678181fec001caa9c88a6e",
+    "hasTextIndex": true,
+    "fileNameDate": "2017-09-01"
+  },
+  {
+    "id": "go-employee-199",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 4,
+    "label": {
+      "en": "G.O.(Rt).No.199, Dated 21 March 2017",
+      "ta": "G.O.(Rt).No.199, தேதி 21 மார்ச் 2017"
+    },
+    "title": {
+      "en": "G.O.(Rt).No.199",
+      "ta": "G.O.(Rt).No.199"
+    },
+    "dateLabel": {
+      "en": "21 March 2017",
+      "ta": "21 மார்ச் 2017"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-199-dated-21-03-2017.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-199-dated-21-03-2017.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 14,
+    "bytes": 4715811,
+    "sha256": "6303f6b3cdd18c468ec42ed66960946615625921e0fba7e058891773b068e7a9",
+    "hasTextIndex": false,
+    "fileNameDate": "2017-03-21"
+  },
+  {
+    "id": "go-employee-241",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 5,
+    "label": {
+      "en": "G.O.Ms.No.241, Dated 24 August 2016",
+      "ta": "G.O.Ms.No.241, தேதி 24 ஆகஸ்ட் 2016"
+    },
+    "title": {
+      "en": "G.O.Ms.No.241",
+      "ta": "G.O.Ms.No.241"
+    },
+    "dateLabel": {
+      "en": "24 August 2016",
+      "ta": "24 ஆகஸ்ட் 2016"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-241-dated-24-08-2016.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-241-dated-24-08-2016.pdf",
+    "availability": "available",
+    "notes": [
+      "Identical file bytes (sha256 7d1bc749da15...) to go-pensioner-241; the source lists them at distinct URLs."
+    ],
+    "pages": 2,
+    "bytes": 107404,
+    "sha256": "7d1bc749da15860ac53d0b248a1a670e06804296138a42809ba03c5d09f3ef60",
+    "hasTextIndex": true,
+    "fileNameDate": "2016-08-24"
+  },
+  {
+    "id": "go-employee-202",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 6,
+    "label": {
+      "en": "G.O.Ms.No.202, Dated 30 June 2016",
+      "ta": "G.O.Ms.No.202, தேதி 30 ஜூன் 2016"
+    },
+    "title": {
+      "en": "G.O.Ms.No.202",
+      "ta": "G.O.Ms.No.202"
+    },
+    "dateLabel": {
+      "en": "30 June 2016",
+      "ta": "30 ஜூன் 2016"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-202-dated-19-07-2016.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-202-dated-19-07-2016.pdf",
+    "availability": "available",
+    "notes": [
+      "Label date (30 June 2016) differs from the date in the file name (2016-07-19). The source does not say which is authoritative; the file name is shown for comparison only."
+    ],
+    "pages": 69,
+    "bytes": 717461,
+    "sha256": "1bd58baec60a913b34b4923141fbe3b831a0a66b73f3a6326d1ad96c46730e23",
+    "hasTextIndex": true,
+    "fileNameDate": "2016-07-19"
+  },
+  {
+    "id": "go-employee-169",
+    "category": "govt-order-employee",
+    "audience": "employee",
+    "order": 7,
+    "label": {
+      "en": "G.O.No.169, Dated 9 June 2016",
+      "ta": "G.O.No.169, தேதி 9 ஜூன் 2016"
+    },
+    "title": {
+      "en": "G.O.No.169",
+      "ta": "G.O.No.169"
+    },
+    "dateLabel": {
+      "en": "9 June 2016",
+      "ta": "9 ஜூன் 2016"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/employees/go-no-169-dated-09-06-2016.pdf",
+    "localPath": "/documents/govt-orders/employees/go-no-169-dated-09-06-2016.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 3,
+    "bytes": 1420757,
+    "sha256": "e099b3d12dd9ca11a5e5c0e32c7a6f9244b6299e5c07832cb666106f13b2aa5b",
+    "hasTextIndex": false,
+    "fileNameDate": "2016-06-09"
+  },
+  {
+    "id": "go-pensioner-204",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 1,
+    "label": {
+      "en": "G.O.Ms.No.204, Dated 30 June 2022",
+      "ta": "G.O.Ms.No.204, தேதி 30 ஜூன் 2022"
+    },
+    "title": {
+      "en": "G.O.Ms.No.204",
+      "ta": "G.O.Ms.No.204"
+    },
+    "dateLabel": {
+      "en": "30 June 2022",
+      "ta": "30 ஜூன் 2022"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-204-dated-30-06-2022.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-204-dated-30-06-2022.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 206,
+    "bytes": 3582482,
+    "sha256": "d6f9b1886192496cb6941edf45c59b3e4b672b4620a1abb99ab2dbdb77e5c1c2",
+    "hasTextIndex": true,
+    "fileNameDate": "2022-06-30"
+  },
+  {
+    "id": "go-pensioner-222",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 2,
+    "label": {
+      "en": "G.O.Ms.No.222, Dated 30 June 2018",
+      "ta": "G.O.Ms.No.222, தேதி 30 ஜூன் 2018"
+    },
+    "title": {
+      "en": "G.O.Ms.No.222",
+      "ta": "G.O.Ms.No.222"
+    },
+    "dateLabel": {
+      "en": "30 June 2018",
+      "ta": "30 ஜூன் 2018"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-222-dated-30-06-2018.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-222-dated-30-06-2018.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 142,
+    "bytes": 2371962,
+    "sha256": "a4488068d79a396f3959fd23e4361151eec408b6bdb5c36e430e76481313ebe5",
+    "hasTextIndex": true,
+    "fileNameDate": "2018-06-30"
+  },
+  {
+    "id": "go-pensioner-93",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 3,
+    "label": {
+      "en": "G.O.Ms.No.93, Dated 12 April 2017",
+      "ta": "G.O.Ms.No.93, தேதி 12 ஏப்ரல் 2017"
+    },
+    "title": {
+      "en": "G.O.Ms.No.93",
+      "ta": "G.O.Ms.No.93"
+    },
+    "dateLabel": {
+      "en": "12 April 2017",
+      "ta": "12 ஏப்ரல் 2017"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-93-dated-12-04-2017.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-93-dated-12-04-2017.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 11,
+    "bytes": 210555,
+    "sha256": "dd855e4f8844d970bc0e98b25eaad0574911214e9258a79c81fbf81514ec6db9",
+    "hasTextIndex": true,
+    "fileNameDate": "2017-04-12"
+  },
+  {
+    "id": "go-pensioner-199",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 4,
+    "label": {
+      "en": "G.O.(Rt).No.199, Dated 21 March 2017",
+      "ta": "G.O.(Rt).No.199, தேதி 21 மார்ச் 2017"
+    },
+    "title": {
+      "en": "G.O.(Rt).No.199",
+      "ta": "G.O.(Rt).No.199"
+    },
+    "dateLabel": {
+      "en": "21 March 2017",
+      "ta": "21 மார்ச் 2017"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-199-dated-21-03-2017.pdf",
+    "localPath": null,
+    "availability": "unavailable",
+    "notes": [
+      "The employee G.O.(Rt).No.199 file (go-employee-199) has a different source URL and is not used as a substitute."
+    ],
+    "availabilityNote": "At capture (2026-10-07) the source URL returned \"HTTP Error 404: Not Found\"; no file could be retrieved.",
+    "fileNameDate": "2017-03-21"
+  },
+  {
+    "id": "go-pensioner-241",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 5,
+    "label": {
+      "en": "G.O.Ms.No.241, Dated 24 Aug 2016",
+      "ta": "G.O.Ms.No.241, தேதி 24 ஆகஸ்ட் 2016"
+    },
+    "title": {
+      "en": "G.O.Ms.No.241",
+      "ta": "G.O.Ms.No.241"
+    },
+    "dateLabel": {
+      "en": "24 Aug 2016",
+      "ta": "24 ஆகஸ்ட் 2016"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders//pensioners/go-no-241-dated-24-08-2016.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-241-dated-24-08-2016.pdf",
+    "availability": "available",
+    "notes": [
+      "Identical file bytes (sha256 7d1bc749da15...) to go-employee-241; the source lists them at distinct URLs."
+    ],
+    "pages": 2,
+    "bytes": 107404,
+    "sha256": "7d1bc749da15860ac53d0b248a1a670e06804296138a42809ba03c5d09f3ef60",
+    "hasTextIndex": true,
+    "fileNameDate": "2016-08-24"
+  },
+  {
+    "id": "go-pensioner-79",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 6,
+    "label": {
+      "en": "G.O.No.79, Dated 25 March 2015",
+      "ta": "G.O.No.79, தேதி 25 மார்ச் 2015"
+    },
+    "title": {
+      "en": "G.O.No.79",
+      "ta": "G.O.No.79"
+    },
+    "dateLabel": {
+      "en": "25 March 2015",
+      "ta": "25 மார்ச் 2015"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders//pensioners/go-no-79-dated-25-03-2015.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-79-dated-25-03-2015.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 4,
+    "bytes": 1321391,
+    "sha256": "54f06573649284561f08e3781d3e51d5732a91a775e2927001c8dc46a97c995d",
+    "hasTextIndex": false,
+    "fileNameDate": "2015-03-25"
+  },
+  {
+    "id": "go-pensioner-5",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 7,
+    "label": {
+      "en": "G.O.Ms.No.5, Dated 5 Jan 2015",
+      "ta": "G.O.Ms.No.5, தேதி 5 ஜனவரி 2015"
+    },
+    "title": {
+      "en": "G.O.Ms.No.5",
+      "ta": "G.O.Ms.No.5"
+    },
+    "dateLabel": {
+      "en": "5 Jan 2015",
+      "ta": "5 ஜனவரி 2015"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-5-dated-5-01-2015.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-5-dated-5-01-2015.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 4,
+    "bytes": 193795,
+    "sha256": "111966dceac96ea40ad64f05749d9304ef5937a069a14815a0102a9dcf21034f",
+    "hasTextIndex": true,
+    "fileNameDate": "2015-01-05"
+  },
+  {
+    "id": "go-pensioner-171",
+    "category": "govt-order-pensioner",
+    "audience": "pensioner",
+    "order": 8,
+    "label": {
+      "en": "G.O.No.171, Dated 26 June 2014",
+      "ta": "G.O.No.171, தேதி 26 ஜூன் 2014"
+    },
+    "title": {
+      "en": "G.O.No.171",
+      "ta": "G.O.No.171"
+    },
+    "dateLabel": {
+      "en": "26 June 2014",
+      "ta": "26 ஜூன் 2014"
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/govt-orders/pensioners/go-no-171-dated-26-06-2014.pdf",
+    "localPath": "/documents/govt-orders/pensioners/go-no-171-dated-26-06-2014.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 66,
+    "bytes": 664318,
+    "sha256": "abf6ea029036c53cc0371b0eb717e2bcd01c62b556988044e03da918486dcc33",
+    "hasTextIndex": true,
+    "fileNameDate": "2014-06-26"
+  },
+  {
+    "id": "policy-non-payable-employee",
+    "category": "policy-non-payable",
+    "audience": "employee",
+    "order": 1,
+    "label": {
+      "en": "View all",
+      "ta": "அனைத்தையும் காட்டு"
+    },
+    "title": {
+      "en": "View all",
+      "ta": "அனைத்தையும் காட்டு"
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/policy/non-payable-items-employees.pdf",
+    "localPath": "/documents/policy/non-payable-items-employees.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 7,
+    "bytes": 195254,
+    "sha256": "5b10d456d2406e0b736e1f9aab7ae0abfa8a178c12edf26298ff459273ee8cd9",
+    "hasTextIndex": true
+  },
+  {
+    "id": "policy-non-payable-pensioner",
+    "category": "policy-non-payable",
+    "audience": "pensioner",
+    "order": 2,
+    "label": {
+      "en": "View all",
+      "ta": "அனைத்தையும் காட்டு"
+    },
+    "title": {
+      "en": "View all",
+      "ta": "அனைத்தையும் காட்டு"
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/policy/non-payable-items-pensioners.pdf",
+    "localPath": "/documents/policy/non-payable-items-pensioners.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 6,
+    "bytes": 663394,
+    "sha256": "4348033d6cdee8e0f4358c93177626d6e22b92314cbb70e1909f1db985909c70",
+    "hasTextIndex": true
+  },
+  {
+    "id": "enrolment-guide-employee",
+    "category": "enrolment-guide",
+    "audience": "employee",
+    "order": 1,
+    "label": {
+      "en": "Read more",
+      "ta": ""
+    },
+    "title": {
+      "en": "Read more",
+      "ta": ""
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/key-benefits/enrolment-employee.pdf",
+    "localPath": "/documents/key-benefits/enrolment-employee.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 1,
+    "bytes": 37387,
+    "sha256": "ef230f9a560699bdd0e62f3027cbfa41e727a7d16d887e769793184a25eb8c86",
+    "hasTextIndex": true
+  },
+  {
+    "id": "enrolment-guide-pensioner",
+    "category": "enrolment-guide",
+    "audience": "pensioner",
+    "order": 2,
+    "label": {
+      "en": "Read more",
+      "ta": ""
+    },
+    "title": {
+      "en": "Read more",
+      "ta": ""
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/key-benefits/enrolment-pensioner.pdf",
+    "localPath": "/documents/key-benefits/enrolment-pensioner.pdf",
+    "availability": "available",
+    "notes": [
+      "Automated text extraction is identical to form-annexure-iii although the file bytes differ."
+    ],
+    "pages": 4,
+    "bytes": 712272,
+    "sha256": "f0db5b579ca80cf407992b9f3bb8d693e9ac9c7130170c4202f65c3b550b328e",
+    "hasTextIndex": true
+  },
+  {
+    "id": "form-annexure-vi",
+    "category": "enrolment-form",
+    "audience": "employee",
+    "order": 1,
+    "label": {
+      "en": "Employees: ANNEXURE - VI",
+      "ta": "பணியாளர்கள்: இணைப்பு - VI"
+    },
+    "title": {
+      "en": "Employees: ANNEXURE - VI",
+      "ta": "பணியாளர்கள்: இணைப்பு - VI"
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/enrollment-forms/new-annexure-VI-form-2021.pdf",
+    "localPath": "/documents/enrollment-forms/new-annexure-VI-form-2021.pdf",
+    "availability": "available",
+    "notes": [],
+    "pages": 2,
+    "bytes": 278827,
+    "sha256": "f32aca227c25540d7ed1fab50110ac2136ff3330571bfb9a1beb4fae6bfe1530",
+    "hasTextIndex": true
+  },
+  {
+    "id": "form-annexure-iii",
+    "category": "enrolment-form",
+    "audience": "pensioner",
+    "order": 2,
+    "label": {
+      "en": "Pensioners: ANNEXURE - III",
+      "ta": "ஓய்வூதியம் பெறுவோர்: இணைப்பு - III"
+    },
+    "title": {
+      "en": "Pensioners: ANNEXURE - III",
+      "ta": "ஓய்வூதியம் பெறுவோர்: இணைப்பு - III"
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/TNAssests/pdf/enrollment-forms/tnnhis-pensioners-annexure-III.pdf",
+    "localPath": "/documents/enrollment-forms/tnnhis-pensioners-annexure-III.pdf",
+    "availability": "available",
+    "notes": [
+      "Automated text extraction is identical to enrolment-guide-pensioner although the file bytes differ."
+    ],
+    "pages": 4,
+    "bytes": 707642,
+    "sha256": "c31d27a3191313fac7fb588578950c8b742ee6fe7c158d359ae2a5e12f88be36",
+    "hasTextIndex": true
+  },
+  {
+    "id": "notice-suspension-en",
+    "category": "hospital-suspension",
+    "audience": "all",
+    "order": 1,
+    "label": {
+      "en": "Click here",
+      "ta": ""
+    },
+    "title": {
+      "en": "Click here",
+      "ta": ""
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/Resources/Documents/suspendedHospitalnew.pdf",
+    "localPath": "/documents/notices/suspendedHospitalnew.pdf",
+    "availability": "available",
+    "notes": [
+      "File bytes differ from notice-suspension-ta (sha256 8550b73ea12a... vs 696de1df310f...; extracted text 7625 vs 8426 characters). The source does not declare either file authoritative; they are kept as separate versions.",
+      "Link text in the source is the generic \"Click here\"; the notice sentence is \"The hospitals have been temporarily suspended from the TNHIS network.\""
+    ],
+    "pages": 2,
+    "bytes": 49334,
+    "sha256": "8550b73ea12aeb8f3fc6735cd252adfc330e88190afebf865c3c21a45cde07cd",
+    "hasTextIndex": true,
+    "language": "en",
+    "versionGroup": "hospital-suspension-notice"
+  },
+  {
+    "id": "notice-suspension-ta",
+    "category": "hospital-suspension",
+    "audience": "all",
+    "order": 2,
+    "label": {
+      "en": "",
+      "ta": "பார்க்க இங்கே கிளிக் செய்யவும்"
+    },
+    "title": {
+      "en": "",
+      "ta": "பார்க்க இங்கே கிளிக் செய்யவும்"
+    },
+    "dateLabel": {
+      "en": null,
+      "ta": null
+    },
+    "sourceUrl": "https://tn-nhis.com/Resources/Documents/suspended%20Hospital.pdf",
+    "localPath": "/documents/notices/suspended-Hospital.pdf",
+    "availability": "available",
+    "notes": [
+      "File bytes differ from notice-suspension-en (sha256 696de1df310f... vs 8550b73ea12a...; extracted text 8426 vs 7625 characters). The source does not declare either file authoritative; they are kept as separate versions.",
+      "Link text in the source is \"பார்க்க இங்கே கிளிக் செய்யவும்\"; it belongs to the Tamil notice sentence on the home page."
+    ],
+    "pages": 2,
+    "bytes": 120336,
+    "sha256": "696de1df310f2eedd360c9bccbd6ca3aa9fa270763f70f3721b701565f1c76db",
+    "hasTextIndex": true,
+    "language": "ta",
+    "versionGroup": "hospital-suspension-notice"
+  }
+]

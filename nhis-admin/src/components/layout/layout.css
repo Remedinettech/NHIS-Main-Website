@@ -1,0 +1,94 @@
+[tabindex='-1']:focus-visible { box-shadow: none; }
+
+.shell { min-height: 100vh; display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+.shell__main { min-width: 0; display: flex; flex-direction: column; }
+.shell__content { flex: 1; min-width: 0; }
+
+/* Top bar */
+.topbar {
+  position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: var(--space-3);
+  flex-wrap: wrap; min-height: var(--topbar-height); padding: var(--space-2) var(--gutter); background: var(--color-white); border-bottom: 1px solid var(--color-border);
+}
+.topbar__title { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-md); color: var(--color-navy); margin: 0 auto 0 0; min-width: 0; }
+.topbar__menu {
+  display: none; align-items: center; gap: var(--space-2); min-height: 2.75rem; padding: 0 0.875rem; border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius); background: var(--color-white); color: var(--color-navy); font-weight: 600; cursor: pointer;
+  transition: background-color var(--motion-fast) var(--ease);
+}
+.topbar__menu:hover { background: var(--color-highlight); }
+
+/* Account menu */
+.account { position: relative; }
+.account__button {
+  display: flex; align-items: center; gap: var(--space-2); min-height: 2.75rem; padding: 0.25rem 0.625rem 0.25rem 0.375rem; background: var(--color-white);
+  border: 1px solid var(--color-border); border-radius: var(--radius-pill); color: var(--color-navy); font-weight: 600; font-size: var(--text-sm); cursor: pointer;
+  transition: background-color var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease);
+}
+.account__button:hover, .account__button[aria-expanded='true'] { background: var(--color-highlight); border-color: var(--color-primary); }
+.account__avatar {
+  display: grid; place-items: center; width: 1.875rem; height: 1.875rem; border-radius: 50%; background: var(--color-navy); color: var(--color-white);
+  font-family: var(--font-heading); font-weight: 700; font-size: var(--text-sm);
+}
+.account__chevron { color: var(--color-text-muted); }
+.account__menu {
+  position: absolute; right: 0; top: calc(100% + var(--space-2)); z-index: 40; min-width: 14.5rem; max-width: calc(100vw - 2rem); padding: var(--space-2);
+  background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+}
+.account__who { padding: var(--space-2) var(--space-3) var(--space-3); border-bottom: 1px solid var(--color-border-soft); margin-bottom: var(--space-2); }
+.account__who p { margin: 0; }
+.account__who-name { font-weight: 700; color: var(--color-navy); }
+.account__who-email { font-size: var(--text-sm); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.account__item {
+  display: flex; align-items: center; gap: var(--space-3); width: 100%; min-height: 2.75rem; padding: 0 var(--space-3); border: 0; background: transparent;
+  border-radius: var(--radius); color: var(--color-navy); font-weight: 600; cursor: pointer; text-align: left;
+  transition: background-color var(--motion-fast) var(--ease);
+}
+.account__item:hover { background: var(--color-highlight); }
+
+/* Sidebar */
+.sidebar {
+  position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; display: flex; flex-direction: column;
+  background: var(--color-white); border-right: 1px solid var(--color-border);
+}
+.sidebar__brand { padding: 0 var(--space-5); min-height: var(--topbar-height); border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); }
+.sidebar__brand .brand-logo { padding-block: var(--space-3); }
+.sidebar__close {
+  display: none; width: 2.75rem; height: 2.75rem; place-items: center; flex: none; border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius); background: var(--color-white); color: var(--color-navy); cursor: pointer;
+}
+.sidebar__nav { padding: var(--space-4) var(--space-3); flex: 1; }
+.sidebar__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
+.sidebar__list li { margin: 0; }
+.nav-link {
+  display: flex; align-items: center; gap: var(--space-3); min-height: 2.75rem; padding: 0 var(--space-3); border-radius: var(--radius);
+  text-decoration: none; color: var(--color-text); font-weight: 500; font-size: var(--text-base);
+  transition: background-color var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
+}
+.nav-link svg { flex: none; color: var(--color-text-muted); transition: color var(--motion-fast) var(--ease); }
+.nav-link:hover { background: var(--color-highlight); color: var(--color-navy); }
+.nav-link:hover svg { color: var(--color-primary-hover); }
+.nav-link.is-active { background: var(--color-highlight); color: var(--color-primary-hover); font-weight: 600; box-shadow: inset 3px 0 0 var(--color-primary); }
+.nav-link.is-active svg { color: var(--color-primary); }
+.sidebar-backdrop { display: none; }
+
+@media (max-width: 61.99rem) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .topbar__menu { display: inline-flex; }
+  .sidebar__close { display: grid; }
+  .sidebar {
+    position: fixed; z-index: 60; top: 0; bottom: 0; left: 0; width: min(19rem, 86vw); height: auto; box-shadow: var(--shadow-md);
+    transform: translateX(-100%); visibility: hidden;
+  }
+  .sidebar.is-open { transform: none; visibility: visible; }
+  .sidebar-backdrop.is-open { display: block; position: fixed; inset: 0; z-index: 50; background: rgb(18 48 74 / 0.5); border: 0; padding: 0; cursor: pointer; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sidebar { transition: transform var(--motion-base) var(--ease), visibility 0s linear var(--motion-base); }
+    .sidebar.is-open { transition: transform var(--motion-base) var(--ease), visibility 0s; }
+  }
+}
+@media (max-width: 35.99rem) {
+  .account__name, .account__chevron { display: none; }
+  .account__button { padding: 0.25rem; }
+  .topbar__menu span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .topbar__menu { padding: 0 0.625rem; }
+}

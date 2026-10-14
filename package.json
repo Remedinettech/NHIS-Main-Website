@@ -1,0 +1,31 @@
+{
+  "name": "tn-nhis",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "nhis-client",
+    "nhis-admin",
+    "nhis-api",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n API,CLIENT,ADMIN \"npm run dev -w nhis-api\" \"npm run dev -w nhis-client\" \"npm run dev -w nhis-admin\"",
+    "dev:client": "npm run dev -w nhis-client",
+    "dev:admin": "npm run dev -w nhis-admin",
+    "dev:api": "npm run dev -w nhis-api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "db:generate": "npm run db:generate -w nhis-api",
+    "db:migrate": "npm run db:migrate -w nhis-api",
+    "db:seed": "npm run db:seed -w nhis-api",
+    "snapshot": "node scripts/build-snapshot.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "parse5": "^8.0.1"
+  }
+}

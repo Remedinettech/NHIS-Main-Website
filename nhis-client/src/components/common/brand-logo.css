@@ -1,0 +1,21 @@
+.brand-logo { display: inline-flex; flex-direction: column; gap: 0.2rem; min-width: 0; text-decoration: none; color: var(--color-navy); border-radius: var(--radius-sm); }
+.brand-logo:hover { color: var(--color-navy); }
+.brand-logo__name { font-family: 'Manrope', 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.015em; white-space: nowrap; }
+.brand-logo__tn { color: var(--color-navy); }
+.brand-logo__dash { color: var(--color-primary); opacity: 0.55; margin-inline: 0.04em; font-weight: 700; }
+.brand-logo__nhis { color: var(--color-primary); }
+.brand-logo__sub { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 500; line-height: 1.4; color: var(--color-text-muted); max-width: 19rem; }
+:lang(ta) .brand-logo__sub { font-size: var(--text-sm); line-height: 1.5; }
+
+@media (max-width: 36rem) {
+  .brand-logo__name { font-size: 1.5rem; }
+  .brand-logo__sub { max-width: 15rem; font-size: 0.75rem; }
+}
+
+/* Dark footer */
+.brand-logo--footer .brand-logo__tn { color: var(--color-white); }
+.brand-logo--footer .brand-logo__nhis { color: var(--color-primary-on-dark); }
+.brand-logo--footer .brand-logo__dash { color: var(--color-primary-on-dark); }
+.brand-logo--footer .brand-logo__sub { color: var(--color-on-navy-muted); }
+.brand-logo--footer { color: var(--color-white); }
+.brand-logo--footer:hover { color: var(--color-white); }

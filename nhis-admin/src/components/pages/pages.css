@@ -1,0 +1,5 @@
+.outline__title { font-weight: 600; color: var(--color-navy); }
+.outline { margin: 0; padding-left: 1.6em; }
+.outline li { overflow-wrap: anywhere; }
+.back-link { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+.page__meta { margin-top: var(--space-2); font-size: var(--text-sm); }
