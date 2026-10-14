@@ -8,7 +8,6 @@ import { Icon } from '../common/Icon';
 import { T } from '../common/T';
 
 const ROLE_LINKS: ReadonlyArray<PortalLink['id']> = ['employee', 'pensioner', 'administrator', 'insurer'];
-const HOSPITAL_LINKS: ReadonlyArray<PortalLink['id']> = ['hospitalMediAssist', 'hospitalMdIndia'];
 
 /** Role login menu. Every item opens the corresponding NHIS portal; this site never collects credentials. */
 export function LoginMenu() {
@@ -42,8 +41,6 @@ export function LoginMenu() {
       <div id={panelId} className="login-menu__panel" hidden={!open}>
         <p className="login-menu__heading">{t('login.roleHeading')}</p>
         <ul className="login-menu__list">{ROLE_LINKS.map(item)}</ul>
-        <p className="login-menu__heading">{t('login.hospitals')}</p>
-        <ul className="login-menu__list">{HOSPITAL_LINKS.map(item)}</ul>
         <ExternalLink href={hrefs.forgotPassword} className="login-menu__forgot">{t('login.forgotPassword')}</ExternalLink>
       </div>
     </div>

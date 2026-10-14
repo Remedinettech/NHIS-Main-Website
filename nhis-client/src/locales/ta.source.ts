@@ -31,7 +31,7 @@ export const taSource: Partial<Record<MessageKey, string>> = {
   'login.menu': 'உள்நுழைய',
   'login.employees': 'பணியாளர்கள்',
   'login.pensioners': 'ஓய்வூதியம் பெறுவோர்',
-  'login.administrator': 'நிர்வாகி',
+  'login.administrator': 'மருத்துவமனை உள்நுழைவு',
   'login.insurer': 'காப்பீட்டாளர்',
   'login.hospitals': 'மருத்துவமனைகள் உள்நுழைவு',
   'login.hospitalMediAssist': 'மெடி அசிஸ்ட் இன்சூரன்ஸ் டிபிஏ பிரைவேட். லிமிடெட்',

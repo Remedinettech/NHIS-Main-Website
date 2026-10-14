@@ -64,11 +64,22 @@
 
 /* Partners */
 .partners__grid { display: grid; gap: var(--space-4); }
-@media (min-width: 48rem) { .partners__grid { grid-template-columns: 1fr 2fr; } }
+@media (min-width: 48rem) { .partners__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); } }
 .partner-group { margin: 0; background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); text-align: center; }
 .partner-group figcaption { font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); margin-bottom: var(--space-3); }
-.partner-group__logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-4); }
-.partner-group__logos img { height: 3.5rem; width: auto; max-width: 100%; object-fit: contain; }
+.partner-group__logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-4) var(--space-6); }
+/* Logos keep their natural aspect ratio (width/height attributes); the per-shape heights balance their visual weight. */
+.partner-logo { width: auto; height: auto; max-width: 100%; object-fit: contain; }
+.partner-logo--emblem { max-height: 5.5rem; }
+.partner-logo--wide { max-height: 4rem; }
+.partner-logo--banner { max-height: 3.5rem; }
+.partner-logo--stacked { max-height: 7rem; }
+@media (max-width: 47.99rem) {
+  .partner-logo--emblem { max-height: 4.5rem; }
+  .partner-logo--wide { max-height: 3.5rem; }
+  .partner-logo--banner { max-height: 3rem; }
+  .partner-logo--stacked { max-height: 6rem; }
+}
 
 /* Home: documents */
 .home-docs__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-3) var(--space-5); margin-bottom: var(--space-4); }

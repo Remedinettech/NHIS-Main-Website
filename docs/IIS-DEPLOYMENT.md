@@ -117,6 +117,7 @@ placeholders (DB host and the application-role password supplied by the DBA thro
 | `ADMIN_COOKIE_SAMESITE` | `lax` |
 | `ADMIN_TRUSTED_PROXY_HOPS` | `1` (IIS ARR). Client IP for rate limiting is taken from the right-hand end of `X-Forwarded-For`. |
 | `ADMIN_SESSION_IDLE_MINUTES`, `ADMIN_SESSION_ABSOLUTE_HOURS`, `ADMIN_LOGIN_*`, `ADMIN_MAX_BODY_BYTES` | optional, defaults apply |
+| `PUBLIC_API_ALLOWED_ORIGINS` | CORS allowlist for the public read API, e.g. `https://www.tn-nhis.net` (comma-separated exact origins, no wildcard). Added by Next.js only; never add `Access-Control-*` headers in IIS. Restart the service after changing it. |
 
 `NODE_ENV=production` is set by the service definition (and `next build/start` set it themselves); this makes the
 cookie `Secure` – do not override. The `.env` file is server-only: it is not in the ZIP and must never be copied into
@@ -247,6 +248,7 @@ is a DBA restore and must be matched with the Uploads copy from the same time.
 | Admin login returns 200 but next call 401 | page served over HTTP, or `ADMIN_COOKIE_PATH` not `/TNNHISApi` |
 | Admin write returns 403 “origin” | `ADMIN_ALLOWED_ORIGINS` does not exactly match the browser URL (scheme/host/port) |
 | Upload returns 413 | request above 30 MB (IIS limit) or 25 MB document limit |
+| Browser: "No Access-Control-Allow-Origin" on public GETs | origin not in `PUBLIC_API_ALLOWED_ORIGINS` (exact scheme/host/port) or service not restarted; duplicate headers = CORS also configured in IIS (remove it) |
 | Files 404 / empty downloads | `Uploads` not copied, wrong `FILE_STORAGE_DIR`; run `storage:check` |
 
 ## What was and was not verified (developer machine)
