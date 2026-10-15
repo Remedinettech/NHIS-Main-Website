@@ -205,7 +205,7 @@ Labels not found on the source site were drafted so the Tamil UI is complete. Th
 | `grievances.guidance` | To raise a grievance, send an e-mail to the addresses shown below for your TPA and attach a copy of your NHIS ID card. | குறையைத் தெரிவிக்க, உங்கள் TPA-க்கான கீழே உள்ள மின்னஞ்சல் முகவரிகளுக்கு மின்னஞ்சல் அனுப்பி, உங்கள் NHIS அடையாள அட்டையின் நகலை இணைக்கவும். |
 | `gallery.loadError` | The gallery could not be loaded | கேலரியை ஏற்ற இயலவில்லை |
 | `footer.about` | Tamil Nadu New Health Insurance Scheme | தமிழ்நாடு அரசு புதிய மருத்துவக் காப்பீட்டுத் திட்டம் |
-| `footer.aboutText` | Health insurance cover for government employees, pensioners and their eligible family members, implemented through United India Insurance with Medi Assist and MDIndia as service partners. | அரசு ஊழியர்கள், ஓய்வூதியதாரர்கள் மற்றும் அவர்களின் தகுதியுடைய குடும்ப உறுப்பினர்களுக்கான மருத்துவக் காப்பீடு; யுனைடெட் இந்தியா இன்சூரன்ஸ் மூலம் செயல்படுத்தப்படுகிறது, மெடி அசிஸ்ட் மற்றும் எம்டிஇந்தியா சேவைக் கூட்டாளிகளாக உள்ளன. |
+| `footer.aboutText` | Health insurance cover for government employees, pensioners and their eligible family members, implemented through United India Insurance with Vidal Health, Medi Assist and Health Insurance TPA of India (HITPA) as service partners. | அரசு ஊழியர்கள், ஓய்வூதியதாரர்கள் மற்றும் அவர்களின் தகுதியுடைய குடும்ப உறுப்பினர்களுக்கான மருத்துவக் காப்பீடு; யுனைடெட் இந்தியா இன்சூரன்ஸ் மூலம் செயல்படுத்தப்படுகிறது, விடல் ஹெல்த், மெடி அசிஸ்ட் மற்றும் ஹெல்த் இன்சூரன்ஸ் டிபிஏ ஆஃப் இந்தியா (HITPA) ஆகியவை சேவைக் கூட்டாளிகளாக உள்ளன. |
 | `footer.quickLinks` | Quick links | விரைவு இணைப்புகள் |
 | `footer.portals` | NHIS portals | NHIS தளங்கள் |
 | `footer.helplines` | Helplines | உதவி எண்கள் |

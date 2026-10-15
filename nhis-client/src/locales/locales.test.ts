@@ -25,6 +25,19 @@ test('Tamil falls back to English explicitly and interpolates parameters', () =>
   assert.equal(resolveMessage('ta', 'common.pageOf', { page: 2, total: 9 }).origin, 'proposed');
 });
 
+test('the footer description names the service partners in the order of the partner logos', () => {
+  const english = resolveMessage('en', 'footer.aboutText').text;
+  assert.equal(
+    english,
+    'Health insurance cover for government employees, pensioners and their eligible family members, implemented through United India Insurance with Vidal Health, Medi Assist and Health Insurance TPA of India (HITPA) as service partners.',
+  );
+  const tamil = resolveMessage('ta', 'footer.aboutText').text;
+  const order = ['விடல் ஹெல்த்', 'மெடி அசிஸ்ட்', 'ஹெல்த் இன்சூரன்ஸ் டிபிஏ ஆஃப் இந்தியா (HITPA)'].map((name) => tamil.indexOf(name));
+  assert.ok(order.every((index) => index > 0), 'all three partners are named in Tamil');
+  assert.deepEqual([...order].sort((a, b) => a - b), order, 'Vidal Health, Medi Assist, HITPA');
+  assert.ok(!/MDIndia|MD India|எம்டி/.test(`${english} ${tamil}`));
+});
+
 test('placeholders in Tamil messages match the English placeholders', () => {
   const placeholders = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join(',');
   for (const key of ALL_MESSAGE_KEYS) {

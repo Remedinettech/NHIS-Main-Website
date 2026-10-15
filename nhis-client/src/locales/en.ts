@@ -222,7 +222,7 @@ export const en = {
   },
   footer: {
     about: 'Tamil Nadu New Health Insurance Scheme',
-    aboutText: 'Health insurance cover for government employees, pensioners and their eligible family members, implemented through United India Insurance with Medi Assist and Vidal Health as service partners.',
+    aboutText: 'Health insurance cover for government employees, pensioners and their eligible family members, implemented through United India Insurance with Vidal Health, Medi Assist and Health Insurance TPA of India (HITPA) as service partners.',
     quickLinks: 'Quick links',
     portals: 'NHIS portals',
     helplines: 'Helplines',
