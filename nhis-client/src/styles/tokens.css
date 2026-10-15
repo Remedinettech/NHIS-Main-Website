@@ -75,7 +75,7 @@
   /* Containers */
   --container: 81.5rem;
   --container-narrow: 62rem;
-  --gutter: clamp(1rem, 4vw, 2rem);
+  --gutter: 10px;
   --reading-width: 44rem;
 
   /* Focus */

@@ -41,7 +41,6 @@ export function LoginMenu() {
       <div id={panelId} className="login-menu__panel" hidden={!open}>
         <p className="login-menu__heading">{t('login.roleHeading')}</p>
         <ul className="login-menu__list">{ROLE_LINKS.map(item)}</ul>
-        <ExternalLink href={hrefs.forgotPassword} className="login-menu__forgot">{t('login.forgotPassword')}</ExternalLink>
       </div>
     </div>
   );

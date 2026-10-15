@@ -10,7 +10,7 @@ export interface DisplayColumn { key: string; header: string; kind: ContactColum
 const LAYOUTS: Partial<Record<ContactDirectoryId, readonly DisplayColumn[]>> = {
   coordinators: [
     { key: 'A', header: 'District', kind: 'text' },
-    { key: 'B', header: 'Coordinator', kind: 'text' },
+    { key: 'B', header: 'TPA coordinator', kind: 'text' },
     { key: 'C', header: 'Designation', kind: 'text' },
     { key: 'D', header: 'Contact number', kind: 'phone' },
   ],
@@ -25,6 +25,13 @@ const LAYOUTS: Partial<Record<ContactDirectoryId, readonly DisplayColumn[]>> = {
     { key: 'B', header: 'Nodal officer', kind: 'text' },
     { key: 'C', header: 'Hospital', kind: 'text' },
     { key: 'D', header: 'Contact number', kind: 'phone' },
+  ],
+  'project-office-officials': [
+    { key: 'A', header: 'No.', kind: 'text' },
+    { key: 'B', header: 'Emp. No.', kind: 'text' },
+    { key: 'C', header: 'Name', kind: 'text' },
+    { key: 'D', header: 'Designation', kind: 'text' },
+    { key: 'E', header: 'E-mail', kind: 'email' },
   ],
   'treasury-offices': [
     { key: 'A', header: 'No.', kind: 'text' },

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { APP_CONFIG } from '../../config/app';
 import { ROUTES } from '../../config/routes';
 import { useLanguage } from '../../context/LanguageContext';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
@@ -7,6 +6,7 @@ import { usePortalHrefs } from '../../hooks/usePortals';
 import { useVisibleFooterLinks } from '../../hooks/useVisibleNav';
 import { pickBilingual } from '../../utils/locale';
 import { BrandLogo } from '../common/BrandLogo';
+import { ProjectOfficeAddress } from '../contacts/ProjectOfficeAddress';
 import { ExternalLink } from '../common/ExternalLink';
 
 /** Compact footer: brand, quick links, portals and helplines. */
@@ -25,6 +25,10 @@ export function SiteFooter() {
           <BrandLogo variant="footer" to={ROUTES.home} />
           <p>{t('footer.aboutText')}</p>
         </section>
+        <section aria-labelledby="footer-office">
+          <h2 id="footer-office">{t('footer.projectOffice')}</h2>
+          <ProjectOfficeAddress className="site-footer__address" />
+        </section>
         <nav aria-labelledby="footer-links">
           <h2 id="footer-links">{t('footer.quickLinks')}</h2>
           <ul className="site-footer__links">
@@ -38,7 +42,6 @@ export function SiteFooter() {
             <li><ExternalLink href={hrefs.pensioner}>{t('login.pensioners')}</ExternalLink></li>
             <li><ExternalLink href={hrefs.administrator}>{t('login.administrator')}</ExternalLink></li>
             <li><ExternalLink href={hrefs.trackClaim}>{t('nav.trackClaim')}</ExternalLink></li>
-            <li><ExternalLink href={APP_CONFIG.sourceSiteUrl}>{t('footer.portalSite')}</ExternalLink></li>
           </ul>
         </section>
         <section aria-labelledby="footer-help">

@@ -11,5 +11,6 @@ export const CONTACT_COLUMN_LABELS: Record<ContactDirectoryId, Record<string, Me
   coordinators: { A: 'contacts.cols.district', B: 'contacts.cols.coordinator', C: 'contacts.cols.designation', D: 'contacts.cols.phone' },
   'uiic-nodal-officers': { A: 'contacts.cols.district', B: 'contacts.cols.nodalOfficer', C: 'contacts.cols.designation', D: 'contacts.cols.phone' },
   'hospital-nodal-officers': { A: 'contacts.cols.district', B: 'contacts.cols.nodalOfficer', C: 'contacts.cols.hospital', D: 'contacts.cols.phone' },
+  'project-office-officials': { A: 'contacts.cols.serial', B: 'contacts.cols.empNo', C: 'contacts.cols.name', D: 'contacts.cols.designation', E: 'contacts.cols.email' },
   'treasury-offices': { A: 'contacts.cols.serial', B: 'contacts.cols.district', C: 'contacts.cols.office', D: 'contacts.cols.email', E: 'contacts.cols.phone' },
 };

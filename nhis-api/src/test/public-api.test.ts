@@ -99,7 +99,7 @@ describe('content endpoints', () => {
   test('stats are computed from the database', async () => {
     const body = await (await get(r.stats.GET, 'stats')).json();
     assert.equal(body.hospitals, 1221);
-    assert.equal(body.contacts, 172);
+    assert.equal(body.contacts, 186);
     assert.equal(body.documents, 23);
   });
 
@@ -142,10 +142,10 @@ describe('content endpoints', () => {
     assert.equal((await get(r.file.GET, 'files/doesnotexist1', { assetId: 'doesnotexist1' })).status, 404);
   });
 
-  test('contacts: four directories with exact row counts', async () => {
+  test('contacts: five directories with exact row counts', async () => {
     const index = await (await get(r.contacts.GET, 'contacts')).json();
     assert.deepEqual(index.data.map((d: { id: string; total: number }) => [d.id, d.total]), [
-      ['coordinators', 44], ['uiic-nodal-officers', 39], ['hospital-nodal-officers', 50], ['treasury-offices', 39],
+      ['coordinators', 44], ['uiic-nodal-officers', 39], ['hospital-nodal-officers', 50], ['treasury-offices', 39], ['project-office-officials', 14],
     ]);
     const dir = await (await get(r.contact.GET, 'contacts/hospital-nodal-officers', { directory: 'hospital-nodal-officers' })).json();
     assert.equal(dir.data.rows.length, 50);

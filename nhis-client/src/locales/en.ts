@@ -186,7 +186,7 @@ export const en = {
   },
   contacts: {
     title: 'Contact',
-    intro: 'Helplines and contact directories for coordinators, nodal officers, hospitals and treasury offices.',
+    intro: 'Helplines and contact directories for TPA coordinators, UIIC nodal officers, project office officials, hospitals and treasury offices.',
     helplines: 'Helplines',
     timings: 'Timings',
     tablistLabel: 'Contact directories',
@@ -196,16 +196,19 @@ export const en = {
     noMatch: 'No entries match your search.',
     loadError: 'The contact directory could not be loaded',
     directories: {
-      coordinators: 'Coordinators',
-      'uiic-nodal-officers': 'Nodal Officers',
+      coordinators: 'TPA coordinators',
+      'uiic-nodal-officers': 'UIIC Nodal Officers',
       'hospital-nodal-officers': 'Hospital nodal officers',
+      'project-office-officials': 'Project office officials',
       'treasury-offices': 'District Treasury Office Mail & Phone Number',
     },
     cols: {
       serial: 'No.',
       district: 'District',
-      coordinator: 'Coordinator',
+      coordinator: 'TPA coordinator',
       nodalOfficer: 'Nodal officer',
+      name: 'Name',
+      empNo: 'Emp. No.',
       designation: 'Designation',
       hospital: 'Hospital',
       office: 'Office',
@@ -214,6 +217,9 @@ export const en = {
     },
   },
   grievances: {
+    nodalHeading: 'Nodal Officer for NHIS 2026 Implementation',
+    escalation1: 'Escalation Matrix 1',
+    escalation2: 'Escalation Matrix 2',
     guidance: 'To raise a grievance, send an e-mail to the addresses shown below for your TPA and attach a copy of your NHIS ID card.',
   },
   gallery: {
@@ -229,6 +235,9 @@ export const en = {
     portalSite: 'NHIS portal (tn-nhis.com)',
     partnerPortals: 'Partner hospital portals',
     rights: 'Tamil Nadu New Health Insurance Scheme',
+    projectOffice: 'Project office address',
+    landline: 'Landline',
+    gst: 'GST Registration No.',
   },
 } as const;
 

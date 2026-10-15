@@ -34,3 +34,13 @@
   .contact-table td:last-child { border-bottom: 0; }
   .contact-table td::before { content: attr(data-label); font-weight: 700; color: var(--color-text-muted); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.03em; }
 }
+
+.officer-section { margin-top: var(--space-7); }
+.officer-section h2 { margin-bottom: var(--space-3); }
+.officer-section h3 { margin: var(--space-5) 0 var(--space-2); color: var(--color-navy); }
+.project-office-address { display: block; font-style: normal; padding: var(--space-4) var(--space-5); line-height: 1.6; }
+
+@media (min-width: 48rem) {
+  .contact-tabs { flex-wrap: wrap; overflow-x: visible; row-gap: 0; }
+  .contact-tabs__tab { padding: 0 var(--space-2); font-size: 0.9375rem; }
+}

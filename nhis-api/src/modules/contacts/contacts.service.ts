@@ -4,7 +4,7 @@ import { NotFoundError } from '../../common/utils/errors';
 import { parseSlugParam } from '../../common/utils/validation';
 import { contactRepository, type ContactRepository } from './contacts.repository';
 
-export const CONTACT_DIRECTORY_IDS = ['coordinators', 'uiic-nodal-officers', 'hospital-nodal-officers', 'treasury-offices'] as const satisfies readonly ContactDirectoryId[];
+export const CONTACT_DIRECTORY_IDS = ['coordinators', 'uiic-nodal-officers', 'hospital-nodal-officers', 'treasury-offices', 'project-office-officials'] as const satisfies readonly ContactDirectoryId[];
 const isDirectoryId = (value: string): value is ContactDirectoryId => (CONTACT_DIRECTORY_IDS as readonly string[]).includes(value);
 
 export function createContactsService(repository: ContactRepository, capturedAt: () => string = () => serverConfig.snapshotDate) {

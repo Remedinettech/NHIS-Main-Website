@@ -136,7 +136,7 @@ export interface DocumentListResponse {
  * ------------------------------------------------------------------------- */
 
 export type ContactDirectoryId =
-  | 'coordinators' | 'uiic-nodal-officers' | 'hospital-nodal-officers' | 'treasury-offices';
+  | 'coordinators' | 'uiic-nodal-officers' | 'hospital-nodal-officers' | 'treasury-offices' | 'project-office-officials';
 
 export interface ContactColumn {
   /** Excel column letter in the source workbook; also the key in `ContactRow.cells`. */

@@ -2,7 +2,7 @@
   {
     "id": "coordinators",
     "label": {
-      "en": "Coordinators",
+      "en": "TPA coordinators",
       "ta": ""
     },
     "sourceFile": "coordinators-of-the-tpa.xlsx",
@@ -482,7 +482,7 @@
   {
     "id": "uiic-nodal-officers",
     "label": {
-      "en": "Nodal Officers",
+      "en": "UIIC Nodal Officers",
       "ta": ""
     },
     "sourceFile": "uiic-nodal-officers.xlsx",
@@ -1952,5 +1952,197 @@
         "text": "District names are spelled differently across the directories, e.g. KANCHIPURAM (coordinators) / Kanchipuram (UIIC nodal officers) / KANCHEEPURAM (treasury offices), and MYLADUTHURAI / Mayiladuthurai / MYLADUDURAI. Values are kept as published; matching by district name across directories needs a mapping."
       }
     ]
+  },
+  {
+    "id": "project-office-officials",
+    "label": {
+      "en": "Project office officials",
+      "ta": ""
+    },
+    "sourceFile": "DC and PO Details To Vidal For portal.docx",
+    "columns": [
+      {
+        "key": "A",
+        "header": "Sl.No.",
+        "kind": "text"
+      },
+      {
+        "key": "B",
+        "header": "Emp.No.",
+        "kind": "text"
+      },
+      {
+        "key": "C",
+        "header": "Name",
+        "kind": "text"
+      },
+      {
+        "key": "D",
+        "header": "Designation",
+        "kind": "text"
+      },
+      {
+        "key": "E",
+        "header": "Email address",
+        "kind": "email"
+      }
+    ],
+    "rows": [
+      {
+        "id": "project-office-officials-r2",
+        "sourceRow": 2,
+        "cells": {
+          "A": "1",
+          "B": "44182",
+          "C": "V.S. Rajasubramaniam",
+          "D": "Chief Business Manager",
+          "E": "rajasubramanianvs@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r3",
+        "sourceRow": 3,
+        "cells": {
+          "A": "2",
+          "B": "27902",
+          "C": "Ravikiran G",
+          "D": "Manager",
+          "E": "ravikirang@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r4",
+        "sourceRow": 4,
+        "cells": {
+          "A": "3",
+          "B": "28411",
+          "C": "Dr Shilpika Sodagudi",
+          "D": "Deputy Manager",
+          "E": "sshilpika@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r5",
+        "sourceRow": 5,
+        "cells": {
+          "A": "4",
+          "B": "44390",
+          "C": "Anandhi E",
+          "D": "Deputy Manager",
+          "E": "anandhie@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r6",
+        "sourceRow": 6,
+        "cells": {
+          "A": "5",
+          "B": "58022",
+          "C": "Prasanth Kumar P",
+          "D": "Asst. Manager",
+          "E": "prasanthkp@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r7",
+        "sourceRow": 7,
+        "cells": {
+          "A": "6",
+          "B": "45382",
+          "C": "Anand K",
+          "D": "Asst. Manager",
+          "E": "kanand@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r8",
+        "sourceRow": 8,
+        "cells": {
+          "A": "7",
+          "B": "39367",
+          "C": "G. Manikandan",
+          "D": "Asst. Manager",
+          "E": "manikandang@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r9",
+        "sourceRow": 9,
+        "cells": {
+          "A": "8",
+          "B": "44398",
+          "C": "N Bindhu",
+          "D": "Admn. Officer",
+          "E": "bindhun@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r10",
+        "sourceRow": 10,
+        "cells": {
+          "A": "9",
+          "B": "38248",
+          "C": "S. Harish",
+          "D": "Admn. Officer",
+          "E": "harishs@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r11",
+        "sourceRow": 11,
+        "cells": {
+          "A": "10",
+          "B": "44378",
+          "C": "Aarthi V G",
+          "D": "Admn. Officer",
+          "E": "aarthivg@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r12",
+        "sourceRow": 12,
+        "cells": {
+          "A": "11",
+          "B": "44015",
+          "C": "Vidya Sundar",
+          "D": "Admn. Officer",
+          "E": "vidyas@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r13",
+        "sourceRow": 13,
+        "cells": {
+          "A": "12",
+          "B": "60610",
+          "C": "Saksham Gupta",
+          "D": "Admn. Officer",
+          "E": "sakshamgupta@uiic.co.in"
+        }
+      },
+      {
+        "id": "project-office-officials-r14",
+        "sourceRow": 14,
+        "cells": {
+          "A": "13",
+          "B": "44170",
+          "C": "A Thavamaniraj",
+          "D": "Senior Assistant",
+          "E": ""
+        }
+      },
+      {
+        "id": "project-office-officials-r15",
+        "sourceRow": 15,
+        "cells": {
+          "A": "14",
+          "B": "44538",
+          "C": "B Seemati",
+          "D": "Sub Staff",
+          "E": ""
+        }
+      }
+    ],
+    "flags": []
   }
 ]
