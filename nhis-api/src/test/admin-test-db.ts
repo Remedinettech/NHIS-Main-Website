@@ -12,7 +12,8 @@ export const ADMIN_TEST_SCHEMA = 'nhis_test_admin';
 
 export function testDatabaseUrl(): string {
   const base = process.env.DIRECT_URL;
-  if (!base) throw new Error('DIRECT_URL is not set (nhis-api/.env)');
+  if (!base) throw new Error('DIRECT_URL is not set');
+  if (!new URL(base).pathname.includes('disposable')) throw new Error('Integration tests require a clearly named disposable database.');
   const url = new URL(base);
   url.searchParams.set('schema', ADMIN_TEST_SCHEMA);
   return url.toString();
@@ -30,6 +31,7 @@ function schemaSql(): string[] {
 export interface AdminTestDb { client: PrismaClient; cleanup: () => Promise<void> }
 
 export async function createAdminTestDb(): Promise<AdminTestDb> {
+  testDatabaseUrl(); // Guard before any DDL.
   const owner = new PrismaClient({ datasourceUrl: process.env.DIRECT_URL });
   await owner.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${ADMIN_TEST_SCHEMA}" CASCADE`);
   await owner.$executeRawUnsafe(`CREATE SCHEMA "${ADMIN_TEST_SCHEMA}"`);

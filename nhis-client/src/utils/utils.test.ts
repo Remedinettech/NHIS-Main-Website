@@ -22,6 +22,9 @@ test('regular-expression characters are matched literally', () => {
 test('mailto and tel links are built only from unambiguous values', () => {
   assert.equal(mailtoHref('tnnhis_grievance@Mdindia.com'), 'mailto:tnnhis_grievance@Mdindia.com');
   assert.equal(mailtoHref('not an email'), undefined);
+  // nothing may follow the address: ?cc=, ?bcc=, ?subject= or ?body= would add headers that the page never shows
+  for (const value of ['a@b.com?cc=x@y.com', 'a@b.com?subject=hello', 'a@b.com#frag', 'a?b@c.com', 'a@b.com,c@d.com']) assert.equal(mailtoHref(value), undefined, value);
+  assert.equal(isEmailAddress('a@b.com?subject=x'), false);
   assert.equal(isEmailAddress('010600@uiic.co.in'), true);
   assert.equal(telHref('78239 33929'), 'tel:7823933929');
   assert.equal(telHref('044-27426638'), 'tel:04427426638');

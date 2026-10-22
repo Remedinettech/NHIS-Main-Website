@@ -10,28 +10,21 @@ import '../../components/dashboard/dashboard.css';
 import { CATEGORY_LABELS } from '../../config/app';
 import { useDashboardData } from '../../hooks/useContent';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { NAV_ITEMS } from '../../config/navigation';
 import { formatNumber } from '../../utils/format';
 import { documentsByCategory } from '../../utils/documentStats';
 
 interface QuickLink { to: string; label: string; icon: IconName; galleryOnly?: boolean }
 
-const QUICK_LINKS: readonly QuickLink[] = [
-  { to: '/hospitals', label: 'Hospitals', icon: 'hospital' },
-  { to: '/pages', label: 'Pages', icon: 'pages' },
-  { to: '/documents', label: 'Documents', icon: 'file' },
-  { to: '/contacts', label: 'Contacts', icon: 'phone' },
-  { to: '/announcements', label: 'Announcements', icon: 'megaphone' },
-  { to: '/gallery', label: 'Gallery', icon: 'image', galleryOnly: true },
-  { to: '/settings', label: 'Settings', icon: 'settings' },
-];
+const QUICK_LINKS: readonly QuickLink[] = NAV_ITEMS.filter((item) => !['/dashboard', '/users', '/activity'].includes(item.to));
 
 export default function DashboardPage() {
-  useDocumentTitle('Dashboard');
+  useDocumentTitle('Overview');
   const { data, error, loading, reload } = useDashboardData();
 
   return (
     <div className="page">
-      <PageHeader title="Dashboard" intro="An overview of the content managed for the scheme website." />
+      <PageHeader title="Overview" intro="An overview of the content managed for the scheme website." />
       {loading && <LoadingState label="Loading dashboard…" rows={3} />}
       {error && !data && <ErrorState error={error} onRetry={reload} />}
       {data && (() => {

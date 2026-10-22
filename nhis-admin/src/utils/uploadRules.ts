@@ -1,12 +1,16 @@
 /** Client-side pre-checks that mirror the server's upload limits. The server stays authoritative. */
-export type UploadKind = 'document' | 'image';
+export type UploadKind = 'document' | 'image' | 'video';
 
 export interface UploadRule { kind: UploadKind; maxBytes: number; mimeTypes: readonly string[]; extensions: readonly string[]; description: string }
 
 export const UPLOAD_RULES: Record<UploadKind, UploadRule> = {
+  video: { kind: 'video', maxBytes: 25 * 1024 * 1024, mimeTypes: ['video/mp4'], extensions: ['mp4'], description: 'MP4, up to 25 MB' },
   document: { kind: 'document', maxBytes: 25 * 1024 * 1024, mimeTypes: ['application/pdf'], extensions: ['pdf'], description: 'PDF, up to 25 MB' },
   image: { kind: 'image', maxBytes: 5 * 1024 * 1024, mimeTypes: ['image/jpeg', 'image/png', 'image/webp'], extensions: ['jpg', 'jpeg', 'png', 'webp'], description: 'JPEG, PNG or WebP, up to 5 MB' },
 };
+
+/** Shown when an upload ends after the place it was meant for was removed or moved: the file is stored but not attached to anything. */
+export const UPLOAD_DETACHED_MESSAGE = 'The file was uploaded, but the place it was meant for is no longer on the page (it was removed or moved), so it was not attached. Choose the file again where you want it.';
 
 export function acceptAttribute(kind: UploadKind): string {
   const rule = UPLOAD_RULES[kind];

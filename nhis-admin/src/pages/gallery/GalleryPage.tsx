@@ -9,12 +9,12 @@ import { useRecordList } from '../../hooks/useRecordList';
 import { resolveApiUrl } from '../../utils/urls';
 
 export default function GalleryPage() {
-  useDocumentTitle('Gallery');
+  useDocumentTitle('Photo gallery');
   const canWrite = useCan('content.write');
   const list = useRecordList<AdminGalleryItem>('gallery');
   return (
     <div className="page">
-      <PageHeader title="Gallery" intro="Photographs shown in the public gallery. The Gallery page appears on the website once an item is published.">
+      <PageHeader title="Photo gallery" intro="Photographs shown in the public gallery. The Gallery page appears on the website once an item is published.">
         {canWrite && <div className="page__actions"><LinkButton to="/gallery/new"><Icon name="plus" size={18} /> Add image</LinkButton></div>}
       </PageHeader>
       <RecordList<AdminGalleryItem>

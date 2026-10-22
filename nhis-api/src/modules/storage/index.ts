@@ -4,6 +4,7 @@ import type { StorageAdapter } from './storage.types';
 
 export * from './storage.types';
 export * from './file-validation';
+export * from './image-size';
 export { LocalStorageAdapter, isValidStorageKey } from './local-storage.adapter';
 
 /** Creates the adapter selected by FILE_STORAGE_DRIVER (read when called, so tests can change the environment). */

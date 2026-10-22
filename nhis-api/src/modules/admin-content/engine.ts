@@ -138,10 +138,10 @@ const audit = (t: Tx, ctx: Ctx, adapter: EntityAdapter<never, never> | { entityT
 /* ------------------------------------------------------------------ lifecycle operations */
 
 export async function createRecord<F extends object, Row extends RowBase>(
-  adapter: EntityAdapter<F, Row>, ctx: Ctx, values: F, options: { id?: string; scope?: string } = {},
+  adapter: EntityAdapter<F, Row>, ctx: Ctx, values: F, options: { id?: string; scope?: string; transaction?: Tx } = {},
 ) {
   const id = options.id ?? adapter.newId();
-  return tx(async (t) => {
+  return (options.transaction ? <T>(fn: (t: Tx) => Promise<T>) => fn(options.transaction!) : tx)(async (t) => {
     await adapter.verify?.(t, values);
     const row = await adapter.create(t, { id, values, userId: ctx.user.id, now: new Date(), scope: options.scope });
     await audit(t, ctx, adapter, 'CREATE', row.id, `Created ${adapter.entityType} "${adapter.label(values)}" as a draft`, { values });
@@ -151,9 +151,9 @@ export async function createRecord<F extends object, Row extends RowBase>(
 
 /** Saves edits. A published record keeps its live values; the edit waits in `draft` until it is published. */
 export async function saveRecord<F extends object, Row extends RowBase>(
-  adapter: EntityAdapter<F, Row>, ctx: Ctx, id: string, values: F, expectedVersion: number,
+  adapter: EntityAdapter<F, Row>, ctx: Ctx, id: string, values: F, expectedVersion: number, transaction?: Tx,
 ) {
-  return tx(async (t) => {
+  return (transaction ? <T>(fn: (t: Tx) => Promise<T>) => fn(transaction) : tx)(async (t) => {
     const row = await load(adapter, t, id, expectedVersion);
     if (row.status === 'ARCHIVED') throw invalidState('Archived records cannot be edited. Restore the record first.');
     await adapter.verify?.(t, values);

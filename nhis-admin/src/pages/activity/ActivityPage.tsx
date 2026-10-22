@@ -15,6 +15,8 @@ import { formatNumber } from '../../utils/format';
 
 const ENTITY_TYPES = [
   { value: '', label: 'All content' },
+  { value: 'site-content', label: 'Site content' },
+  { value: 'content-import', label: 'Excel imports' },
   { value: 'hospital', label: 'Hospitals' },
   { value: 'page', label: 'Pages' },
   { value: 'document', label: 'Documents' },
@@ -30,12 +32,12 @@ const ENTITY_TYPES = [
 const ACTION_LABELS: Record<string, string> = {
   CREATE: 'Created', UPDATE: 'Edited', PUBLISH: 'Published', UNPUBLISH: 'Unpublished', ARCHIVE: 'Archived', RESTORE: 'Restored',
   DISCARD_DRAFT: 'Discarded draft', DELETE: 'Deleted', UPLOAD: 'Uploaded', LOGIN: 'Signed in', LOGOUT: 'Signed out', LOGIN_FAILED: 'Failed sign-in',
-  IMPORT: 'Imported',
+  IMPORT_START: 'Import started', IMPORT_ROW: 'Import in progress', IMPORT_COMPLETE: 'Import finished',
 };
 
 /** Who changed what and when. Read-only history from the audit log. */
 export default function ActivityPage() {
-  useDocumentTitle('Activity');
+  useDocumentTitle('Change history');
   const [params, setParams] = useSearchParams();
   const entityType = params.get('entityType') ?? '';
   const entityId = params.get('entityId') ?? '';
@@ -57,7 +59,7 @@ export default function ActivityPage() {
 
   return (
     <div className="page">
-      <PageHeader title="Activity" intro="A record of changes: who did what, and when." />
+      <PageHeader title="Change history" intro="A record of changes: who did what, and when." />
       <Card>
         <div className="filters filters--record">
           <FilterSelect label="Show" value={entityType} onChange={(value) => update({ entityType: value })} options={ENTITY_TYPES} />

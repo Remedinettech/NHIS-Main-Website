@@ -1,0 +1,20 @@
+/* Excel import page. Tokens only. */
+.import-form { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: var(--space-4); }
+.import-form__file { height: auto; padding: var(--space-3); }
+.import-summary { margin: 0; font-weight: 600; color: var(--color-navy); }
+.import-rows > summary { cursor: pointer; min-height: 2.75rem; display: flex; align-items: center; font-weight: 700; color: var(--color-navy); }
+.import-row { border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-3); background: var(--color-bg); min-width: 0; }
+.import-row h3 { margin: 0 0 var(--space-2); font-size: var(--text-base); overflow-wrap: anywhere; }
+.import-row__errors { margin: 0 0 var(--space-2); padding-left: 1.2em; color: var(--color-danger); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.import-row__values { display: grid; gap: var(--space-1); margin: 0; font-size: var(--text-sm); }
+.import-row__values > div { display: grid; grid-template-columns: minmax(6rem, 10rem) minmax(0, 1fr); gap: var(--space-3); }
+.import-row__values dt { font-weight: 600; color: var(--color-navy); overflow-wrap: anywhere; }
+.import-row__values dd { margin: 0; overflow-wrap: anywhere; }
+.import-progress { width: 100%; height: 1rem; accent-color: var(--color-primary); }
+.import-history { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.import-history li { border-bottom: 1px solid var(--color-border-soft); padding-bottom: var(--space-3); min-width: 0; }
+.import-history p { margin: 0 0 var(--space-2); overflow-wrap: anywhere; }
+@media (max-width: 36rem) {
+  .import-row__values > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .import-row { padding: var(--space-3); }
+}

@@ -4,12 +4,13 @@ import { useDocuments } from '../hooks/useContent';
 import type { AsyncState } from '../types/async';
 import type { DocumentListResponse } from '@nhis/shared-types';
 
-interface DocumentsContextValue {
+export interface DocumentsContextValue {
   state: AsyncState<DocumentListResponse>;
   byId: ReadonlyMap<string, DocumentRecord>;
 }
 
-const DocumentsContext = createContext<DocumentsContextValue | undefined>(undefined);
+/** Exported so that render tests can provide a registry without a network request. Use `useDocumentRegistry()` in components. */
+export const DocumentsContext = createContext<DocumentsContextValue | undefined>(undefined);
 
 /** Document registry, loaded once so notices, page links and document lists resolve the same records. */
 export function DocumentsProvider({ children }: { children: ReactNode }) {

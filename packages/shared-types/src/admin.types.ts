@@ -100,7 +100,7 @@ export interface AdminPage extends AdminRecord<AdminPageValues> {
 
 /* ------------------------------------------------------------------ documents and files */
 
-export type AssetKindName = 'DOCUMENT' | 'IMAGE';
+export type AssetKindName = 'DOCUMENT' | 'IMAGE' | 'VIDEO';
 
 export interface AdminAsset {
   id: string;
@@ -221,7 +221,7 @@ export interface AdminFieldError { field: string; message: string }
 export interface AdminApiErrorBody {
   error: {
     code: 'UNAUTHENTICATED' | 'FORBIDDEN' | 'CSRF' | 'INVALID' | 'NOT_FOUND' | 'CONFLICT' | 'RATE_LIMITED'
-      | 'UNSUPPORTED_FILE' | 'FILE_TOO_LARGE' | 'REFERENCED' | 'LAST_ADMIN' | 'INVALID_STATE' | 'INTERNAL_ERROR';
+      | 'UNSUPPORTED_FILE' | 'FILE_TOO_LARGE' | 'REFERENCED' | 'LAST_ADMIN' | 'INVALID_STATE' | 'MIGRATION_REQUIRED' | 'INTERNAL_ERROR';
     message: string;
     details?: AdminFieldError[];
     retryAfterSeconds?: number;

@@ -2,6 +2,7 @@ import type { AdminDocumentValues, DocumentAudience, DocumentCategory } from '@n
 import type { Document, Prisma } from '@prisma/client';
 import { AdminHttpError, invalid, queryEnum, Validator, type Tx } from '../../common/admin';
 import type { EntityAdapter } from './engine';
+import { isDocumentLinkedFromSiteContent } from '../site-content/references';
 import { listFilters, optionalText, randomId, searchWords, toAsset, type ModuleDefinition } from './shared';
 
 export const DOCUMENT_CATEGORIES: readonly DocumentCategory[] = [
@@ -45,8 +46,8 @@ export const documentAdapter: EntityAdapter<AdminDocumentValues, Document> = {
   async deleteGuard(tx, row) {
     const pages = await tx.page.count({ where: { documentIds: { has: row.id } } });
     const notices = await tx.$queryRaw<{ n: bigint }[]>`SELECT count(*)::bigint AS n FROM "Announcement" WHERE "messageEn"::text LIKE ${`%"documentId":"${row.id}"%`} OR "messageTa"::text LIKE ${`%"documentId":"${row.id}"%`}`;
-    if (pages > 0 || Number(notices[0]?.n ?? 0) > 0) {
-      throw new AdminHttpError('REFERENCED', 'This document is linked from a page or notice. Archive it instead of deleting it.');
+    if (pages > 0 || Number(notices[0]?.n ?? 0) > 0 || (await isDocumentLinkedFromSiteContent(tx, row.id))) {
+      throw new AdminHttpError('REFERENCED', 'This document is linked from a page, notice or site content. Archive it instead of deleting it.');
     }
   },
   async collectOrphans(tx, row) {
@@ -62,12 +63,29 @@ export const documentAdapter: EntityAdapter<AdminDocumentValues, Document> = {
   },
 };
 
-/** Assets from `ids` that no document or gallery item references any more are deleted; their storage keys are returned. */
+/**
+ * Assets from `ids` that nothing refers to any more are deleted; their storage keys are returned. "Refers to" covers every
+ * place an asset id can live: the live column of a document or gallery item, the pending draft of one, the image blocks
+ * of a page (published text and pending draft), and the live value or pending draft of a site-content document (images,
+ * the manual PDF and the manual videos). A file that is still used anywhere stays.
+ */
 export async function orphanedKeys(tx: Tx, ids: ReadonlyArray<string | null>): Promise<string[]> {
   const keys: string[] = [];
   for (const id of ids.filter((x): x is string => !!x)) {
     const used = (await tx.document.count({ where: { assetId: id } })) + (await tx.galleryItem.count({ where: { assetId: id } }));
     if (used > 0) continue;
+    const [drafts] = await tx.$queryRaw<{ used: boolean }[]>`SELECT (
+      EXISTS (SELECT 1 FROM "Document" WHERE "draft" IS NOT NULL AND "draft"->>'assetId' = ${id})
+      OR EXISTS (SELECT 1 FROM "GalleryItem" WHERE "draft" IS NOT NULL AND "draft"->>'assetId' = ${id})
+      OR EXISTS (SELECT 1 FROM "Page" WHERE "draft" IS NOT NULL AND jsonb_path_exists("draft", '$.** ? (@.assetId == $id)', jsonb_build_object('id', ${id}::text)))
+      OR EXISTS (SELECT 1 FROM "PageTranslation" WHERE jsonb_path_exists("sections", '$.** ? (@.assetId == $id)', jsonb_build_object('id', ${id}::text)))
+    ) AS "used"`;
+    if (drafts?.used) continue;
+    const tables = await tx.$queryRaw<{ exists: boolean }[]>`SELECT to_regclass('"SiteContent"') IS NOT NULL AS "exists"`;
+    if (tables[0]?.exists) {
+      const refs = await tx.$queryRaw<{ used: boolean }[]>`SELECT EXISTS (SELECT 1 FROM "SiteContent" WHERE jsonb_path_exists("value", '$.** ? (@.assetId == $id)', jsonb_build_object('id', ${id}::text)) OR ("draft" IS NOT NULL AND jsonb_path_exists("draft", '$.** ? (@.assetId == $id)', jsonb_build_object('id', ${id}::text)))) AS "used"`;
+      if (refs[0]?.used) continue;
+    }
     const asset = await tx.mediaAsset.delete({ where: { id } }).catch(() => null);
     if (asset) keys.push(asset.storageKey);
   }

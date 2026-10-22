@@ -1,5 +1,7 @@
 import type { ContentBlock, InlineNode, ListBlock, LocalizedPageContent } from '@nhis/shared-types';
 import { Fragment } from 'react';
+import { adminAssetPath } from '../site/siteForm';
+import { resolveApiUrl } from '../../utils/urls';
 import './records.css';
 
 function Inline({ nodes }: { nodes: readonly InlineNode[] }) {
@@ -30,8 +32,19 @@ function List({ list }: { list: ListBlock }) {
 }
 
 function Block({ block }: { block: ContentBlock }) {
+  if (block.type === 'image') {
+    // Uploaded pictures are private until the page is published, so the preview reads them through the admin session.
+    if (!block.assetId.trim()) return <p className="preview-missing">Picture: none chosen yet.</p>;
+    return (
+      <figure className="preview-figure">
+        <img className="preview-figure__img" src={resolveApiUrl(adminAssetPath(block.assetId.trim()))} alt={block.alt} loading="lazy" />
+        {block.caption?.trim() && <figcaption>{block.caption}</figcaption>}
+      </figure>
+    );
+  }
   if (block.type === 'paragraph') return <p><Inline nodes={block.content} /></p>;
   if (block.type === 'list') return <List list={block} />;
+  if (block.type === 'table') return <div className="table-wrap"><table className="data-table"><thead><tr>{block.headers.map((header, i) => <th key={i}>{header}</th>)}</tr></thead><tbody>{block.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j}><Inline nodes={cell} /></td>)}</tr>)}</tbody></table></div>;
   return <p><span className="preview-button">{block.text || 'Download'}</span></p>;
 }
 

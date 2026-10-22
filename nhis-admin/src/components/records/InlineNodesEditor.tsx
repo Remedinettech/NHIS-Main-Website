@@ -4,6 +4,8 @@ import { useAsyncData } from '../../hooks/useAsyncData';
 import { listRecords } from '../../services/records.api';
 import { Button } from '../common/Button';
 import { SelectField, TextAreaField, TextField } from '../common/fields';
+import { describeAddition, describeMove, describeRemoval } from '../site/siteForm';
+import { moveFocusTargets, useFocusRequest } from './useFocusRequest';
 import './records.css';
 
 export interface DocumentOption { value: string; label: string }
@@ -63,9 +65,31 @@ function move<T>(items: T[], from: number, to: number): T[] {
  */
 export function InlineNodesEditor({ label, nodes, onChange, documents, errors = {}, path, lang, required, disabled, hint }: Props) {
   const headingId = useId();
+  const uid = useId();
+  const focus = useFocusRequest();
   const [adding, setAdding] = useState<InlineNode['type']>('text');
+  // Tells screen-reader users what a move, addition or removal did.
+  const [announcement, setAnnouncement] = useState('');
   const update = (index: number, patch: Partial<InlineNode>) => onChange(nodes.map((n, i) => (i === index ? ({ ...n, ...patch } as InlineNode) : n)));
   const err = (index: number, field: string) => errors[`${path}.${index}.${field}`];
+
+  // The rows are drawn by position, so after a move the button that was pressed would act on the neighbouring part: focus follows the
+  // part that was moved. After a removal the focused button is gone, so focus goes to "Add".
+  const moveNode = (index: number, to: number) => {
+    if (to < 0 || to >= nodes.length) return;
+    focus(...moveFocusTargets(`${uid}-${to}`, index, to));
+    onChange(move(nodes, index, to));
+    setAnnouncement(describeMove('part', index, to, nodes.length));
+  };
+  const removeNode = (index: number) => {
+    focus(`${uid}-add`);
+    onChange(nodes.filter((_, i) => i !== index));
+    setAnnouncement(describeRemoval('part', index, nodes.length - 1));
+  };
+  const addNode = () => {
+    onChange([...nodes, emptyNode(adding)]);
+    setAnnouncement(describeAddition('part', nodes.length + 1, nodes.length + 1));
+  };
 
   return (
     <fieldset className="node-editor" disabled={disabled} aria-labelledby={headingId}>
@@ -102,16 +126,17 @@ export function InlineNodesEditor({ label, nodes, onChange, documents, errors = 
             )}
           </div>
           <div className="node-row__tools">
-            <Button size="sm" variant="ghost" disabled={index === 0} onClick={() => onChange(move(nodes, index, index - 1))}>Move up<span className="visually-hidden"> part {index + 1}</span></Button>
-            <Button size="sm" variant="ghost" disabled={index === nodes.length - 1} onClick={() => onChange(move(nodes, index, index + 1))}>Move down<span className="visually-hidden"> part {index + 1}</span></Button>
-            <Button size="sm" variant="ghost" onClick={() => onChange(nodes.filter((_, i) => i !== index))}>Remove<span className="visually-hidden"> part {index + 1}</span></Button>
+            <Button size="sm" variant="ghost" data-focus={`${uid}-${index}-up`} disabled={index === 0} onClick={() => moveNode(index, index - 1)}>Move up<span className="visually-hidden"> part {index + 1}</span></Button>
+            <Button size="sm" variant="ghost" data-focus={`${uid}-${index}-down`} disabled={index === nodes.length - 1} onClick={() => moveNode(index, index + 1)}>Move down<span className="visually-hidden"> part {index + 1}</span></Button>
+            <Button size="sm" variant="ghost" onClick={() => removeNode(index)}>Remove<span className="visually-hidden"> part {index + 1}</span></Button>
           </div>
         </div>
       ))}
       <div className="node-row__tools">
         <SelectField label="Add a part" value={adding} onChange={(x) => setAdding(x as InlineNode['type'])} options={ADDABLE.map((t) => ({ value: t, label: TYPE_LABELS[t] }))} />
-        <Button size="sm" variant="secondary" onClick={() => onChange([...nodes, emptyNode(adding)])}>Add</Button>
+        <Button size="sm" variant="secondary" data-focus={`${uid}-add`} onClick={addNode}>Add</Button>
       </div>
+      <p className="visually-hidden" role="status" aria-live="polite">{announcement}</p>
     </fieldset>
   );
 }

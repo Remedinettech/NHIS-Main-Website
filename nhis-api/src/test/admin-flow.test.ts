@@ -345,7 +345,7 @@ describe('contacts, announcements, gallery, settings', () => {
     const editor = await login('EDITOR');
     const publisher = await login('PUBLISHER');
     const dirs = await send(h.contactDirs.GET, 'GET', '/api/v1/admin/contacts/directories', { session: editor });
-    assert.equal(dirs.body.data.length, 4);
+    assert.equal(dirs.body.data.length, 5);
     const bad = await send(h.contacts.POST, 'POST', '/api/v1/admin/contacts', { session: editor, body: { directoryId: 'coordinators', values: { cells: { Z: 'x' } } } });
     assert.equal(bad.status, 400);
     const created = await send(h.contacts.POST, 'POST', '/api/v1/admin/contacts', { session: editor, body: { directoryId: 'coordinators', values: { cells: { A: 'E2E DISTRICT', B: 'E2E COORDINATOR', C: 'District Coordinator', D: '9999900000' } } } });

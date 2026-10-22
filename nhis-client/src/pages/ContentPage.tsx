@@ -8,6 +8,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { usePage } from '../hooks/useContent';
 import type { MessageKey } from '../locales';
+import { displayedPageContent } from '../utils/pageContent';
 
 export interface RelatedLink { to: string; labelKey: MessageKey }
 
@@ -23,11 +24,15 @@ interface ContentPageProps {
 
 /** Route-level wrapper for a source page served by the API: loading, error, content. */
 export default function ContentPage({ slug, titleKey, related, toc = true, children }: ContentPageProps) {
-  const { t, locale } = useLanguage();
+  const { t, locale, hasOverride } = useLanguage();
   const { data, error, loading, reload } = usePage(slug);
-  const page = data?.data;
-  const content = page ? (page[locale] ?? page[locale === 'en' ? 'ta' : 'en']) : null;
-  useDocumentTitle(content?.title ?? t(titleKey));
+  // The route element is reused when the visitor goes from one page to another, so `data` still holds the previous page
+  // while the next one loads: only the requested page is shown.
+  const page = data?.data.slug === slug ? data.data : undefined;
+  const content = page ? displayedPageContent(page, locale)?.content : undefined;
+  // A title written under "Page text" in the Admin replaces the title of the page content (empty = keep the page's own title).
+  const written = hasOverride(titleKey) ? t(titleKey) : undefined;
+  useDocumentTitle(written ?? content?.title ?? t(titleKey));
 
   if (error && !page) {
     return (
@@ -47,7 +52,7 @@ export default function ContentPage({ slug, titleKey, related, toc = true, child
   }
 
   return (
-    <ContentPageView page={page} toc={toc}>
+    <ContentPageView page={page} toc={toc} title={written}>
       {children}
       {related && related.length > 0 && (
         <nav className="related" aria-label={t('pages.relatedLinks')}>

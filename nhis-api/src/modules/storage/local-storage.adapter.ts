@@ -5,8 +5,8 @@ import path from 'node:path';
 import type { Readable } from 'node:stream';
 import { InvalidStorageKeyError, StorageNotFoundError, type StorageAdapter, type StoredExtension, type StoredObject } from './storage.types';
 
-const KEY_PATTERN = /^[a-f0-9]{32}\.(?:pdf|jpg|png|webp)$/;
-const EXTENSIONS: readonly StoredExtension[] = ['pdf', 'jpg', 'png', 'webp'];
+const KEY_PATTERN = /^[a-f0-9]{32}\.(?:pdf|jpg|png|webp|mp4)$/;
+const EXTENSIONS: readonly StoredExtension[] = ['pdf', 'jpg', 'png', 'webp', 'mp4'];
 
 export const isValidStorageKey = (key: unknown): key is string => typeof key === 'string' && KEY_PATTERN.test(key);
 
@@ -46,14 +46,14 @@ export class LocalStorageAdapter implements StorageAdapter {
     return { key, bytes: data.byteLength, sha256: crypto.createHash('sha256').update(data).digest('hex') };
   }
 
-  async get(key: string): Promise<Readable> {
+  async get(key: string, range?: { start: number; end: number }): Promise<Readable> {
     const file = this.resolveKey(key);
     try {
       await fsp.access(file, fs.constants.R_OK);
     } catch {
       throw new StorageNotFoundError();
     }
-    return fs.createReadStream(file);
+    return fs.createReadStream(file, range);
   }
 
   async delete(key: string): Promise<void> {

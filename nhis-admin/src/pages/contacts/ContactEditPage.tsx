@@ -4,7 +4,7 @@ import { Card } from '../../components/common/Card';
 import { NumberField, TextField, parseWholeNumber } from '../../components/common/fields';
 import { ErrorState, LoadingState } from '../../components/common/StateViews';
 import { RecordEditor } from '../../components/records/RecordEditor';
-import { displayColumns } from '../../config/contactColumns';
+import { directoryTitle, displayColumns } from '../../config/contactColumns';
 import { useAsyncData } from '../../hooks/useAsyncData';
 import { useRecord } from '../../hooks/useRecord';
 import { adminApi } from '../../services/client';
@@ -23,7 +23,7 @@ function Form({ directory, routeId }: { directory: AdminContactDirectory; routeI
       newValues={empty}
       listPath={listPath}
       editPath={(r) => `/contacts/${encodeURIComponent(r.id)}`}
-      recordName={(v) => columns.slice(0, 2).map((c) => v.cells[c.key]?.trim()).filter(Boolean).join(' – ')}
+      recordName={(v) => (directory.id === 'project-office-officials' ? ['C', 'D'] : columns.slice(0, 2).map((c) => c.key)).map((key) => v.cells[key]?.trim()).filter(Boolean).join(' – ')}
       createBody={(values) => ({ directoryId: directory.id, values })}
       validate={(v) => {
         const errors: Record<string, string> = {};
@@ -37,7 +37,7 @@ function Form({ directory, routeId }: { directory: AdminContactDirectory; routeI
       }}
     >
       {({ values, setValues, setField, errors, readOnly }) => (
-        <Card title={directory.labelEn} description="These values appear in this directory on the public Contact page.">
+        <Card title={directoryTitle(directory.id, directory.labelEn)} description="These values appear in this directory on the public Contact page.">
           <div className="editor-section">
             {errors.cells && <p className="ff__error" role="alert">{errors.cells}</p>}
             <div className="editor-grid">

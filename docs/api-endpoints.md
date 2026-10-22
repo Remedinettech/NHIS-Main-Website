@@ -21,3 +21,25 @@ Errors: 400 `INVALID_QUERY`, 404 `NOT_FOUND`, 500 `INTERNAL_ERROR` (no stack tra
 Not implemented: authentication, admin CRUD/publish, uploads, users, settings writes. `src/common/authorization.ts` always denies (501) and no write route exists. Specify contracts before adding any.
 
 Local development uses the Vite `/api` proxy. For production prefer reverse-proxy routing; with separate origins, add an explicit CORS allow-list and cookie/CSRF handling before admin sessions exist.
+
+## Admin-managed site content
+
+Design and contract: `docs/site-content-management.md`. Public, read only, `Cache-Control: no-cache` + strong ETag (a publish is visible on the next request):
+
+| Method | Path | Response |
+|---|---|---|
+| GET | /api/v1/site-content | `{ data: { header, navigation, home, partners, footer, text } }`: per document the PUBLISHED value (re-validated; an invalid stored value falls back), else the built-in content with the legacy settings overlay. Drafts are never included. While the `SiteContent` table does not exist (migration pending) it answers with the built-in content and logs one warning; it never answers 500 for that reason. |
+| GET | /api/v1/files/:assetId | (existing) additionally serves an uploaded IMAGE whose id appears in the live value of a PUBLISHED `SiteContent` row or in an `image` block of a PUBLISHED page (checked with `jsonb_path_exists`; a missing table counts as "not referenced"). Drafts and unreferenced uploads stay 404. |
+| GET | /api/v1/pages/:slug | (existing) page sections may now contain `{ type: 'image', assetId, alt, caption?, width, height }` blocks, returned as stored. |
+
+Admin (session cookie, CSRF on mutations, `no-store`, never CORS-enabled):
+
+| Method | Path | Notes |
+|---|---|---|
+| GET | /api/v1/admin/site-content | The six documents in fixed order (`header, navigation, home, partners, footer, text`); a document without a row is a virtual record (`version: 0`, `customised: false`, values = built-in content plus legacy overlay). Any role. |
+| GET | /api/v1/admin/site-content/preview | `SiteContentResponse` with pending drafts applied (draft, else saved value, else effective default; validated like the public endpoint). Any role. |
+| GET | /api/v1/admin/site-content/:key | One record (404 for an unknown key). |
+| PUT | /api/v1/admin/site-content/:key | `{ values, expectedVersion }`. Strict validation (`validateSiteContent`), 400 with field paths relative to the document; documents and images referenced must exist (images: kind IMAGE); `width`/`height` of uploaded images are read from the stored file. Version 0 creates the row. Needs `editContent`. |
+| POST | /api/v1/admin/site-content/:key/{discard-draft\|publish} | `{ expectedVersion }`; publish needs `publish` and writes a `ContentRevision`. `unpublish`, `archive` and `restore` are routed but always answer 409 `INVALID_STATE`. |
+
+There is no create or delete route for site content. Pages (`/admin/pages`) accept `image` blocks (`assetId` of an uploaded IMAGE, required `alt`, optional `caption`; `width`/`height` are accepted but ignored and filled by the server).

@@ -52,13 +52,15 @@ interface RecordActionsProps {
   onEdit?: () => void;
   /** Actions to leave out (for example `['delete']` for pages). */
   exclude?: readonly RecordAction[];
+  /** Why the actions cannot be used right now (shown next to the menu, which is then disabled), for example while the form has edits that are not saved. */
+  blockedReason?: string;
 }
 
 /**
  * The standard per-record menu: shows only what the signed-in role may do for the record's state, confirms with the
  * record name, runs the action with `expectedVersion`, reports success only after a 2xx response and then calls `onChanged`.
  */
-export function RecordActions({ module, id, meta, name, onChanged, onEdit, exclude = [] }: RecordActionsProps) {
+export function RecordActions({ module, id, meta, name, onChanged, onEdit, exclude = [], blockedReason }: RecordActionsProps) {
   const { role } = useAuth();
   const toast = useToast();
   const [pending, setPending] = useState<RecordRequestAction | null>(null);
@@ -88,7 +90,8 @@ export function RecordActions({ module, id, meta, name, onChanged, onEdit, exclu
   const active = pending ? COPY[pending] : null;
   return (
     <>
-      <RecordActionsMenu actions={actions} onSelect={select} recordName={name} disabled={mutation.pending} />
+      <RecordActionsMenu actions={actions} onSelect={select} recordName={name} disabled={mutation.pending || Boolean(blockedReason)} />
+      {blockedReason && actions.length > 0 && <span className="editor-note text-muted">{blockedReason}</span>}
       {active && pending && (
         <ConfirmDialog
           open

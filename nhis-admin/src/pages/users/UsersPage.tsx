@@ -130,7 +130,7 @@ function ResetPasswordDialog({ user, onClose, onDone }: { user: AdminUserRecord;
 }
 
 export default function UsersPage() {
-  useDocumentTitle('Users');
+  useDocumentTitle('Staff accounts');
   const toast = useToast();
   const { user: me } = useAuth();
   const [text, setText] = useState('');
@@ -154,9 +154,9 @@ export default function UsersPage() {
 
   return (
     <div className="page">
-      <PageHeader title="Users" intro="People who can sign in to this administration site, and what they may do.">
+      <PageHeader title="Staff accounts" intro="People who can sign in to this administration site, and what they may do.">
         <div className="page__actions">
-          <Button onClick={() => setDialog({ kind: 'create' })}><Icon name="plus" size={18} /> Add user</Button>
+          <Button onClick={() => setDialog({ kind: 'create' })}><Icon name="plus" size={18} /> Add staff account</Button>
         </div>
       </PageHeader>
 

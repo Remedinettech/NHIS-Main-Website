@@ -39,7 +39,8 @@ export function getRuntimeMissingTamilKeys(): MessageKey[] {
   return [...missingTamil];
 }
 
-function interpolate(template: string, params?: MessageParams): string {
+/** Replaces {name} placeholders; a placeholder without a parameter is left as written. */
+export function interpolate(template: string, params?: MessageParams): string {
   if (!params) return template;
   return template.replace(/\{(\w+)\}/g, (match, name: string) =>
     name in params ? String(params[name]) : match);

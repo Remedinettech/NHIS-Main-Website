@@ -24,3 +24,13 @@ database-backup/
 !nhis-client/.env.production
 !nhis-admin/.env.production
 deploy-package/
+
+# Written by `next dev` (agent notes); never commit or ship
+AGENTS.md
+CLAUDE.md
+.claude/
+
+# handoff output (generated)
+handoff-output/
+
+.verification/

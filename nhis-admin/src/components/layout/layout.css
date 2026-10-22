@@ -1,6 +1,8 @@
 [tabindex='-1']:focus-visible { box-shadow: none; }
 
 .shell { min-height: 100vh; display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+.nav-link__label { display: block; overflow-wrap: anywhere; }
+.nav-link__description { display: block; margin-top: 0.15rem; font-size: 0.72rem; line-height: 1.4; font-weight: 400; opacity: 0.85; overflow-wrap: anywhere; }
 .shell__main { min-width: 0; display: flex; flex-direction: column; }
 .shell__content { flex: 1; min-width: 0; }
 
@@ -60,7 +62,7 @@
 .sidebar__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
 .sidebar__list li { margin: 0; }
 .nav-link {
-  display: flex; align-items: center; gap: var(--space-3); min-height: 2.75rem; padding: 0 var(--space-3); border-radius: var(--radius);
+  display: flex; align-items: center; gap: var(--space-3); min-height: 2.75rem; padding: var(--space-2) var(--space-3); border-radius: var(--radius);
   text-decoration: none; color: var(--color-text); font-weight: 500; font-size: var(--text-base);
   transition: background-color var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
 }

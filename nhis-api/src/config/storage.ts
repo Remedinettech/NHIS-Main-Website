@@ -7,6 +7,7 @@ export interface StorageConfig {
   rootDir: string;
   maxDocumentBytes: number;
   maxImageBytes: number;
+  maxVideoBytes: number;
 }
 
 export const DEFAULT_MAX_DOCUMENT_BYTES = 25 * 1024 * 1024;
@@ -28,6 +29,7 @@ export function loadStorageConfig(env: Env = process.env, cwd: string = process.
     driver: 'local',
     rootDir: path.resolve(cwd, configured && configured.length > 0 ? configured : 'storage'),
     maxDocumentBytes: positiveInt(env.UPLOAD_MAX_DOCUMENT_BYTES, DEFAULT_MAX_DOCUMENT_BYTES),
+    maxVideoBytes: Math.min(positiveInt(env.UPLOAD_MAX_VIDEO_BYTES, 25 * 1024 * 1024), 25 * 1024 * 1024),
     maxImageBytes: positiveInt(env.UPLOAD_MAX_IMAGE_BYTES, DEFAULT_MAX_IMAGE_BYTES),
   };
 }

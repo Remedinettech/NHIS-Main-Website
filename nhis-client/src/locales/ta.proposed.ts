@@ -14,10 +14,15 @@ export const taProposed: Partial<Record<MessageKey, string>> = {
 
   'lang.select': 'மொழியைத் தேர்ந்தெடுக்கவும்',
 
+  'preview.banner': 'முன்னோட்டம்: வெளியிடப்படாத மாற்றங்கள், பொதுமக்களுக்குத் தெரியாது',
+  'preview.signIn': 'வெளியிடப்படாத மாற்றங்களை முன்னோட்டம் பார்க்க, இந்த உலாவியில் நிர்வாகப் பகுதியில் உள்நுழையவும். வெளியிடப்பட்ட தளம் காட்டப்படுகிறது.',
+
   'support.region': 'உதவி எண் தகவல்',
   'support.availability': '{hours} கிடைக்கும்',
   'support.unavailable': 'உதவி எண் விவரங்களை ஏற்ற இயலவில்லை.',
   'support.callAria': '{number} என்ற எண்ணில் {label} ஐ அழைக்கவும்',
+  'support.pause': 'நிறுத்து',
+  'support.resume': 'தொடரவும்',
 
   'nav.grievances': 'குறைதீர்ப்பு',
   'nav.openMenu': 'பட்டியைத் திற',
@@ -148,7 +153,7 @@ export const taProposed: Partial<Record<MessageKey, string>> = {
   'contacts.directories.coordinators': 'TPA ஒருங்கிணைப்பாளர்கள்',
   'contacts.directories.uiic-nodal-officers': 'UIIC நோடல் அலுவலர்கள்',
   'contacts.directories.hospital-nodal-officers': 'மருத்துவமனை நோடல் அலுவலர்கள்',
-  'contacts.directories.project-office-officials': 'திட்ட அலுவலக அலுவலர்கள்',
+  'contacts.directories.project-office-officials': 'UIIC திட்ட அலுவலக அலுவலர்கள்',
   'contacts.directories.treasury-offices': 'மாவட்டக் கருவூல அலுவலக மின்னஞ்சல் மற்றும் தொலைபேசி எண்',
   'contacts.cols.serial': 'எண்',
   'contacts.cols.district': 'மாவட்டம்',
@@ -168,6 +173,12 @@ export const taProposed: Partial<Record<MessageKey, string>> = {
   'grievances.guidance': 'குறையைத் தெரிவிக்க, உங்கள் TPA-க்கான கீழே உள்ள மின்னஞ்சல் முகவரிகளுக்கு மின்னஞ்சல் அனுப்பி, உங்கள் NHIS அடையாள அட்டையின் நகலை இணைக்கவும்.',
 
   'gallery.loadError': 'கேலரியை ஏற்ற இயலவில்லை',
+
+  'manual.emptyTitle': 'பயனர் கையேடு இன்னும் கிடைக்கவில்லை',
+  'manual.emptyText': 'கையேடும் காணொளிகளும் வெளியிடப்பட்டவுடன் இங்கே தோன்றும். சிறிது நேரம் கழித்து மீண்டும் வருகை தரவும்.',
+  'manual.downloadVideo': 'காணொளியைப் பதிவிறக்கு',
+  'manual.openVideo': 'காணொளியைப் புதிய தாவலில் திறக்கவும்',
+  'manual.videoUnsupported': 'இந்த உலாவியால் இந்தப் பக்கத்தில் காணொளியை இயக்க இயலாது.',
 
   'footer.about': 'தமிழ்நாடு அரசு புதிய மருத்துவக் காப்பீட்டுத் திட்டம்',
   'footer.aboutText': 'அரசு ஊழியர்கள், ஓய்வூதியதாரர்கள் மற்றும் அவர்களின் தகுதியுடைய குடும்ப உறுப்பினர்களுக்கான மருத்துவக் காப்பீடு; யுனைடெட் இந்தியா இன்சூரன்ஸ் மூலம் செயல்படுத்தப்படுகிறது, விடல் ஹெல்த், மெடி அசிஸ்ட் மற்றும் ஹெல்த் இன்சூரன்ஸ் டிபிஏ ஆஃப் இந்தியா (HITPA) ஆகியவை சேவைக் கூட்டாளிகளாக உள்ளன.',

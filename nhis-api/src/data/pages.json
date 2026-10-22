@@ -1119,18 +1119,18 @@
         {
           "id": "mdindia-tpa",
           "key": "mdindia-tpa",
-          "heading": "MDIndia TPA Beneficiary",
+          "heading": "HITPA Beneficiary",
           "blocks": [
             {
               "type": "paragraph",
               "content": [
                 {
                   "type": "text",
-                  "text": "If you feel that the amount settled in the claim is less please attach a copy of NHIS ID card and give a grievance mail to "
+                  "text": "For all your grievances and Short settlement cases. Please mail to tnnhisgrievance"
                 },
                 {
                   "type": "mail",
-                  "address": "tnnhis_grievance@Mdindia.com"
+                  "address": "tnnhisgrievance@hitpa.co.in"
                 },
                 {
                   "type": "text",
@@ -1154,7 +1154,7 @@
               "content": [
                 {
                   "type": "text",
-                  "text": "For all your grievances and Short settlement cases. please give a mail to "
+                  "text": "For all your grievances and Short settlement cases. please mail to "
                 },
                 {
                   "type": "mail",
@@ -1167,11 +1167,224 @@
                 {
                   "type": "mail",
                   "address": "010600@uiic.co.in"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vidal-health-tpa",
+          "key": "vidal-health-tpa",
+          "heading": "VIDAL HEALTH TPA Beneficiary",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "For all your grievances and Short settlement cases. Please mail to "
+                },
+                {
+                  "type": "mail",
+                  "address": "tnnhisgrievance@vidalhealth.com"
                 },
                 {
                   "type": "text",
-                  "text": " and attach a copy of NHIS ID card."
+                  "text": "and "
+                },
+                {
+                  "type": "mail",
+                  "address": "010600@uiic.co.in"
                 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nodal-2026",
+          "key": "nodal-2026",
+          "heading": "Nodal Officer for NHIS 2026 Implementation",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "No.",
+                "Name",
+                "Designation",
+                "Contact number",
+                "E-mail"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. V S Rajasubramaniam"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Chief Business Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9789055837",
+                      "text": "9789055837"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "rajasubramanianvs@uiic.co.in"
+                    }
+                  ]
+                ],
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. G Ravikiran"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9600191013",
+                      "text": "9600191013"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "ravikirang@uiic.co.in"
+                    }
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escalation-1",
+          "key": "escalation-1",
+          "heading": "Escalation Matrix 1",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "No.",
+                "Name",
+                "Designation",
+                "Contact number",
+                "E-mail"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. P. Suganesh"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Regional Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9789909967",
+                      "text": "9789909967"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "psuganesh@uiic.co.in"
+                    }
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escalation-2",
+          "key": "escalation-2",
+          "heading": "Escalation Matrix 2",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "No.",
+                "Name",
+                "Designation",
+                "Contact number",
+                "E-mail"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. V N Sandeep"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Deputy General Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9489456079",
+                      "text": "9489456079"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "vnsandeep@uiic.co.in"
+                    }
+                  ]
+                ]
               ]
             }
           ]
@@ -1244,6 +1457,195 @@
               ]
             }
           ]
+        },
+        {
+          "id": "nodal-2026",
+          "key": "nodal-2026",
+          "heading": "NHIS 2026 செயல்படுத்தலுக்கான நோடல் அலுவலர்",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "எண்",
+                "பெயர்",
+                "பதவி",
+                "தொடர்பு எண்",
+                "மின்னஞ்சல்"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. V S Rajasubramaniam"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Chief Business Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9789055837",
+                      "text": "9789055837"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "rajasubramanianvs@uiic.co.in"
+                    }
+                  ]
+                ],
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "2"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. G Ravikiran"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9600191013",
+                      "text": "9600191013"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "ravikirang@uiic.co.in"
+                    }
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escalation-1",
+          "key": "escalation-1",
+          "heading": "மேல்முறையீட்டு நிலை 1",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "எண்",
+                "பெயர்",
+                "பதவி",
+                "தொடர்பு எண்",
+                "மின்னஞ்சல்"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. P. Suganesh"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Regional Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9789909967",
+                      "text": "9789909967"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "psuganesh@uiic.co.in"
+                    }
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "escalation-2",
+          "key": "escalation-2",
+          "heading": "மேல்முறையீட்டு நிலை 2",
+          "blocks": [
+            {
+              "type": "table",
+              "headers": [
+                "எண்",
+                "பெயர்",
+                "பதவி",
+                "தொடர்பு எண்",
+                "மின்னஞ்சல்"
+              ],
+              "rows": [
+                [
+                  [
+                    {
+                      "type": "text",
+                      "text": "1"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Mr. V N Sandeep"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "text": "Deputy General Manager"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "phone",
+                      "number": "9489456079",
+                      "text": "9489456079"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "mail",
+                      "address": "vnsandeep@uiic.co.in"
+                    }
+                  ]
+                ]
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1273,6 +1675,11 @@
         "id": "grievances-tamil-nav-link",
         "severity": "info",
         "text": "The Tamil navigation link to this page uses \"#\" in the source; the English link points to /Home/Grievances (functional correction in the redesign)."
+      },
+      {
+        "id": "grievance-tamil-current-review",
+        "severity": "warning",
+        "text": "English TPA grievance contacts were checked against tn-nhis.net/grievances on 16 October 2026. Existing Tamil wording is preserved and still references MDIndia; a Tamil reviewer must approve updated HITPA and Vidal wording before publishing a Tamil correction."
       }
     ]
   },

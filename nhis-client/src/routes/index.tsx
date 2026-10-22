@@ -10,6 +10,7 @@ import GrievancesPage from '../pages/GrievancesPage';
 import HomePage from '../pages/HomePage';
 import HospitalsPage from '../pages/HospitalsPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import UserManualPage from '../pages/UserManualPage';
 
 /** Keeps the query string and hash when an old path is redirected. */
 function Redirect({ to }: { to: string }) {
@@ -22,6 +23,7 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<SiteLayout />}>
         <Route index element={<HomePage />} />
+        <Route path={ROUTES.userManual.slice(1)} element={<UserManualPage />} />
         <Route path={ROUTES.hospitals.slice(1)} element={<HospitalsPage />} />
         <Route
           path={ROUTES.employeePolicy.slice(1)}

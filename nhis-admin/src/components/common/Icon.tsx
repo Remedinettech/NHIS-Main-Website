@@ -29,6 +29,11 @@ const PATHS = {
   plus: 'M12 5v14M5 12h14',
   activity: 'M3 12h4l3-8 4 16 3-8h4',
   arrowLeft: 'M19 12H5m6-6-6 6 6 6',
+  arrowUp: 'M12 19V5m-6 6 6-6 6 6',
+  arrowDown: 'M12 5v14m-6-6 6 6 6-6',
+  chevronUp: 'm6 15 6-6 6 6',
+  /** A web page with header and columns (Site content). */
+  layout: 'M4 5h16v14H4zM4 10h16M10 10v9',
 } as const;
 
 export type IconName = keyof typeof PATHS;

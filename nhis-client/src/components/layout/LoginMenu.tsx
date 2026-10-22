@@ -1,28 +1,25 @@
 import { useId } from 'react';
-import { PORTALS, type PortalLink } from '../../config/portals';
-import { useLanguage } from '../../context/LanguageContext';
-import { usePortalHrefs } from '../../hooks/usePortals';
 import { useDismissableMenu } from '../../hooks/useDismissableMenu';
-import { ExternalLink } from '../common/ExternalLink';
+import { useSiteContent } from '../../hooks/useSiteContent';
+import { useLinkContext } from '../../hooks/useVisibleNav';
+import { visibleLinks } from '../../utils/siteLinks';
 import { Icon } from '../common/Icon';
-import { T } from '../common/T';
+import { BilingualText, SiteLink } from '../common/SiteLink';
 
-const ROLE_LINKS: ReadonlyArray<PortalLink['id']> = ['employee', 'pensioner', 'administrator', 'insurer'];
-
-/** Role login menu. Every item opens the corresponding NHIS portal; this site never collects credentials. */
+/**
+ * Role login menu (header content: button label, heading, items, forgot-password link). Every item opens the
+ * corresponding NHIS portal; this site never collects credentials. Hidden items and items whose target cannot be
+ * shown are left out, and a menu without any item is not shown at all.
+ */
 export function LoginMenu() {
-  const { t } = useLanguage();
   const { open, setOpen, containerRef, triggerRef, onBlur } = useDismissableMenu();
   const panelId = useId();
-  const hrefs = usePortalHrefs();
+  const { loginMenu } = useSiteContent().content.header;
+  const context = useLinkContext();
 
-  const item = (id: PortalLink['id']) => (
-    <li key={id}>
-      <ExternalLink href={hrefs[id]} className="login-menu__link">
-        <T k={PORTALS[id].labelKey} />
-      </ExternalLink>
-    </li>
-  );
+  const items = visibleLinks(loginMenu.items, context);
+  const [forgot] = visibleLinks([loginMenu.forgotPassword], context);
+  if (items.length === 0 && !forgot) return null;
 
   return (
     <div className="login-menu" ref={containerRef} onBlur={onBlur}>
@@ -35,12 +32,19 @@ export function LoginMenu() {
         onClick={() => setOpen((v) => !v)}
       >
         <Icon name="login" size={18} />
-        <span>{t('login.menu')}</span>
+        <span><BilingualText value={loginMenu.label} /></span>
         <Icon name="chevronDown" size={16} className="login-menu__chevron" />
       </button>
       <div id={panelId} className="login-menu__panel" hidden={!open}>
-        <p className="login-menu__heading">{t('login.roleHeading')}</p>
-        <ul className="login-menu__list">{ROLE_LINKS.map(item)}</ul>
+        <p className="login-menu__heading"><BilingualText value={loginMenu.heading} /></p>
+        {items.length > 0 && (
+          <ul className="login-menu__list">
+            {items.map(({ item }) => (
+              <li key={item.id}><SiteLink item={item} className="login-menu__link" /></li>
+            ))}
+          </ul>
+        )}
+        {forgot && <SiteLink item={forgot.item} className="login-menu__forgot" />}
       </div>
     </div>
   );

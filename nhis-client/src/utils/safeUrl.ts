@@ -10,17 +10,8 @@ export function safeMapUrl(value: string): string | undefined {
   }
 }
 
-/** Absolute http(s) URL, or undefined. Used for external destinations that come from data. */
-export function safeExternalUrl(value: string): string | undefined {
-  try {
-    const url = new URL(value.trim());
-    return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
-const EMAIL = /^[^\s@<>()[\]\,;:"]+@[^\s@<>()[\]\,;:"]+\.[^\s@<>()[\]\,;:"]+$/;
+/** One plain address. `?` and `#` are excluded: behind them a mailto: link would carry headers (cc, bcc, subject, body) that the page never shows. */
+const EMAIL = /^[^\s@<>()[\]\,;:"?#]+@[^\s@<>()[\]\,;:"?#]+\.[^\s@<>()[\]\,;:"?#]+$/;
 
 export function isEmailAddress(value: string): boolean {
   return EMAIL.test(value.trim());

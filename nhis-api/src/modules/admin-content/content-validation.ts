@@ -1,9 +1,11 @@
 import type {
-  ContentBlock, InlineNode, ListBlock, ListItem, LocalizedPageContent, PageSection,
+  ContentBlock, ImageBlock, InlineNode, ListBlock, ListItem, LocalizedPageContent, PageSection,
 } from '@nhis/shared-types';
 import { Validator } from '../../common/admin';
 
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/;
+/** Same pattern as the public files route uses for asset ids. */
+const ASSET_ID_PATTERN = /^[A-Za-z0-9_-]{8,64}$/;
 const SECTION_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
 const MAX_TEXT = 20_000;
 const MAX_NODES = 200;
@@ -102,18 +104,47 @@ function parseList(v: Validator, value: unknown, field: string, depth: number): 
   return { type: 'list', ordered, items: out };
 }
 
+/**
+ * An uploaded picture. `width` and `height` are accepted (the Admin sends back what it received) but ignored: the API
+ * fills them from the stored file when the page is saved. Whether the asset exists and is an image is checked against
+ * the database by the pages module.
+ */
+function parseImageBlock(sub: Validator, obj: Record<string, unknown>): ImageBlock | undefined {
+  sub.noUnknownKeys(obj, ['type', 'assetId', 'alt', 'caption', 'width', 'height']);
+  const assetId = sub.string(obj.assetId, 'assetId', { max: 64 });
+  if (assetId !== undefined && !ASSET_ID_PATTERN.test(assetId)) sub.fail('assetId', 'This is not a valid uploaded image.');
+  const alt = sub.string(obj.alt, 'alt', { max: 250 });
+  const caption = sub.string(obj.caption, 'caption', { max: 300, optional: true });
+  if (assetId === undefined || !ASSET_ID_PATTERN.test(assetId) || alt === undefined) return undefined;
+  return { type: 'image', assetId, alt, ...(caption !== undefined ? { caption } : {}) };
+}
+
 export function parseBlock(v: Validator, value: unknown, field: string): ContentBlock | undefined {
   const obj = v.object(value, field);
   if (!obj) return undefined;
-  const type = v.enumValue(obj.type, `${field}.type`, ['paragraph', 'list', 'documentLink'] as const);
+  const type = v.enumValue(obj.type, `${field}.type`, ['paragraph', 'list', 'documentLink', 'image', 'table'] as const);
   if (!type) return undefined;
   const sub = v.child(field);
+  if (type === 'table') {
+    sub.noUnknownKeys(obj, ['type', 'headers', 'rows']);
+    const rawHeaders = sub.array(obj.headers, 'headers', 8);
+    const headers = rawHeaders?.map((header, i) => sub.string(header, `headers[${i}]`, { max: 150 }) ?? '') ?? [];
+    if (!headers.length) sub.fail('headers', 'Add at least one column.');
+    const rawRows = sub.array(obj.rows, 'rows', 50);
+    const rows = rawRows?.map((raw, i) => {
+      const cells = sub.array(raw, `rows[${i}]`, 8) ?? [];
+      if (cells.length !== headers.length) sub.fail(`rows[${i}]`, 'Each row must have one cell for every column.');
+      return cells.map((cell, j) => parseInlineNodes(sub, cell, `rows[${i}][${j}]`) ?? []);
+    }) ?? [];
+    return { type, headers, rows };
+  }
   if (type === 'paragraph') {
     sub.noUnknownKeys(obj, ['type', 'content']);
     const content = parseInlineNodes(sub, obj.content, 'content', { min: 1 });
     return content ? { type, content } : undefined;
   }
   if (type === 'list') return parseList(v, obj, field, 1);
+  if (type === 'image') return parseImageBlock(sub, obj);
   sub.noUnknownKeys(obj, ['type', 'documentId', 'text']);
   const id = documentId(sub, obj.documentId, 'documentId');
   const text = sub.string(obj.text, 'text', { max: 500 });
@@ -178,15 +209,18 @@ export function collectDocumentIds(source: ReadonlyArray<InlineNode | ContentBlo
     for (const block of blocks) {
       if (block.type === 'paragraph') visitNodes(block.content);
       else if (block.type === 'list') addList(block);
-      else ids.push(block.documentId);
+      else if (block.type === 'documentLink') ids.push(block.documentId);
+      else if (block.type === 'table') block.rows.forEach((row) => row.forEach(visitNodes));
+      // An image block references an uploaded asset, never a document.
     }
   };
   for (const item of source) {
     if ('blocks' in item) visitBlocks(item.blocks);
     else if (item.type === 'paragraph') visitNodes(item.content);
     else if (item.type === 'list') addList(item);
+    else if (item.type === 'table') item.rows.forEach((row) => row.forEach(visitNodes));
     else if (item.type === 'documentLink') ids.push(item.documentId);
-    else visitNodes([item]);
+    else if (item.type !== 'image') visitNodes([item]);
   }
   return [...new Set(ids)];
 }

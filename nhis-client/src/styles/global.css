@@ -72,7 +72,8 @@ button, input, select { font: inherit; color: inherit; }
 /* Page canvas */
 .page { padding-block: var(--space-6) var(--space-8); }
 .page-header { margin-bottom: var(--space-5); max-width: var(--container-narrow); }
-.page-header p { color: var(--color-text-muted); max-width: 48rem; margin-bottom: 0; }
+/* Texts that the editors write in a multi-line box keep their line breaks (the content is plain text, never HTML). */
+.page-header p { color: var(--color-text-muted); max-width: 48rem; margin-bottom: 0; white-space: pre-line; }
 .panel {
   background: var(--color-white); border: 1px solid var(--color-border);
   border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--space-5);

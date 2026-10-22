@@ -1,7 +1,7 @@
 import type { Readable } from 'node:stream';
 
 /** Canonical extensions the storage layer ever writes. */
-export type StoredExtension = 'pdf' | 'jpg' | 'png' | 'webp';
+export type StoredExtension = 'pdf' | 'jpg' | 'png' | 'webp' | 'mp4';
 
 export interface StoredObject {
   /** Random storage key (`<32 hex>.<ext>`). Never derived from a user supplied name. */
@@ -18,7 +18,7 @@ export interface StorageAdapter {
   /** Stores the bytes under a freshly generated random key. */
   put(data: Uint8Array, extension: StoredExtension): Promise<StoredObject>;
   /** Streams the object. Rejects with `StorageNotFoundError` when it does not exist and `InvalidStorageKeyError` for an unsafe key. */
-  get(key: string): Promise<Readable>;
+  get(key: string, range?: { start: number; end: number }): Promise<Readable>;
   /** Removes the object. Missing objects are not an error. */
   delete(key: string): Promise<void>;
   exists(key: string): Promise<boolean>;

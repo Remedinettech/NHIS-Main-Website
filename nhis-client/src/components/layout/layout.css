@@ -1,6 +1,13 @@
 [tabindex='-1']:focus-visible { box-shadow: none; }
 .site-main { min-height: 50vh; }
 
+/* Preview mode (?preview=1): unpublished administration changes are on screen */
+.preview-banner { background: var(--color-warning-bg); border-bottom: 1px solid var(--color-warning-border); color: var(--color-text); font-size: var(--text-sm); }
+.preview-banner__inner { display: flex; align-items: flex-start; gap: var(--space-2); padding-block: .5rem; }
+.preview-banner__inner svg { flex: none; margin-top: .2rem; color: var(--color-warning); }
+.preview-banner p { margin: 0; font-weight: 600; min-width: 0; }
+.preview-banner--denied p { font-weight: 500; }
+
 /* Isolated helpline label, continuous track and pause control */
 .support-strip { background: var(--color-navy); color: white; font-size: var(--text-xs); }
 .support-strip__inner { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 1rem; min-height: 44px; }
@@ -131,16 +138,22 @@
 .site-footer { background: var(--color-navy); color: var(--color-white); margin-top: var(--space-7); }
 .site-footer__grid { display: grid; gap: var(--space-6) var(--space-7); padding-block: var(--space-7) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
 .site-footer__brand { display: grid; gap: var(--space-3); align-content: start; }
-.site-footer__brand p { max-width: 26rem; margin: 0; }
-.site-footer__links { grid-template-columns: 1fr 1fr; column-gap: var(--space-4); }
+.site-footer__brand p { max-width: 26rem; margin: 0; white-space: pre-line; }
+.site-footer__links { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-4); }
 @media (min-width: 80rem) { .site-footer__grid { grid-template-columns: 1.15fr 1.45fr 1.35fr 1fr 1.2fr; } }
 .site-footer h2 { color: var(--color-white); font-size: var(--text-md); margin-bottom: var(--space-3); }
 .site-footer h3 { color: var(--color-white); font-size: var(--text-base); margin: var(--space-4) 0 var(--space-2); }
-.site-footer p, .site-footer li { color: var(--color-on-navy-muted); font-size: var(--text-sm); }
+.site-footer p, .site-footer li { color: var(--color-on-navy-muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-1); }
-.site-footer li { margin: 0; }
+.site-footer li { margin: 0; min-width: 0; }
 .site-footer a { color: var(--color-white); }
 .site-footer a:hover { color: var(--color-highlight); }
+/* Footer logos (managed images): on white tiles so any logo stays readable on the navy footer; natural proportions, never cropped */
+.site-footer .site-footer__logos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+.site-footer__logo { display: flex; align-items: center; margin: 0; padding: .375rem .625rem; background: var(--color-white); border-radius: var(--radius-sm); max-width: 100%; }
+.site-footer__logo a { display: flex; align-items: center; }
+.site-footer__logo img { display: block; width: auto; height: auto; max-width: 100%; max-height: 3.25rem; object-fit: contain; }
+.site-footer__address { white-space: pre-line; }
 .site-footer__legal { border-top: 1px solid rgb(255 255 255 / 0.18); }
 .site-footer__legal p { margin: 0; padding-block: var(--space-4); }
 :root {
@@ -303,5 +316,6 @@ body {
 .site-footer__address { font-style: normal; font-size: var(--text-sm); color: var(--color-on-navy-muted); line-height: 1.6; }
 .site-footer__address strong { color: var(--color-white); }
 
-.site-footer__links a, .site-footer a[href^="tel:"] { white-space: nowrap; }
+/* A phone number stays on one line; link labels (editor text of any length, Tamil included) wrap inside their column instead of widening the page. */
+.site-footer a[href^="tel:"] { white-space: nowrap; }
 .site-footer__address { max-width: 22rem; }

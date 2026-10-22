@@ -1,5 +1,6 @@
 import type { AdminApiErrorBody, AdminFieldError } from '@nhis/shared-types';
 import { ApiError } from '../utils/errors';
+import { isMissingEnumValueError, isTableUnavailableError } from '../../modules/site-content/missing-table';
 
 export type AdminErrorCode = AdminApiErrorBody['error']['code'];
 
@@ -17,6 +18,7 @@ const STATUS: Record<AdminErrorCode, number> = {
   LAST_ADMIN: 409,
   INVALID_STATE: 409,
   INTERNAL_ERROR: 500,
+  MIGRATION_REQUIRED: 503,
 };
 
 export interface AdminErrorExtras {
@@ -56,6 +58,8 @@ export function errorBody(error: AdminHttpError): AdminApiErrorBody {
 }
 
 /** Maps anything thrown to a safe JSON response. Unknown errors become a generic 500 and are never echoed. */
+let warnedMissingMigration = false;
+
 export function adminErrorResponse(error: unknown, requestId?: string): Response {
   let admin: AdminHttpError;
   if (error instanceof AdminHttpError) {
@@ -66,6 +70,14 @@ export function adminErrorResponse(error: unknown, requestId?: string): Response
     else admin = new AdminHttpError('INTERNAL_ERROR', 'Internal server error');
   } else if (typeof error === 'object' && error !== null && (error as { code?: unknown }).code === 'P2034') {
     admin = conflict('The record was modified at the same time. Please retry.');
+  } else if (isTableUnavailableError(error) || isMissingEnumValueError(error)) {
+    // The API runs ahead of its database migrations or of the privileges on their tables (SiteContent, ContentImport, the enum value VIDEO): tell the administrator what to do,
+    // without naming tables or echoing the database message.
+    if (!warnedMissingMigration) {
+      warnedMissingMigration = true;
+      console.error('Admin API: pending database migrations must be reviewed and applied, and the runtime database role must be allowed to use the new tables, before this feature can be used. See docs/DEPLOYMENT-SITE-CONTENT.md.', requestId ?? '');
+    }
+    admin = new AdminHttpError('MIGRATION_REQUIRED', 'Database setup is incomplete. Ask the operator to back up the database, review and apply the pending migrations, then restart the API. See docs/DEPLOYMENT-SITE-CONTENT.md. No changes were saved.');
   } else {
     // Server-side log without message/stack (they could contain SQL or values); the client gets a generic message.
     const name = error instanceof Error ? error.name : typeof error;

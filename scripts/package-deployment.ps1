@@ -14,9 +14,11 @@
                 -> on the server: npm ci -w nhis-api, prisma generate, next build, then start the service
     Service\    WinSW service definition (the WinSW exe itself is not bundled)
     Config\     nhis-api.env.template (no real values)
-    Docs\       IIS-DEPLOYMENT.md
+    Docs\       IIS-DEPLOYMENT.md (only when the guide is present next to the sources; it is delivered separately)
+    MigrationReview\  reviewed SQL for the DBA (preflight, verification, grants, emergency rollback); never run automatically
 
-  Never included: .env files, .local-* files, database-backup, SQL dumps, nhis-api\storage (uploads), node_modules,
+  Never included: .env files, .local-* files, database-backup, SQL dumps (except MigrationReview and the Prisma migrations),
+  nhis-api\storage (uploads), node_modules,
   .next, tests, reference. The package is scanned for such files and for connection strings containing passwords.
 
   Run from the repository root:   powershell -ExecutionPolicy Bypass -File scripts\package-deployment.ps1
@@ -89,11 +91,16 @@ try {
   New-Item -ItemType Directory -Force -Path (Join-Path $pkg 'Service'), (Join-Path $pkg 'Config'), (Join-Path $pkg 'Docs') | Out-Null
   Copy-Item (Join-Path $root 'deploy\windows-service\tnnhis-api.xml') (Join-Path $pkg 'Service')
   Copy-Item (Join-Path $root 'deploy\env\nhis-api.env.template') (Join-Path $pkg 'Config')
-  Copy-Item (Join-Path $root 'docs\IIS-DEPLOYMENT.md') (Join-Path $pkg 'Docs')
+  # The deployment guide is delivered separately from the clean source package; include it when it is present.
+  $guide = Join-Path $root 'docs\IIS-DEPLOYMENT.md'
+  if (Test-Path $guide) { Copy-Item $guide (Join-Path $pkg 'Docs') }
+  # Reviewed SQL (preflight, verification, grants, emergency rollback) for the DBA. Nothing in it runs automatically.
+  $review = Join-Path $root 'deploy\db\review'
+  if (Test-Path $review) { Invoke-Robocopy $review (Join-Path $pkg 'MigrationReview') @() }
 
   Write-Host '== Safety scan =='
   $bad = Get-ChildItem $pkg -Recurse -Force -File | Where-Object {
-    $_.Name -match '^\.env($|\.)' -or $_.Name -like '.local-*' -or ($_.Extension -eq '.sql' -and $_.FullName -notlike '*\nhis-api\prisma\migrations\*') -or $_.Extension -in '.dump', '.backup', '.pem', '.key', '.pfx' }
+    $_.Name -match '^\.env($|\.)' -or $_.Name -like '.local-*' -or ($_.Extension -eq '.sql' -and $_.FullName -notlike '*\nhis-api\prisma\migrations\*' -and $_.FullName -notlike '*\MigrationReview\*') -or $_.Extension -in '.dump', '.backup', '.pem', '.key', '.pfx' }
   if ($bad) { $bad | ForEach-Object { Write-Error "Forbidden file in package: $($_.FullName)" }; throw 'Package contains forbidden files.' }
   $leak = Get-ChildItem $pkg -Recurse -File | Where-Object { $_.Extension -in '.js', '.html', '.config', '.xml', '.json', '.ts', '.prisma' } |
     Select-String -Pattern 'postgres(ql)?://[^:/\s<]+:[^@<\s]+@' -List

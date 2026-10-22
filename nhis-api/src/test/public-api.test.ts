@@ -156,7 +156,8 @@ describe('content endpoints', () => {
     const body = await (await get(r.site.GET, 'site')).json();
     assert.deepEqual(body.data.helplines.map((h: { number: string }) => h.number), ['1800-233-5666', '1800-233-5544', '044 40115088']);
     assert.ok(body.data.announcements.some((a: { kind: string }) => a.kind === 'suspension'));
-    assert.ok(body.data.portals.length >= 8);
+    // the portal links are derived from the effective header / navigation content (see modules/site/site-from-content.ts)
+      assert.deepEqual(body.data.portals.map((p: { id: string }) => p.id), ['employee', 'pensioner', 'administrator', 'insurer', 'trackClaim']);
     assert.ok(body.data.portals.every((p: { href: string }) => p.href.startsWith('https://')));
   });
 

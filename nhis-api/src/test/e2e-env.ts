@@ -33,7 +33,7 @@ function schemaSql(): string[] {
 
 async function setup(): Promise<void> {
   const direct = process.env.DIRECT_URL;
-  if (!direct) throw new Error('DIRECT_URL is not set');
+  if (!direct || !new URL(direct).pathname.includes('disposable')) throw new Error('Use only an isolated disposable database.');
   const owner = new PrismaClient({ datasourceUrl: direct });
   await owner.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${SCHEMA}" CASCADE`);
   await owner.$executeRawUnsafe(`CREATE SCHEMA "${SCHEMA}"`);
@@ -61,6 +61,7 @@ async function setup(): Promise<void> {
 }
 
 async function teardown(): Promise<void> {
+  if (!process.env.DIRECT_URL || !new URL(process.env.DIRECT_URL).pathname.includes('disposable')) throw new Error('Use only a disposable database.');
   const owner = new PrismaClient({ datasourceUrl: process.env.DIRECT_URL });
   await owner.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${SCHEMA}" CASCADE`);
   await owner.$disconnect();

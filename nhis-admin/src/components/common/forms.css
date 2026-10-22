@@ -2,7 +2,7 @@
 
 /* Fields */
 .ff { display: flex; flex-direction: column; gap: var(--space-1); min-width: 0; }
-.ff__label { font-weight: 600; color: var(--color-navy); font-size: var(--text-sm); }
+.ff__label { font-weight: 600; color: var(--color-navy); font-size: var(--text-base); }
 .ff__req { color: var(--color-danger); font-weight: 700; }
 .ff__hint { margin: 0; font-size: var(--text-xs); color: var(--color-text-muted); }
 .ff__count { margin: 0; text-align: right; font-size: var(--text-xs); color: var(--color-text-muted); }
@@ -13,7 +13,9 @@
   transition: border-color var(--motion-fast) var(--ease);
 }
 .ff__control:lang(ta) { line-height: 1.7; }
-.ff__control--area { min-height: 6rem; resize: vertical; line-height: 1.5; }
+.ff__control--area { min-height: 8rem; resize: vertical; line-height: 1.6; }
+.ff__control::placeholder { color: var(--color-text-muted); opacity: 1; }
+.ff__control:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 .ff__control:hover:not(:disabled) { border-color: var(--color-primary); }
 .ff__control:focus-visible { border-color: var(--color-primary-hover); }
 .ff__control:disabled { background: var(--color-bg); color: var(--color-text-muted); cursor: not-allowed; }

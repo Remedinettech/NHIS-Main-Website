@@ -1,5 +1,5 @@
+import { storedFileResponse } from '../storage/file-response';
 import type { AdminContactDirectory, ContactColumn } from '@nhis/shared-types';
-import { Readable } from 'node:stream';
 import {
   AdminHttpError, adminJson, getDb, invalid, notFound, parseIdParam, requireCapability, withAdmin, writeAudit,
 } from '../../common/admin';
@@ -14,9 +14,12 @@ import { hospitalAdapter, hospitalModule } from './hospitals.admin';
 import { moduleRoutes } from './module-routes';
 import { pageAdapter, pageModule } from './pages.admin';
 import { toAsset } from './shared';
+import { previewSiteContentValues, siteContentAdapter, siteContentModule } from './site-content.admin';
 
 export const hospitalRoutes = moduleRoutes(hospitalAdapter, hospitalModule);
 export const pageRoutes = moduleRoutes(pageAdapter, pageModule, { creatable: false, deletable: false });
+/** The six site-content documents (header, navigation, home, partners, footer, text): edited and published, never created, unpublished, archived or deleted. */
+export const siteContentRoutes = moduleRoutes(siteContentAdapter, siteContentModule, { creatable: false, deletable: false });
 export const documentRoutes = moduleRoutes(documentAdapter, documentModule);
 export const contactRoutes = moduleRoutes(contactAdapter, contactModule);
 export const announcementRoutes = moduleRoutes(announcementAdapter, announcementModule);
@@ -56,20 +59,33 @@ export const previewPage = withAdmin<{ id: string }>(async (ctx) => {
   });
 });
 
-/** POST /admin/uploads (multipart: kind=document|image, file). Stores the file privately; it is public only once a published record uses it. */
+/** GET /admin/site-content/preview: all six documents as the public site would show them with the pending drafts applied (any signed-in role). */
+export const previewSiteContent = withAdmin(async () => adminJson({ data: await previewSiteContentValues(getDb()) }));
+
+/** POST /admin/uploads (multipart: kind=document|image|video, file). Stores the file privately; it is public only once a published record uses it. */
 export const uploadFile = withAdmin(async (ctx) => {
   requireCapability(ctx, 'editContent');
   const limits = loadStorageConfig();
   const type = (ctx.request.headers.get('content-type') ?? '').toLowerCase();
   if (!type.startsWith('multipart/form-data')) throw invalid('Send the file as multipart/form-data.');
   const declared = Number(ctx.request.headers.get('content-length') ?? '0');
-  if (Number.isFinite(declared) && declared > Math.max(limits.maxDocumentBytes, limits.maxImageBytes) + 1024 * 1024) {
+  if (Number.isFinite(declared) && declared > Math.max(limits.maxDocumentBytes, limits.maxImageBytes, limits.maxVideoBytes) + 1024 * 1024) {
     throw new AdminHttpError('FILE_TOO_LARGE', 'The upload is too large.');
   }
-  const form = await ctx.request.formData();
+  const reader = ctx.request.body?.getReader(); if (!reader) throw invalid('A file is required.');
+  const chunks: Uint8Array[] = []; let received = 0;
+  const maxBody = Math.max(limits.maxDocumentBytes, limits.maxImageBytes, limits.maxVideoBytes) + 1024 * 1024;
+  for (;;) { const part = await reader.read(); if (part.done) break; received += part.value.length; if (received > maxBody) { await reader.cancel(); throw new AdminHttpError('FILE_TOO_LARGE', 'The upload is too large.'); } chunks.push(part.value); }
+  // A body that is not valid multipart (a missing boundary, a truncated part, garbage) is the sender's mistake: 400, not a server error.
+  let form: FormData;
+  try {
+    form = await new Request(ctx.request.url, { method: 'POST', headers: ctx.request.headers, body: Buffer.concat(chunks) }).formData();
+  } catch {
+    throw invalid('The upload could not be read. Send the file as multipart/form-data.');
+  }
   const kind = form.get('kind');
   const file = form.get('file');
-  if (kind !== 'document' && kind !== 'image') throw invalid('kind must be "document" or "image".', [{ field: 'kind', message: 'Choose document or image.' }]);
+  if (kind !== 'document' && kind !== 'image' && kind !== 'video') throw invalid('kind must be document, image or video.', [{ field: 'kind', message: 'Choose document, image or video.' }]);
   if (!(file instanceof File)) throw invalid('A file is required.', [{ field: 'file', message: 'Choose a file.' }]);
   const data = new Uint8Array(await file.arrayBuffer());
   let validated;
@@ -105,20 +121,6 @@ export const adminFile = withAdmin<{ assetId: string }>(async (ctx) => {
   const id = parseIdParam(ctx.params.assetId, 'assetId');
   const asset = await getDb().mediaAsset.findUnique({ where: { id } });
   if (!asset) throw notFound('File not found');
-  let stream: Readable;
-  try {
-    stream = await getStorage().get(asset.storageKey);
-  } catch (error) {
-    if (error instanceof StorageNotFoundError) throw notFound('File not found');
-    throw error;
-  }
-  return new Response(Readable.toWeb(stream) as unknown as ReadableStream, {
-    status: 200,
-    headers: {
-      'Content-Type': asset.mimeType,
-      'Content-Length': String(asset.bytes),
-      'Content-Disposition': contentDisposition(asset.originalName, 'inline'),
-      'X-Content-Type-Options': 'nosniff',
-    },
-  });
+  try { return await storedFileResponse(asset, ctx.request, getStorage()); }
+  catch (error) { if (error instanceof StorageNotFoundError) throw notFound('File not found'); throw error; }
 });

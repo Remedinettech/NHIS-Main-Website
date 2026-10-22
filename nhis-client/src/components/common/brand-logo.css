@@ -1,6 +1,6 @@
 .brand-logo { display: inline-flex; flex-direction: column; gap: 0.2rem; min-width: 0; text-decoration: none; color: var(--color-navy); border-radius: var(--radius-sm); }
 .brand-logo:hover { color: var(--color-navy); }
-.brand-logo__name { font-family: 'Manrope', 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.015em; white-space: nowrap; }
+.brand-logo__name { font-family: 'Manrope', 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.015em; overflow-wrap: anywhere; }
 .brand-logo__tn { color: var(--color-navy); }
 .brand-logo__dash { color: var(--color-primary); opacity: 0.55; margin-inline: 0.04em; font-weight: 700; }
 .brand-logo__nhis { color: var(--color-primary); }

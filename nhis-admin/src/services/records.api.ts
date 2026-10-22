@@ -2,8 +2,11 @@ import type { AdminItemResponse, AdminListQuery, AdminListResponse } from '@nhis
 import type { RecordAction } from '../utils/capabilities';
 import { adminApi } from './client';
 
-/** Content modules that share the standard record routes (docs/admin-backend-design.md). */
-export type ModuleName = 'hospitals' | 'pages' | 'documents' | 'contacts' | 'announcements' | 'gallery';
+/**
+ * Content modules that share the standard record routes (docs/admin-backend-design.md). "site-content" is addressed by
+ * document key (header, navigation, home, partners, footer, text) and has no create or list-with-paging route.
+ */
+export type ModuleName = 'hospitals' | 'pages' | 'documents' | 'contacts' | 'announcements' | 'gallery' | 'site-content';
 
 export type RecordListQuery = AdminListQuery & Record<string, string | number | undefined>;
 

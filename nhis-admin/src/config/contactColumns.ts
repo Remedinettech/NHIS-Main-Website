@@ -42,6 +42,20 @@ const LAYOUTS: Partial<Record<ContactDirectoryId, readonly DisplayColumn[]>> = {
   ],
 };
 
+/** Names of the directories as the public Contact page shows them in its tabs. */
+const DIRECTORY_TITLES: Record<ContactDirectoryId, string> = {
+  coordinators: 'TPA coordinators',
+  'uiic-nodal-officers': 'UIIC Nodal Officers',
+  'hospital-nodal-officers': 'Hospital nodal officers',
+  'project-office-officials': 'UIIC Project Office Officials',
+  'treasury-offices': 'District Treasury Office Mail & Phone Number',
+};
+
+/** Title of a directory in the Admin: the public tab name, or the stored name for a directory this list does not know. */
+export function directoryTitle(id: string, stored: string): string {
+  return DIRECTORY_TITLES[id as ContactDirectoryId] ?? stored;
+}
+
 /** Display columns for a directory; unknown directories fall back to the columns the API describes. */
 export function displayColumns(id: string, fallback: readonly ContactColumn[]): readonly DisplayColumn[] {
   const layout = LAYOUTS[id as ContactDirectoryId];

@@ -12,7 +12,7 @@ import { getDistricts } from '../../services/hospital.api';
 import { lines, tidy } from '../../utils/text';
 
 export default function HospitalsPage() {
-  useDocumentTitle('Hospitals');
+  useDocumentTitle('Network hospitals');
   const canWrite = useCan('content.write');
   const list = useRecordList<AdminHospital>('hospitals', { filterKeys: ['district'] });
   const districts = useAsyncData((signal) => getDistricts(signal), []);
@@ -20,9 +20,10 @@ export default function HospitalsPage() {
 
   return (
     <div className="page">
-      <PageHeader title="Hospitals" intro="Network hospitals shown on the public website, in English and Tamil.">
+      <PageHeader title="Network hospitals" intro="Network hospitals shown on the public website, in English and Tamil.">
         {canWrite && (
           <div className="page__actions">
+            <LinkButton to="/imports?module=hospitals" variant="secondary">Import from Excel</LinkButton>
             <LinkButton to="/hospitals/new"><Icon name="plus" size={18} /> Add hospital</LinkButton>
           </div>
         )}

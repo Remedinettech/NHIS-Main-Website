@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import type { InlineNode } from '@nhis/shared-types';
-import { mailtoHref, safeExternalUrl, telHref } from '../../utils/safeUrl';
+import { isSafeHttpsUrl, type InlineNode } from '@nhis/shared-types';
+import { mailtoHref, telHref } from '../../utils/safeUrl';
+import { isSitePath } from '../../utils/urls';
 import { ExternalLink } from '../common/ExternalLink';
 import { DocumentLink } from './DocumentLink';
 
@@ -28,9 +29,11 @@ export function InlineContent({ nodes, lang }: { nodes: ReadonlyArray<InlineNode
             return href ? <a key={index} href={href}>{node.text}</a> : <Fragment key={index}>{node.text}</Fragment>;
           }
           case 'link': {
-            if (node.href.startsWith('/')) return <Link key={index} to={node.href}>{node.text}</Link>;
-            const safe = safeExternalUrl(node.href);
-            return safe ? <ExternalLink key={index} href={safe}>{node.text}</ExternalLink> : <Fragment key={index}>{node.text}</Fragment>;
+            if (isSitePath(node.href)) return <Link key={index} to={node.href}>{node.text}</Link>;
+            // Another site is only linked by an https address (the content rules say the same); anything else is plain text.
+            return isSafeHttpsUrl(node.href)
+              ? <ExternalLink key={index} href={node.href}>{node.text}</ExternalLink>
+              : <Fragment key={index}>{node.text}</Fragment>;
           }
         }
       })}

@@ -4,7 +4,7 @@ import { Icon } from '../common/Icon';
 import { pickBilingual } from '../../utils/locale';
 import { cx } from '../../utils/classNames';
 import './content.css';
-import { resolveApiUrl } from '../../utils/urls';
+import { documentFileUrl } from '../../utils/urls';
 
 interface DocumentLinkProps {
   documentId: string;
@@ -24,12 +24,13 @@ export function DocumentLink({ documentId, text, asButton, lang }: DocumentLinkP
   const { byId } = useDocumentRegistry();
   const doc = byId.get(documentId);
   const title = doc ? pickBilingual(doc.label, locale).text : '';
+  const href = doc ? documentFileUrl(doc.localPath) : undefined;
 
   if (!doc) {
     // Registry still loading, or the id is unknown: show the source text without a dead link.
     return <span lang={lang}>{text}</span>;
   }
-  if (doc.availability === 'unavailable' || !doc.localPath) {
+  if (doc.availability === 'unavailable' || !href) {
     return (
       <span className="doc-link doc-link--unavailable" lang={lang}>
         {text} <span className="doc-link__flag">({t('documents.unavailableBadge')})</span>
@@ -38,7 +39,7 @@ export function DocumentLink({ documentId, text, asButton, lang }: DocumentLinkP
   }
   return (
     <a
-      href={resolveApiUrl(doc.localPath)}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       lang={lang}

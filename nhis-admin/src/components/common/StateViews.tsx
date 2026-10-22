@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Button } from './Button';
 import { describeError } from './errorMessage';
+import { ApiError } from '../../services/http';
 import { Icon } from './Icon';
 import './common.css';
 
@@ -27,7 +28,7 @@ export function ErrorState({ error, title = 'This data could not be loaded', onR
       <Icon name="alert" size={28} />
       <h2 className="state__title">{title}</h2>
       <p>{describeError(error)}</p>
-      {onRetry && <Button variant="secondary" onClick={onRetry}>Try again</Button>}
+      {onRetry && !(error instanceof ApiError && error.code === 'MIGRATION_REQUIRED') && <Button variant="secondary" onClick={onRetry}>Try again</Button>}
     </div>
   );
 }

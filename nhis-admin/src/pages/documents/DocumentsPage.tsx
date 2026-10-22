@@ -14,15 +14,16 @@ const CATEGORIES = Object.keys(CATEGORY_LABELS) as DocumentCategory[];
 export const AUDIENCE_LABELS: Record<DocumentAudience, string> = { employee: 'Employees', pensioner: 'Pensioners', all: 'Everyone' };
 
 export default function DocumentsPage() {
-  useDocumentTitle('Documents');
+  useDocumentTitle('Documents & downloads');
   const canWrite = useCan('content.write');
   const list = useRecordList<AdminDocument>('documents', { filterKeys: ['category', 'audience'] });
 
   return (
     <div className="page">
-      <PageHeader title="Documents" intro="Government orders, forms and guides available for download on the public website.">
+      <PageHeader title="Documents & downloads" intro="Government orders, forms and guides available for download on the public website.">
         {canWrite && (
           <div className="page__actions">
+            <LinkButton to="/imports?module=documents" variant="secondary">Import from Excel</LinkButton>
             <LinkButton to="/documents/new"><Icon name="plus" size={18} /> Add document</LinkButton>
           </div>
         )}

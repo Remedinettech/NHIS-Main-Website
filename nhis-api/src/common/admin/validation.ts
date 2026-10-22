@@ -146,6 +146,9 @@ export class Validator {
     } catch {
       return this.fail(field, 'Must be a valid URL.');
     }
+    // The stored text is the text as typed. A backslash is read as "/" by browsers but as part of the user name by other
+    // parsers ("https://maps.google.com\@evil.example"), so it is never accepted; a real address percent-encodes it.
+    if (text.includes('\\')) return this.fail(field, 'Must be a valid URL (no backslashes).');
     const schemes = options.schemes ?? ['https:'];
     if (!schemes.includes(parsed.protocol)) return this.fail(field, `Must use ${schemes.map((s) => s.replace(':', '')).join(' or ')}.`);
     if (parsed.username || parsed.password) return this.fail(field, 'Must not contain credentials.');

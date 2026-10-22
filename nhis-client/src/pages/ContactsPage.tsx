@@ -1,14 +1,14 @@
 import { useId, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import type { ContactDirectoryId } from '@nhis/shared-types';
+import { telHrefFor, type ContactDirectoryId } from '@nhis/shared-types';
 import { ContactDirectoryPanel } from '../components/contacts/ContactDirectoryPanel';
 import { ContactTabs } from '../components/contacts/ContactTabs';
 import { ErrorState, LoadingState } from '../components/common/StateViews';
 import { PageHeader } from '../components/common/PageHeader';
 import { useLanguage } from '../context/LanguageContext';
-import { useSiteSettings } from '../context/SiteSettingsContext';
 import { useContactIndex } from '../hooks/useContent';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { useSiteContent } from '../hooks/useSiteContent';
 import { pickBilingual } from '../utils/locale';
 import '../components/contacts/contacts.css';
 
@@ -18,26 +18,27 @@ export default function ContactsPage() {
   useDocumentTitle(t('contacts.title'));
   const idPrefix = useId().replace(/:/g, '');
   const index = useContactIndex();
-  const { data: site } = useSiteSettings();
+  const { header } = useSiteContent().content;
   const [params, setParams] = useSearchParams();
   const [queries, setQueries] = useState<Partial<Record<ContactDirectoryId, string>>>({});
 
+  const helplines = header.helplines.filter((line) => line.visible);
   const directories = index.data?.data ?? [];
   const requested = params.get('directory');
   const active = (directories.find((d) => d.id === requested) ?? directories[0])?.id;
 
   return (
-    <div className="page container">
+    <div className="page container contacts-page">
       <PageHeader title={t('contacts.title')} intro={t('contacts.intro')} />
-      {site && (
+      {helplines.length > 0 && (
         <section className="contact-helplines panel" aria-labelledby="contact-helplines-title">
           <h2 id="contact-helplines-title" className="contact-helplines__title">{t('contacts.helplines')}</h2>
           <ul>
-            {site.data.helplines.map((line) => {
+            {helplines.map((line) => {
               const label = pickBilingual(line.label, locale);
-              return <li key={line.id}><span lang={label.lang}>{label.text}</span>: <a href={line.telHref}>{line.number}</a></li>;
+              return <li key={line.id}><span lang={label.lang}>{label.text}</span>: <a href={telHrefFor(line.number)}>{line.number}</a></li>;
             })}
-            <li>{t('contacts.timings')}: {site.data.availability}</li>
+            {header.availability && <li>{t('contacts.timings')}: {header.availability}</li>}
           </ul>
         </section>
       )}

@@ -24,6 +24,8 @@ export const en = {
     availability: 'Available {hours}',
     unavailable: 'Helpline details could not be loaded.',
     callAria: 'Call {label} on {number}',
+    pause: 'Pause',
+    resume: 'Resume',
   },
   nav: {
     home: 'Home',
@@ -186,7 +188,7 @@ export const en = {
   },
   contacts: {
     title: 'Contact',
-    intro: 'Helplines and contact directories for TPA coordinators, UIIC nodal officers, project office officials, hospitals and treasury offices.',
+    intro: 'Helplines and contact directories for TPA coordinators, UIIC nodal officers, UIIC project office officials, hospitals and treasury offices.',
     helplines: 'Helplines',
     timings: 'Timings',
     tablistLabel: 'Contact directories',
@@ -199,7 +201,7 @@ export const en = {
       coordinators: 'TPA coordinators',
       'uiic-nodal-officers': 'UIIC Nodal Officers',
       'hospital-nodal-officers': 'Hospital nodal officers',
-      'project-office-officials': 'Project office officials',
+      'project-office-officials': 'UIIC Project Office Officials',
       'treasury-offices': 'District Treasury Office Mail & Phone Number',
     },
     cols: {
@@ -225,6 +227,17 @@ export const en = {
   gallery: {
     title: 'Gallery',
     loadError: 'The gallery could not be loaded',
+  },
+  manual: {
+    emptyTitle: 'The user manual is not available yet',
+    emptyText: 'The manual and the videos appear here as soon as they are published. Please visit again later.',
+    downloadVideo: 'Download video',
+    openVideo: 'Open video in a new tab',
+    videoUnsupported: 'This browser cannot play the video on this page.',
+  },
+  preview: {
+    banner: 'Preview: unpublished changes, not visible to the public',
+    signIn: 'Sign in to the administration in this browser to preview unpublished changes. Showing the published site.',
   },
   footer: {
     about: 'Tamil Nadu New Health Insurance Scheme',

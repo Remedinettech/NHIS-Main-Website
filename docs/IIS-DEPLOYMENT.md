@@ -74,6 +74,7 @@ temporary folder (e.g. `J:\TN_NHIS_WEBSITE\_incoming`), compare the SHA256 with 
 | `Backend\*` | `J:\TN_NHIS_WEBSITE\Backend\` |
 | `Service\tnnhis-api.xml` | `J:\TN_NHIS_WEBSITE\Service\tnnhis-api.xml` |
 | `Config\nhis-api.env.template` | read it, create `J:\TN_NHIS_WEBSITE\Backend\nhis-api\.env` (section 6) |
+| `MigrationReview\*` | reviewed SQL for the DBA (preflight, verification, grants, emergency rollback); keep it outside the web folders, never run it automatically |
 
 For Client and Admin (static folders) use `robocopy <src> <dest> /MIR` so removed files disappear; **never** `/MIR`
 into `Backend`, `Uploads` or `Logs`.
@@ -117,6 +118,8 @@ placeholders (DB host and the application-role password supplied by the DBA thro
 | `ADMIN_COOKIE_SAMESITE` | `lax` |
 | `ADMIN_TRUSTED_PROXY_HOPS` | `1` (IIS ARR). Client IP for rate limiting is taken from the right-hand end of `X-Forwarded-For`. |
 | `ADMIN_SESSION_IDLE_MINUTES`, `ADMIN_SESSION_ABSOLUTE_HOURS`, `ADMIN_LOGIN_*`, `ADMIN_MAX_BODY_BYTES` | optional, defaults apply |
+| `ADMIN_IMPORT_SIGNING_KEY` | random secret of at least 32 characters; **required for Excel import** (no default key exists). Optional limits: `ADMIN_IMPORT_MAX_BYTES` (default 2000000), `ADMIN_IMPORT_MAX_ROWS` (default 500). |
+| `UPLOAD_MAX_VIDEO_BYTES` | optional, default 26214400 (25 MB, the maximum): uploaded MP4 videos of the User Manual page |
 | `PUBLIC_API_ALLOWED_ORIGINS` | CORS allowlist for the public read API, e.g. `https://www.tn-nhis.net` (comma-separated exact origins, no wildcard). Added by Next.js only; never add `Access-Control-*` headers in IIS. Restart the service after changing it. |
 
 `NODE_ENV=production` is set by the service definition (and `next build/start` set it themselves); this makes the
@@ -139,6 +142,9 @@ npm run db:status -w nhis-api            # READ-ONLY: reports whether the restor
 ```
 
 `db:status` only reports. If it reports pending or mismatching migrations, **stop and report it to the DBA/developer**.
+For the content-management release exactly three pending migrations are expected (`20261015100000_site_content_cms`,
+`20261015110000_content_import`, `20261015120000_manual_video`): follow `docs/DEPLOYMENT-SITE-CONTENT.md` section 3 (review, backup,
+apply, verify). Anything else pending or mismatching is still a stop.
 Do not run `db:migrate`, `db:import`, `db:seed` or any reset on this server unless a DBA-approved change says so.
 
 ## 7. Uploads (persistent files)
@@ -206,6 +212,8 @@ from `.env`; no secret is in the XML.
 
 ## 10. Verification (on the server, in this order)
 
+For the content-management release also run the checks of `docs/DEPLOYMENT-SITE-CONTENT.md` section 7 (menu, User Manual page and video seeking, draft/preview/publish, uploads, cookie, import).
+
 1. Service: `.\tnnhis-api.exe status` = Started; `netstat -ano | findstr 3001` shows only `127.0.0.1:3001`.
 2. Direct API: `Invoke-RestMethod http://127.0.0.1:3001/api/v1/health` (or `/api/v1/hospitals?limit=1`) returns JSON.
    (A health route returns database status; a 5xx here means `.env`/database access.)
@@ -256,7 +264,7 @@ is a DBA restore and must be matched with the Uploads copy from the same time.
 Verified locally: typecheck, unit/integration tests (including admin cookie configuration), production builds of Client and
 Admin with the sub-path bases, behaviour of both sites under `/TNNHIS/` and `/TNNHISAdmin/` (deep links, assets, document
 downloads, admin sign-in/upload/sign-out with cookie `Path=/TNNHISApi`) using a local stand-in server
-(`deploy/tools/simulate-iis.mjs`) in front of a production-mode API, and `storage:check` against the local uploads.
+(`deploy/tools/simulate-iis.mjs`, development repository only) in front of a production-mode API, and `storage:check` against the local uploads.
 
 **Not verified (needs the real server):** IIS web.config processing, URL Rewrite/ARR proxying, the WebDAV removal,
 HTTPS binding/certificate and Secure cookies on the real host, the WinSW service, Windows ACLs, access to the hosted

@@ -14,13 +14,18 @@ export const KIND_LABELS = { suspension: 'Hospital suspension', 'login-support':
 const excerpt = (text: string) => (text.length > 110 ? `${text.slice(0, 110)}…` : text);
 
 export default function AnnouncementsPage() {
-  useDocumentTitle('Announcements');
+  useDocumentTitle('Website notices');
   const canWrite = useCan('content.write');
   const list = useRecordList<AdminAnnouncement>('announcements');
   return (
     <div className="page">
-      <PageHeader title="Announcements" intro="Notices shown at the top of the public website.">
-        {canWrite && <div className="page__actions"><LinkButton to="/announcements/new"><Icon name="plus" size={18} /> Add announcement</LinkButton></div>}
+      <PageHeader title="Website notices" intro="Notices shown at the top of the public website.">
+        {canWrite && (
+          <div className="page__actions">
+            <LinkButton to="/imports?module=announcements" variant="secondary">Import from Excel</LinkButton>
+            <LinkButton to="/announcements/new"><Icon name="plus" size={18} /> Add announcement</LinkButton>
+          </div>
+        )}
       </PageHeader>
       <RecordList<AdminAnnouncement>
         module="announcements"

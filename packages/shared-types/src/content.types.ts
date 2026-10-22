@@ -39,7 +39,19 @@ export interface ListItem { content: InlineNode[]; children?: ListBlock }
 export interface ListBlock { type: 'list'; ordered: boolean; items: ListItem[] }
 export interface ParagraphBlock { type: 'paragraph'; content: InlineNode[] }
 export interface DocumentLinkBlock { type: 'documentLink'; documentId: string; text: string }
-export type ContentBlock = ParagraphBlock | ListBlock | DocumentLinkBlock;
+/** Editable page table; cells use the same safe inline content as paragraphs. */
+export interface TableBlock { type: 'table'; headers: string[]; rows: InlineNode[][][] }
+/** A picture inside a page. `assetId` is an uploaded image; `alt` is required text for assistive technology. */
+export interface ImageBlock {
+  type: 'image';
+  assetId: string;
+  alt: string;
+  caption?: string;
+  /** Filled in by the API from the stored file when the page is saved. */
+  width?: number | null;
+  height?: number | null;
+}
+export type ContentBlock = ParagraphBlock | ListBlock | DocumentLinkBlock | ImageBlock | TableBlock;
 
 export interface PageSection {
   /** Anchor id, unique within the localized page. */

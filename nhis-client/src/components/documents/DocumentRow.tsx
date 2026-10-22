@@ -7,7 +7,7 @@ import { Badge } from '../common/Badge';
 import { Icon } from '../common/Icon';
 import { T } from '../common/T';
 import './documents.css';
-import { resolveApiUrl } from '../../utils/urls';
+import { documentFileUrl } from '../../utils/urls';
 
 /** Reusable document row: title, category, date from the label, size and a download action. */
 export function DocumentRow({ doc }: { doc: DocumentRecord }) {
@@ -17,7 +17,8 @@ export function DocumentRow({ doc }: { doc: DocumentRecord }) {
   const otherLabel = doc.label[otherLocale].trim();
   const showOtherLabel = otherLabel !== '' && otherLabel !== doc.label[locale].trim();
   const dateText = doc.dateLabel[locale] ?? doc.dateLabel[otherLocale];
-  const available = doc.availability === 'available' && doc.localPath !== null;
+  const href = documentFileUrl(doc.localPath);
+  const available = doc.availability === 'available' && href !== undefined;
   const downloadName = pickBilingual(doc.label, locale).text;
 
   return (
@@ -50,14 +51,14 @@ export function DocumentRow({ doc }: { doc: DocumentRecord }) {
           <>
             <a
               className="btn btn--primary btn--sm"
-              href={doc.localPath ? resolveApiUrl(doc.localPath) : undefined}
+              href={href}
               download
               aria-label={t('documents.downloadAria', { title: downloadName })}
             >
               <Icon name="download" size={18} />
               <span>{t('common.download')}</span>
             </a>
-            <a className="btn btn--secondary btn--sm" href={doc.localPath ? resolveApiUrl(doc.localPath) : undefined} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn--secondary btn--sm" href={href} target="_blank" rel="noopener noreferrer">
               <span>{t('common.pdf')}</span>
               <Icon name="external" size={16} />
               <span className="visually-hidden"> {downloadName} ({t('common.opensInNewTab')})</span>

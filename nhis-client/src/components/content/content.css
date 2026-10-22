@@ -2,15 +2,21 @@
 .content-layout.has-toc { grid-template-columns: minmax(0, 1fr); }
 .content-fallback { margin-bottom: var(--space-4); }
 
-.content-article { padding: var(--space-5); max-width: 62rem; }
-.content-section { margin-bottom: var(--space-6); scroll-margin-top: 1rem; }
+.content-layout .content-article { padding: var(--space-4); min-width: 0; width: 100%; }
+.content-section { margin-bottom: var(--space-5); scroll-margin-top: 1rem; }
 .content-section:last-child { margin-bottom: 0; }
+.content-section > :last-child { margin-bottom: 0; }
 .content-section h2 { font-size: var(--text-lg); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
 .content-section > p, .content-section > .prose-list { max-width: var(--reading-width); }
 .content-section:target h2 { background: var(--color-highlight); }
 .prose-list { padding-left: 1.5em; }
 .prose-list .prose-list { margin-top: var(--space-2); margin-bottom: 0; list-style-type: lower-alpha; }
 .mail-link { overflow-wrap: anywhere; }
+/* Pictures in a page (image blocks): natural proportions, never wider than the column, caption only when there is one */
+.content-figure { margin: var(--space-4) 0; max-width: 100%; }
+.content-figure img { display: block; max-width: 100%; height: auto; }
+.content-figure figcaption { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.grievance-note p { white-space: pre-line; }
 .source-footnote { margin-top: var(--space-5); font-size: var(--text-sm); }
 
 .doc-action { margin-bottom: var(--space-3); }
@@ -38,6 +44,16 @@
   .section-nav { position: sticky; top: var(--space-4); }
   .section-nav__wide { display: block; }
   .section-nav__narrow { display: none; }
+}
+
+.content-table-wrap { width: 100%; overflow-x: auto; margin-block: var(--space-4); }
+.content-table { width: 100%; border-collapse: collapse; }
+.content-table th, .content-table td { padding: var(--space-3); border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .content-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .content-table tbody, .content-table tr, .content-table td { display: block; }
+  .content-table td::before { content: attr(data-label); display: block; font-weight: 600; }
+  .content-table tr { margin-bottom: var(--space-4); }
 }
 
 /* Review notes */

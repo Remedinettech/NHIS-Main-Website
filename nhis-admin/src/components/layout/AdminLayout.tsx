@@ -69,7 +69,7 @@ export default function AdminLayout() {
               <li key={item.to}>
                 <NavLink to={item.to} className={({ isActive }) => cx('nav-link', isActive && 'is-active')}>
                   <Icon name={item.icon} />
-                  <span>{item.label}</span>
+                  <span><span className="nav-link__label">{item.label}</span>{item.description && <small className="nav-link__description">{item.description}</small>}</span>
                 </NavLink>
               </li>
             ))}

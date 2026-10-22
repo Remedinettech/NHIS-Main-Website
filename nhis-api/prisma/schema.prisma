@@ -34,6 +34,7 @@ enum AdminRole {
 enum AssetKind {
   DOCUMENT
   IMAGE
+  VIDEO
 }
 
 /* ------------------------------------------------------------------ administration */
@@ -336,10 +337,48 @@ model GalleryItem {
 }
 
 /// Site-wide settings saved explicitly (no draft): keys "scheme", "helplines", "portals".
+/// Legacy: since the admin-managed site content (SiteContent) these rows only provide the initial values of the
+/// header / homepage documents until those are published.
 model SiteSetting {
   key         String   @id
   value       Json
   version     Int      @default(1)
   updatedById String?
   updatedAt   DateTime @updatedAt
+}
+
+/// Admin-managed site content documents. `id` is the document key: header | navigation | home | partners | footer | text
+/// (see packages/shared-types/src/site-content.types.ts). Same publishing model as the other content tables:
+///  - a row is created by the first save; until a row is PUBLISHED the public site shows the built-in content,
+///  - `value` is the LIVE (published) document; edits to a PUBLISHED row wait in `draft` until Publish,
+///  - these documents can never be unpublished, archived or deleted (the public site always needs them).
+/// Images referenced by `value` (assetId) become public only while the row is PUBLISHED.
+model SiteContent {
+  id          String            @id
+  status      PublicationStatus @default(DRAFT)
+  value       Json
+  version     Int               @default(1)
+  draft       Json?
+  publishedAt DateTime?
+  archivedAt  DateTime?
+  updatedById String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+/// Resumable, idempotent Excel metadata imports. Never stores workbook bytes or publishes content.
+model ContentImport {
+  id           String   @id
+  actorId      String
+  module       String
+  mode         String
+  state        String   @default("RUNNING")
+  rows         Json
+  results      Json     @default("[]")
+  cursor       Int      @default(0)
+  total        Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([actorId, createdAt])
 }

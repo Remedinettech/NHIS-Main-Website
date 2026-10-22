@@ -1,12 +1,13 @@
 import type { AdminAsset } from '@nhis/shared-types';
-import { useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useMutation } from '../../hooks/useMutation';
 import { adminApi } from '../../services/client';
 import { formatBytes, truncateToken } from '../../utils/format';
-import { acceptAttribute, checkUploadFile, UPLOAD_RULES, type UploadKind } from '../../utils/uploadRules';
+import { acceptAttribute, checkUploadFile, UPLOAD_DETACHED_MESSAGE, UPLOAD_RULES, type UploadKind } from '../../utils/uploadRules';
 import { Button } from './Button';
 import { describeMutationError } from './errorMessage';
 import { Icon } from './Icon';
+import { useToast } from './Toast';
 import './forms.css';
 
 /** POST /admin/uploads (multipart: file, kind). The server validates type, content and size again. */
@@ -42,7 +43,18 @@ export function FileUploadField({ label, kind, asset, onUploaded, onRemove, requ
   const id = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const [localError, setLocalError] = useState<string>();
+  const toast = useToast();
   const upload = useMutation((file: File) => uploadAsset(file, kind));
+  // An upload can take a while. When it ends the form may have changed (text typed meanwhile, rows moved or removed), so the
+  // result goes to the latest callback, and not at all when this field is gone: the callback of the render in which the
+  // file was chosen would write that old snapshot of the form back over everything done since.
+  const latest = useRef(onUploaded);
+  latest.current = onUploaded;
+  const mounted = useRef(true);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; };
+  }, []);
   const rule = UPLOAD_RULES[kind];
   const shownError = localError ?? (upload.error ? describeMutationError(upload.error) : undefined) ?? error;
   const errorId = shownError ? `${id}-error` : undefined;
@@ -54,7 +66,9 @@ export function FileUploadField({ label, kind, asset, onUploaded, onRemove, requ
     if (problem) { if (inputRef.current) inputRef.current.value = ''; return; }
     const result = await upload.run(file);
     if (inputRef.current) inputRef.current.value = '';
-    if (result?.ok) onUploaded(result.data);
+    if (!result?.ok) return;
+    if (mounted.current) latest.current(result.data);
+    else toast.error(UPLOAD_DETACHED_MESSAGE);
   };
 
   return (
@@ -70,6 +84,7 @@ export function FileUploadField({ label, kind, asset, onUploaded, onRemove, requ
             <Icon name={kind === 'image' ? 'image' : 'file'} size={22} />
             <div>
               <p className="upload__name">{asset.originalName}</p>
+              <p className="upload__meta">Asset ID for Excel metadata imports: <code>{asset.id}</code></p>
               <p className="upload__meta">{formatBytes(asset.bytes)} · SHA-256 {truncateToken(asset.sha256, 12)}</p>
             </div>
           </div>

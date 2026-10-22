@@ -1,6 +1,8 @@
 import type { AdminPageValues, LocalizedPageContent, PageSection } from '@nhis/shared-types';
 import type { Page, PageTranslation, Prisma } from '@prisma/client';
 import { invalid } from '../../common/admin';
+import { checkImages, type ImageRef } from '../site-content/references';
+import type { ImageSize } from '../storage';
 import { collectDocumentIds, parseLocalizedPage } from './content-validation';
 import type { EntityAdapter } from './engine';
 import { listFilters, type ModuleDefinition } from './shared';
@@ -12,6 +14,32 @@ const asLocalized = (t: PageTranslation | undefined): LocalizedPageContent | nul
 
 const documentIdsOf = (values: AdminPageValues): string[] =>
   collectDocumentIds([...(values.en?.sections ?? []), ...(values.ta?.sections ?? [])]);
+
+/** Image blocks of both languages with the field path the Admin addresses them by (e.g. `en.sections[1].blocks[0].assetId`). */
+function imageRefsOf(values: AdminPageValues): ImageRef[] {
+  const refs: ImageRef[] = [];
+  for (const locale of ['en', 'ta'] as const) {
+    values[locale]?.sections.forEach((section, s) => section.blocks.forEach((block, b) => {
+      if (block.type === 'image') refs.push({ assetId: block.assetId, field: `${locale}.sections[${s}].blocks[${b}].assetId` });
+    }));
+  }
+  return refs;
+}
+
+/** A copy of the values in which every image block carries the pixel size read from its stored file. */
+function withImageSizes(values: AdminPageValues, sizes: ReadonlyMap<string, ImageSize>): AdminPageValues {
+  const fill = (content: LocalizedPageContent | null): LocalizedPageContent | null => content && {
+    ...content,
+    sections: content.sections.map((section) => ({
+      ...section,
+      blocks: section.blocks.map((block) => {
+        const size = block.type === 'image' ? sizes.get(block.assetId) : undefined;
+        return block.type === 'image' && size ? { ...block, width: size.width, height: size.height } : block;
+      }),
+    })),
+  };
+  return { en: fill(values.en), ta: fill(values.ta) };
+}
 
 /**
  * Pages are the fixed site routes (employee-policy, coverage, ...). They are edited and published, never created,
@@ -45,10 +73,14 @@ export const pageAdapter: EntityAdapter<AdminPageValues, PageRow> = {
   },
   async verify(tx, values) {
     const ids = documentIdsOf(values);
-    if (ids.length === 0) return;
-    const found = await tx.document.findMany({ where: { id: { in: ids } }, select: { id: true } });
-    const missing = ids.filter((id) => !found.some((f) => f.id === id));
-    if (missing.length) throw invalid('A linked document does not exist.', [{ field: 'values', message: `Unknown document: ${missing.join(', ')}` }]);
+    if (ids.length > 0) {
+      const found = await tx.document.findMany({ where: { id: { in: ids } }, select: { id: true } });
+      const missing = ids.filter((id) => !found.some((f) => f.id === id));
+      if (missing.length) throw invalid('A linked document does not exist.', [{ field: 'values', message: `Unknown document: ${missing.join(', ')}` }]);
+    }
+    // Pictures: every referenced asset must exist and be an image (the size was filled in when the values were parsed).
+    const { problems } = await checkImages(tx, imageRefsOf(values), { measure: false });
+    if (problems.length > 0) throw invalid('A picture on this page is not available.', problems);
   },
   update: async (tx, id, version, data) => (await tx.page.updateMany({ where: { id, version }, data: data as Prisma.PageUpdateManyMutationInput })).count,
   create: () => { throw invalid('Pages cannot be created.'); },
@@ -61,7 +93,7 @@ export const pageAdapter: EntityAdapter<AdminPageValues, PageRow> = {
 };
 
 export const pageModule: ModuleDefinition<AdminPageValues, PageRow> = {
-  async parseValues(v, input) {
+  async parseValues(v, input, { db }) {
     const obj = v.object(input, 'values');
     if (!obj) return { en: null, ta: null };
     v.noUnknownKeys(obj, ['en', 'ta']);
@@ -69,7 +101,12 @@ export const pageModule: ModuleDefinition<AdminPageValues, PageRow> = {
     const ta = parseLocalizedPage(v, obj.ta ?? null, 'ta');
     if (v.ok && en === null && ta === null) v.fail('values', 'A page needs content in at least one language.');
     v.throwIfInvalid();
-    return { en: en ?? null, ta: ta ?? null };
+    const values: AdminPageValues = { en: en ?? null, ta: ta ?? null };
+    // Pictures: each asset must exist and be an image; its pixel size is read from the stored file (never from the browser).
+    const { problems, sizes } = await checkImages(db, imageRefsOf(values), { measure: true });
+    for (const problem of problems) v.fail(problem.field, problem.message);
+    v.throwIfInvalid();
+    return withImageSizes(values, sizes);
   },
 
   async list(db, params, paging) {

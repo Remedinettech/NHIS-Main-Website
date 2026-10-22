@@ -1,10 +1,11 @@
-import type { AdminPage, AdminPageValues } from '@nhis/shared-types';
+import { appendGrievanceSections, missingGrievanceSections, updateGrievanceBeneficiaries, type AdminPage, type AdminPageValues } from '@nhis/shared-types';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from '../../components/common/Button';
 import { Card } from '../../components/common/Card';
 import { useDocumentOptions } from '../../components/records/InlineNodesEditor';
 import { PageContentEditor } from '../../components/records/PageContentEditor';
+import { imageBlockProblems } from '../../components/records/PageImageBlock';
 import { PagePreview } from '../../components/records/PagePreview';
 import { RecordEditor } from '../../components/records/RecordEditor';
 import { PAGE_NAMES } from './PagesListPage';
@@ -20,6 +21,7 @@ function validate(v: AdminPageValues): Record<string, string> {
     if (!c.title.trim()) errors[`${l}.title`] = 'Enter the page title.';
     c.sections.forEach((s, i) => {
       s.blocks.forEach((b, j) => {
+        if (b.type === 'image') Object.assign(errors, imageBlockProblems(b, `${l}.sections.${i}.blocks.${j}`));
         if (b.type === 'documentLink') {
           if (!b.documentId) errors[`${l}.sections.${i}.blocks.${j}.documentId`] = 'Choose a document.';
           if (!b.text.trim()) errors[`${l}.sections.${i}.blocks.${j}.text`] = 'Enter the button text.';
@@ -67,6 +69,14 @@ export default function PageEditPage() {
     >
       {({ values, setValues, errors, readOnly }) => (
         <>
+          {slug === 'grievances' && <Card title="Current grievance contacts" description="Replace the English beneficiary sections with the HITPA, Medi Assist and Vidal sections exactly as the live website shows them (checked on 19 October 2026, wording kept as published). Other sections and Tamil wording are preserved. This button changes the form only; save a draft and preview before publishing.">
+            <Button variant="secondary" disabled={readOnly || !values.en} onClick={() => setValues(current => updateGrievanceBeneficiaries(current))}>Use current English grievance contacts</Button>
+          </Card>}
+          {slug === 'grievances' && <Card title="NHIS 2026 officer & escalation tables" description="The public Grievances page already shows the NHIS 2026 nodal officer and escalation tables from the site itself, exactly as on the live site. Add them here only if you want to edit them as page text: once this page is published with them, the built-in copy is hidden. Nothing is saved or published by this button.">
+            <Button variant="secondary" disabled={readOnly || missingGrievanceSections(values) === 0} onClick={() => setValues((current) => appendGrievanceSections(current))}>
+              {missingGrievanceSections(values) ? 'Add supplied officer tables' : 'Supplied tables are already present'}
+            </Button>
+          </Card>}
           <Card title={slug ? PAGE_NAMES[slug] ?? slug : 'Page'} description="English and Tamil are edited separately. Keep the wording exactly as approved.">
             <PageContentEditor values={values} onChange={(next) => setValues(next)} documents={documents} errors={errors} disabled={readOnly} />
           </Card>

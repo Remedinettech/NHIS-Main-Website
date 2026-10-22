@@ -1,3 +1,5 @@
+import UserManualPage from '../pages/site/UserManualPage';
+import ImportPage from '../pages/imports/ImportPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoginRoute, RequireRoleForPath, RequireSession } from '../components/auth/RouteGuards';
 import AdminLayout from '../components/layout/AdminLayout';
@@ -17,6 +19,13 @@ import NotFoundPage from '../pages/NotFoundPage';
 import PageEditPage from '../pages/pages/PageEditPage';
 import PagesListPage from '../pages/pages/PagesListPage';
 import SettingsPage from '../pages/settings/SettingsPage';
+import FooterPage from '../pages/site/FooterPage';
+import HeaderPage from '../pages/site/HeaderPage';
+import HomeEditPage from '../pages/site/HomeEditPage';
+import NavigationPage from '../pages/site/NavigationPage';
+import PartnersPage from '../pages/site/PartnersPage';
+import SiteHubPage from '../pages/site/SiteHubPage';
+import TextPage from '../pages/site/TextPage';
 import UsersPage from '../pages/users/UsersPage';
 
 export default function AppRoutes() {
@@ -28,6 +37,7 @@ export default function AppRoutes() {
           <Route element={<RequireRoleForPath />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="imports" element={<ImportPage />} />
             <Route path="hospitals" element={<HospitalsPage />} />
             <Route path="hospitals/new" element={<HospitalEditPage />} />
             <Route path="hospitals/:id" element={<HospitalEditPage />} />
@@ -45,6 +55,15 @@ export default function AppRoutes() {
             <Route path="gallery" element={<GalleryPage />} />
             <Route path="gallery/new" element={<GalleryEditPage />} />
             <Route path="gallery/:id" element={<GalleryEditPage />} />
+            <Route path="site" element={<SiteHubPage />} />
+            <Route path="site/manual" element={<UserManualPage />} />
+            <Route path="site/header" element={<HeaderPage />} />
+            <Route path="site/navigation" element={<NavigationPage />} />
+            <Route path="site/home" element={<HomeEditPage />} />
+            <Route path="site/partners" element={<PartnersPage />} />
+            <Route path="site/footer" element={<FooterPage />} />
+            <Route path="site/text" element={<TextPage />} />
+            {/* The retired Settings page: its values now live in the Site content documents. */}
             <Route path="settings" element={<SettingsPage />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="activity" element={<ActivityPage />} />

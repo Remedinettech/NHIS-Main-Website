@@ -2,12 +2,16 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../config/routes';
 import { useLanguage } from '../../context/LanguageContext';
+import { useSiteContent } from '../../hooks/useSiteContent';
+import { cx } from '../../utils/classNames';
+import { pickBilingual } from '../../utils/locale';
+import { splitWordmark, wordmarkLanguage } from '../common/BrandLogo';
 import { Icon } from '../common/Icon';
+import { SiteImage } from '../common/SiteImage';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { LoginMenu } from './LoginMenu';
 import { PrimaryNav } from './PrimaryNav';
 import './SiteHeader.css';
-import { assetUrl } from '../../utils/urls';
 
 export function SiteHeader() {
   const { t, locale } = useLanguage();
@@ -37,51 +41,41 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
-  const schemeName =
-    locale === 'ta'
-      ? 'தமிழ்நாடு அரசு புதிய மருத்துவக் காப்பீட்டுத் திட்டம்'
-      : 'Tamil Nadu New Health Insurance Scheme';
+  const { header } = useSiteContent().content;
+  const title = pickBilingual(header.title, locale);
+  const subtitle = pickBilingual(header.subtitle, locale);
+  const { head, tail } = splitWordmark(title.text);
 
   return (
     <header className="site-header nhis-header">
-      <div className="container nhis-header__inner">
+      <div className={cx('container', 'nhis-header__inner', !header.showPortrait && 'nhis-header__inner--no-portrait')}>
         <Link
           className="nhis-header__identity"
           to={ROUTES.home}
-          aria-label={`TN-NHIS — ${schemeName}`}
+          aria-label={[title.text, subtitle.text].filter(Boolean).join(' — ')}
         >
-          <img
-            className="nhis-header__emblem"
-            src={assetUrl('assets/tn-government-emblem.png')}
-            alt={t('site.emblemAlt')}
-            width={76}
-            height={82}
-            decoding="async"
-          />
+          <SiteImage className="nhis-header__emblem" image={header.emblem} />
 
           <span className="nhis-header__wordmark">
-            <span className="nhis-header__name" lang="en">
-              <span>TN</span>
-              <span className="nhis-header__hyphen">-</span>
-              <span className="nhis-header__name-blue">NHIS</span>
+            <span className="nhis-header__name" lang={wordmarkLanguage(title.text, title.lang)}>
+              <span>{head}</span>
+              {tail && <span className="nhis-header__hyphen">-</span>}
+              {tail && <span className="nhis-header__name-blue">{tail}</span>}
             </span>
 
-            <span className="nhis-header__subtitle" lang={locale}>
-              {schemeName}
-            </span>
+            {subtitle.text && (
+              <span className="nhis-header__subtitle" lang={subtitle.lang}>
+                {subtitle.text}
+              </span>
+            )}
           </span>
         </Link>
 
-        <div className="nhis-header__portrait-frame">
-          <img
-            className="nhis-header__portrait"
-            src={assetUrl('assets/header-portrait.jpg')}
-            alt={t('site.portraitAlt')}
-            width={72}
-            height={88}
-            decoding="async"
-          />
-        </div>
+        {header.showPortrait && (
+          <div className="nhis-header__portrait-frame">
+            <SiteImage className="nhis-header__portrait" image={header.portrait} />
+          </div>
+        )}
 
         <div className="nhis-header__controls">
           <LanguageSwitcher />

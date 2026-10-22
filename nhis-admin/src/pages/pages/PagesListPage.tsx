@@ -17,11 +17,11 @@ export const PAGE_NAMES: Record<string, string> = {
 };
 
 export default function PagesListPage() {
-  useDocumentTitle('Pages');
+  useDocumentTitle('Website pages');
   const list = useRecordList<AdminPage>('pages');
   return (
     <div className="page">
-      <PageHeader title="Pages" intro="Policy and information pages, in English and Tamil. Edits are saved as drafts and appear on the website when published." />
+      <PageHeader title="Website pages" intro="Edit bilingual policy and grievance pages, including text, pictures, officer tables and download links. Changes stay private until published." />
       <RecordList<AdminPage>
         module="pages"
         list={list}

@@ -1,6 +1,7 @@
-/** Public route paths. Legacy tn-nhis.com paths are mapped in routes/legacyRedirects.ts. */
+/** Public route paths. Legacy tn-nhis.com paths are mapped by LEGACY_ALIASES below (routes/index.tsx redirects them). */
 export const ROUTES = {
   home: '/',
+  userManual: '/user-manual',
   hospitals: '/hospitals',
   employeePolicy: '/employee-policy',
   pensionerPolicy: '/pensioner-policy',

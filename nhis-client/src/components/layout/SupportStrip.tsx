@@ -1,21 +1,23 @@
 import { useState } from 'react';
+import { telHrefFor } from '@nhis/shared-types';
 import { useLanguage } from '../../context/LanguageContext';
-import { useSiteSettings } from '../../context/SiteSettingsContext';
+import { useSiteContent } from '../../hooks/useSiteContent';
 import { pickBilingual } from '../../utils/locale';
 import { Icon } from '../common/Icon';
 
+/** Scrolling helpline strip above the header: heading, helplines and availability come from the header content. */
 export function SupportStrip() {
   const [paused, setPaused] = useState(false);
   const { t, locale } = useLanguage();
-  const { data } = useSiteSettings();
+  const { header } = useSiteContent().content;
 
-  if (!data) return null;
-
-  const { helplines, availability } = data.data;
+  const helplines = header.helplines.filter((line) => line.visible);
   if (!helplines.length) return null;
 
-  const pauseLabel = locale === 'ta' ? 'நிறுத்து' : 'Pause';
-  const resumeLabel = locale === 'ta' ? 'தொடரவும்' : 'Resume';
+  const { availability } = header;
+  const heading = pickBilingual(header.helplineHeading, locale);
+  const pauseLabel = t('support.pause');
+  const resumeLabel = t('support.resume');
 
   return (
     <div
@@ -27,7 +29,7 @@ export function SupportStrip() {
       <div className="container support-strip__inner">
         <span className="support-strip__title">
           <Icon name="phone" size={16} />
-          <span>{t('support.helpline')}</span>
+          <span lang={heading.lang}>{heading.text}</span>
         </span>
 
         <div
@@ -52,7 +54,7 @@ export function SupportStrip() {
                   <span lang={label.lang}>{label.text}:</span>
 
                   <a
-                    href={line.telHref}
+                    href={telHrefFor(line.number)}
                     aria-label={t('support.callAria', {
                       label: label.text,
                       number: line.number,

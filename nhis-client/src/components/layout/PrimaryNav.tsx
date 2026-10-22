@@ -1,33 +1,18 @@
 import { useEffect, useId } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import type { NavLinkItem, NavMenuItem } from '../../config/navigation';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { useDismissableMenu } from '../../hooks/useDismissableMenu';
-import { usePortalHrefs } from '../../hooks/usePortals';
 import { useVisibleNav } from '../../hooks/useVisibleNav';
 import { cx } from '../../utils/classNames';
-import { ExternalLink } from '../common/ExternalLink';
+import { routePathOf, type NavEntryView } from '../../utils/siteLinks';
 import { Icon } from '../common/Icon';
+import { BilingualText, SiteLink } from '../common/SiteLink';
 
-function NavEntry({ item }: { item: NavLinkItem }) {
-  const { t } = useLanguage();
-  const hrefs = usePortalHrefs();
-  if (item.href) {
-    return <ExternalLink href={item.id === 'track-claim' ? hrefs.trackClaim : item.href} className="nav__link">{t(item.labelKey)}</ExternalLink>;
-  }
-  return (
-    <NavLink to={item.to ?? '/'} end={item.to === '/'} className={({ isActive }) => cx('nav__link', isActive && 'is-active')}>
-      {t(item.labelKey)}
-    </NavLink>
-  );
-}
-
-function NavMenu({ item }: { item: NavMenuItem }) {
-  const { t } = useLanguage();
+function NavMenu({ entry }: { entry: Extract<NavEntryView, { kind: 'menu' }> }) {
   const location = useLocation();
   const { open, setOpen, close, containerRef, triggerRef, onBlur } = useDismissableMenu();
   const panelId = useId();
-  const active = item.children.some((child) => child.kind === 'link' && child.to !== undefined && location.pathname === child.to);
+  const active = entry.children.some((child) => child.kind === 'link' && child.link.kind === 'route' && location.pathname === routePathOf(child.link.href));
 
   useEffect(() => { setOpen(false); }, [location.pathname, setOpen]);
 
@@ -41,28 +26,32 @@ function NavMenu({ item }: { item: NavMenuItem }) {
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
       >
-        <span>{t(item.labelKey)}</span>
+        <span><BilingualText value={entry.item.label} /></span>
         <Icon name="chevronDown" size={16} className="nav__chevron" />
       </button>
       <ul id={panelId} className="nav__submenu" hidden={!open} onClick={() => close()}>
-        {item.children.map((child) => child.kind === 'heading'
-          ? <li key={child.id} className="nav__heading" aria-hidden="true">{t(child.labelKey)}</li>
-          : <li key={child.id}><NavEntry item={child} /></li>)}
+        {entry.children.map((child) => child.kind === 'heading'
+          ? <li key={child.id} className="nav__heading" aria-hidden="true"><BilingualText value={child.item.label} /></li>
+          : <li key={child.id}><SiteLink item={child.item} nav className="nav__link" /></li>)}
       </ul>
     </div>
   );
 }
 
-/** Primary navigation (desktop bar and the mobile panel share this markup). */
+/**
+ * Primary navigation (desktop bar and the mobile panel share this markup). The entries are the managed navigation
+ * content: order, labels, dropdown groups and visibility are the editor's; entries that cannot be shown (including the
+ * Gallery while it has no published item) are left out by `useVisibleNav`.
+ */
 export function PrimaryNav({ open, id }: { open: boolean; id: string }) {
   const { t } = useLanguage();
-  const items = useVisibleNav();
+  const entries = useVisibleNav();
   return (
     <nav id={id} className={cx('nav', open && 'is-open')} aria-label={t('site.mainNav')}>
       <ul className="nav__list container">
-        {items.map((item) => (
-          <li key={item.id} className="nav__item">
-            {item.kind === 'menu' ? <NavMenu item={item} /> : <NavEntry item={item} />}
+        {entries.map((entry) => (
+          <li key={entry.id} className="nav__item">
+            {entry.kind === 'menu' ? <NavMenu entry={entry} /> : <SiteLink item={entry.item} nav className="nav__link" />}
           </li>
         ))}
       </ul>

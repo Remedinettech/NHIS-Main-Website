@@ -6,24 +6,26 @@ import { PageHeader } from '../../components/common/PageHeader';
 import { ErrorState, LoadingState } from '../../components/common/StateViews';
 import { Tabs } from '../../components/common/Tabs';
 import { RecordList } from '../../components/records/RecordList';
-import { displayColumns } from '../../config/contactColumns';
+import { directoryTitle, displayColumns } from '../../config/contactColumns';
 import { useAsyncData } from '../../hooks/useAsyncData';
 import { useCan } from '../../hooks/useAuth';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useRecordList } from '../../hooks/useRecordList';
 import { adminApi } from '../../services/client';
 
-const directoryName = (d: AdminContactDirectory) => d.labelEn;
+const directoryName = (d: AdminContactDirectory) => directoryTitle(d.id, d.labelEn);
 
 function DirectoryList({ directory }: { directory: AdminContactDirectory }) {
   const canWrite = useCan('content.write');
   const list = useRecordList<AdminContact>('contacts', { fixed: { directoryId: directory.id } });
   const columns = displayColumns(directory.id, directory.columns);
-  const summary = (r: AdminContact) => columns.slice(0, 2).map((c) => r.values.cells[c.key]?.trim()).filter(Boolean).join(' – ') || 'Contact';
+  const summaryKeys = directory.id === 'project-office-officials' ? ['C', 'D'] : columns.slice(0, 2).map((c) => c.key);
+  const summary = (r: AdminContact) => summaryKeys.map((key) => r.values.cells[key]?.trim()).filter(Boolean).join(' – ') || 'Contact';
   return (
     <>
       {canWrite && (
         <div className="page__actions">
+          <LinkButton to={`/imports?module=contacts&directory=${encodeURIComponent(directory.id)}`} variant="secondary">Import from Excel</LinkButton>
           <LinkButton to={`/contacts/new?directory=${encodeURIComponent(directory.id)}`}><Icon name="plus" size={18} /> Add contact</LinkButton>
         </div>
       )}
@@ -48,7 +50,7 @@ function DirectoryList({ directory }: { directory: AdminContactDirectory }) {
 }
 
 export default function ContactsPage() {
-  useDocumentTitle('Contacts');
+  useDocumentTitle('Contact directories');
   const [params] = useSearchParams();
   const dirs = useAsyncData((signal) => adminApi.getJson<{ data: AdminContactDirectory[] }>('/contacts/directories', { signal }), []);
   const directories = dirs.data?.data ?? [];
@@ -56,7 +58,7 @@ export default function ContactsPage() {
 
   return (
     <div className="page">
-      <PageHeader title="Contacts" intro="Coordinators, nodal officers and treasury offices listed on the public Contact page." />
+      <PageHeader title="Contact directories" intro="TPA coordinators, nodal officers, treasury offices and project-office officials listed on the public Contact page." />
       {dirs.loading && !dirs.data && <LoadingState label="Loading directories…" rows={2} />}
       {dirs.error && !dirs.data && <ErrorState error={dirs.error} title="The directories could not be loaded" onRetry={dirs.reload} />}
       {active && (

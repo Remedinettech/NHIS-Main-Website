@@ -8,12 +8,14 @@ interface Props extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'target' |
   href: string;
   children: ReactNode;
   /** Render as a button-style link. */
-  variant?: 'link' | 'primary' | 'secondary';
+  variant?: 'link' | 'primary' | 'secondary' | 'ghost';
   showIcon?: boolean;
+  /** What kind of destination this is, announced before "opens in a new tab" (for example "PDF" for a document file). */
+  note?: string;
 }
 
 /** Link to another site or file: opens in a new tab and says so to assistive technology. */
-export function ExternalLink({ children, className, variant = 'link', showIcon = true, ...rest }: Props) {
+export function ExternalLink({ children, className, variant = 'link', showIcon = true, note, ...rest }: Props) {
   const { t } = useLanguage();
   return (
     <a
@@ -24,7 +26,7 @@ export function ExternalLink({ children, className, variant = 'link', showIcon =
     >
       {children}
       {showIcon && <Icon name="external" size={16} className="ext-link__icon" />}
-      <span className="visually-hidden"> ({t('common.opensInNewTab')})</span>
+      <span className="visually-hidden"> ({note ? `${note}, ` : ''}{t('common.opensInNewTab')})</span>
     </a>
   );
 }

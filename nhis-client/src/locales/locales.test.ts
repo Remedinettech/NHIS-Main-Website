@@ -46,3 +46,9 @@ test('placeholders in Tamil messages match the English placeholders', () => {
     assert.equal(placeholders(ta), placeholders(en), `placeholder mismatch in ${key}`);
   }
 });
+
+test('the project office directory tab is named UIIC Project Office Officials', () => {
+  assert.equal(resolveMessage('en', 'contacts.directories.project-office-officials').text, 'UIIC Project Office Officials');
+  assert.equal(resolveMessage('ta', 'contacts.directories.project-office-officials').text, 'UIIC திட்ட அலுவலக அலுவலர்கள்');
+  assert.ok(resolveMessage('en', 'contacts.intro').text.includes('UIIC project office officials'));
+});
